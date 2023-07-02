@@ -3,6 +3,7 @@ import cors from 'cors';
 import query from './Database/DBConnection.js';
 import dotenv from 'dotenv';
 import checkpages from './MiddleWare/checkpages.js';
+import newApp from './Authentication/newApplecation.js';
 
 
 
@@ -17,6 +18,7 @@ app.use(express.static('public/imgs'));
 
 
 app.use('/checkpages', checkpages);
+app.use('/newapp', newApp);
 
 
 
