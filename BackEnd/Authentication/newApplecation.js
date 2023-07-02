@@ -48,6 +48,7 @@
 //                     military_status	: req.body.military_status,
 //                 };
 
+
 //                 const sqlInsert = "INSERT INTO `student` SET ?";
 //                 await query(sqlInsert, studentData , (err, result) => {
 //                     delete studentData.password;

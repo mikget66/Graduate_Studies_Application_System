@@ -97,7 +97,7 @@ checkpages.post('/checkpage3',
 
             for (let i = 1; i <= 4 ; i++) {
                 if(!req.files[`image${i}`]){
-                    continue;
+                    return res.status(400).json({ errors: [{ msg: `Please upload a image number ${i} `}] });
                 }
                 let file = req.files[`image${i}`][0].size || 0;
                 if(file > maxFileSize ){
