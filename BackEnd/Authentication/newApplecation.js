@@ -43,6 +43,8 @@ newApp.post('/signup',
             }
             /*==================================  check if the data is valid  ==================================*/
 
+
+
             /*==================================  check if upload all the required files  ==================================*/
 
             if (req.body.length_of_file != Object.keys(req.files).length) {
@@ -71,7 +73,7 @@ newApp.post('/signup',
             /*==================================  check if the file is image or not and check size  ==================================*/
 
 
-            const maxFileSize = 1024 * 1024 * 5;
+            const maxFileSize = 1024 * 1024 * 2;
             const sizeinMB = maxFileSize / (1024 * 1024);
             let number_of_files = 9;
 
