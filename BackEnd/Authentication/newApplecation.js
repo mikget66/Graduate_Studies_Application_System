@@ -20,20 +20,20 @@ newApp.post('/signup',
     body('email').isEmail().withMessage('Not a valid e-mail address'),
     body('password').notEmpty().withMessage('Password is required'),
     body('checkpassword').notEmpty().withMessage('checkpassword is required'),
-    body('phone').isInt().withMessage('phone is required').isLength({ min: 11, max: 11 }).withMessage('phone must be at least 11 chars long'),
+    body('phone').isInt().withMessage('phone is required'),
     body('national_id').isInt().withMessage('nationalId is required').isLength({ min: 14, max: 14 }).withMessage('nationalId must be at least 14 chars long'),
     body('dateOfBirth').notEmpty().withMessage('dateOfBirth is required'),
     body('gender').notEmpty().withMessage('gentder is required'),
     body('military_status').notEmpty().withMessage('military_status is required'),
     body("level").notEmpty().withMessage('Educational_level is required'),
-    body("faculty").notEmpty().withMessage('faculty_name is required'),
-    body("department").notEmpty().withMessage('department_name is required'),
-    body("program").notEmpty().withMessage('program_name is required'),
-    body("have_job").notEmpty().withMessage('have_job is required'),
+    body("faculty").notEmpty().withMessage('faculty_id is required'),
+    body("department").notEmpty().withMessage('department_id is required'),
+    body("program").notEmpty().withMessage('program_id is required'),
     body("length_of_file").notEmpty().withMessage('length_of_file is required'),
     async (req, res) => {
         try {
             // delete the all files in the folder public/imgs
+            
             
 
             /*==================================  check if the data is valid  ==================================*/
@@ -181,7 +181,7 @@ function hanleDelUplodes(req) {
     if (file) {
         for (let i = 1; i <= 9; i++) {
             if (file[`image${i}`]) {
-                fs.unlinkSync(`./public/imgs/${file[`image${i}`][0].filename}`);
+                fs.unlinkSync(`./public/imgs/${req.body.national_id}/${file[`image${i}`][0].filename}`);
             }
         }
     }

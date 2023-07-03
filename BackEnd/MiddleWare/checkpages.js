@@ -32,8 +32,8 @@ checkpages.post('/checkpage1',
             }
 
 
-            const sqlSelect = "SELECT * FROM students WHERE email = ? OR national_id = ?";
-            await query(sqlSelect, [req.body.email, req.body.national_id], async (err, result) => {
+            const sqlSelect = "SELECT * FROM students WHERE national_id = ?";
+            await query(sqlSelect, [req.body.national_id], async (err, result) => {
                 if (err) {
                     return res.status(400).json({ errors: [{ msg: err }], "msg": "Server Error" });
                 }
@@ -54,49 +54,49 @@ checkpages.post('/checkpage1',
 
 
 
-var maxFileSize = 2 * 1024 * 1024;
-var sizeinMB = maxFileSize / (1024 * 1024);
+// var maxFileSize = 2 * 1024 * 1024;
+// var sizeinMB = maxFileSize / (1024 * 1024);
 
 
-checkpages.post('/checkpage2',
-    upload,
+// checkpages.post('/checkpage2',
+//     upload,
 
-    async (req, res) => {
-        try {
-            const errors = validationResult(req);
-            if (!errors.isEmpty()) {
-                return res.status(400).json({ errors: errors.array().map((err) => err.msg) });
-            }
+//     async (req, res) => {
+//         try {
+//             const errors = validationResult(req);
+//             if (!errors.isEmpty()) {
+//                 return res.status(400).json({ errors: errors.array().map((err) => err.msg) });
+//             }
 
             
-            if (!req.files) {
-                return res.status(400).json({ errors: [{ msg: "Please upload this require file" }] });
-            }
+//             if (!req.files) {
+//                 return res.status(400).json({ errors: [{ msg: "Please upload this require file" }] });
+//             }
 
-            // if(req.files.image1[0].size > maxFileSize ){
-            //     return res.status(400).json({ errors: [{ msg: `Please upload a file less than ${sizeinMB} MB `}] });
-            // }
+//             // if(req.files.image1[0].size > maxFileSize ){
+//             //     return res.status(400).json({ errors: [{ msg: `Please upload a file less than ${sizeinMB} MB `}] });
+//             // }
 
-            for (let i = 1; i <= 4 ; i++) {
-                if(!req.files[`image${i}`]){
-                    return res.status(400).json({ errors: [{ msg: `Please upload a image number ${i} `}] });
-                }
-                let file = req.files[`image${i}`][0].size || 0;
-                if(file > maxFileSize ){
-                        return res.status(400).json({ errors: [{ msg: `Please upload a image number ${i} less than ${sizeinMB} MB `}] });
-                    }
-            }
+//             for (let i = 1; i <= 4 ; i++) {
+//                 if(!req.files[`image${i}`]){
+//                     return res.status(400).json({ errors: [{ msg: `Please upload a image number ${i} `}] });
+//                 }
+//                 let file = req.files[`image${i}`][0].size || 0;
+//                 if(file > maxFileSize ){
+//                         return res.status(400).json({ errors: [{ msg: `Please upload a image number ${i} less than ${sizeinMB} MB `}] });
+//                     }
+//             }
             
 
 
-            res.status(200).json({ msg: "ok" ,file:req.files});
+//             res.status(200).json({ msg: "ok" ,file:req.files});
 
-        } catch (err) {
-            console.log(err);
-            res.status(500).json({ errors: [{ msg: err }], "msg": "Server Error" });
-        }
-    }
-);
+//         } catch (err) {
+//             console.log(err);
+//             res.status(500).json({ errors: [{ msg: err }], "msg": "Server Error" });
+//         }
+//     }
+// );
 
 
 

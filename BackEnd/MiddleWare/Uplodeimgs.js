@@ -5,11 +5,11 @@ import fs from "fs";
 
 const storage = multer.diskStorage({
     destination:(req, file, cb) => {
-        if(fs.existsSync(`./public/imgs/${req.body.name}`)){
-            cb(null, `./public/imgs/${req.body.name}`);
+        if(fs.existsSync(`./public/imgs/${req.body.national_id}`)){
+            cb(null, `./public/imgs/${req.body.national_id}`);
         }else{
-            fs.mkdirSync(`./public/imgs/${req.body.name}`);
-            cb(null, `./public/imgs/${req.body.name}`);
+            fs.mkdirSync(`./public/imgs/${req.body.national_id}`);
+            cb(null, `./public/imgs/${req.body.national_id}`);
         }
     },
     filename (req, file, cb) {
