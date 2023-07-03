@@ -4,6 +4,7 @@ import query from './Database/DBConnection.js';
 import dotenv from 'dotenv';
 import checkpages from './MiddleWare/checkpages.js';
 import newApp from './Authentication/newApplecation.js';
+import student from './Router/CURD operation.js';
 import bodyParser from 'body-parser';
 import e from 'express';
 
@@ -21,6 +22,7 @@ app.use(express.static('public/imgs'));
 
 app.use('/checkpages', checkpages);
 app.use('/newapp', newApp);
+app.use('/Student',student);
 
 
 
