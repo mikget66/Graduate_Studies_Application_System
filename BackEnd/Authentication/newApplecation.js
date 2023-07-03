@@ -32,7 +32,6 @@ newApp.post('/signup',
     body("length_of_file").notEmpty().withMessage('length_of_file is required'),
     async (req, res) => {
         try {
-            // delete the all files in the folder public/imgs
             
             
 
