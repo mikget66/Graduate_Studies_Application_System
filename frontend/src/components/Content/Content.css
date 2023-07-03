@@ -1,0 +1,30 @@
+.Content{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    gap: 15px;
+    margin-top: -5rem;
+  }
+  .Content p{
+    color: #AD8700;
+  }
+  .Content .options{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 50%;
+  }
+  .Content .options button{
+    border: none;
+    font-size: 1.5rem;
+    border-radius: 25px;
+    padding: 1rem 2rem ;
+    color: white;
+  }
+  .mini-logo{
+    width: 35%;
+  }
