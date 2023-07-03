@@ -1,13 +1,19 @@
 import multer from 'multer';
 import path from "path";
+import fs from "fs";
 
 
 const storage = multer.diskStorage({
     destination:(req, file, cb) => {
-        cb(null, 'public/imgs');
+        if(fs.existsSync(`./public/imgs/${req.body.name}`)){
+            cb(null, `./public/imgs/${req.body.name}`);
+        }else{
+            fs.mkdirSync(`./public/imgs/${req.body.name}`);
+            cb(null, `./public/imgs/${req.body.name}`);
+        }
     },
     filename (req, file, cb) {
-       return cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`);
+       return cb(null, `${req.body.name}_${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`);
     }
 });
 
@@ -33,10 +39,15 @@ const upload = multer({
 
     
 }).fields([
-    {"name" : "image1" ,maxCount : 1 },
-    {"name" : "image2" ,maxCount : 1 },
-    {"name" : "image3" ,maxCount : 1 },
-    {"name" : "image4" ,maxCount : 1 }
+    {"name" : "image1" ,maxCount : 1 }, //person image
+    {"name" : "image2" ,maxCount : 1 }, //photo_national_id
+    {"name" : "image3" ,maxCount : 1 }, //birth_certificate
+    {"name" : "image4" ,maxCount : 1 }, //academic_qualification
+    {"name" : "image5" ,maxCount : 1 }, //grade_statement
+    {"name" : "image6" ,maxCount : 1 }, //good_conduct_form
+    {"name" : "image7" ,maxCount : 1 }, //approval_from_employer
+    {"name" : "image8" ,maxCount : 1 }, //position_on_military
+    {"name" : "image9" ,maxCount : 1 }, //masters_photo
 ]);
 
 export default upload;

@@ -18,6 +18,11 @@ checkpages.post('/checkpage1',
     body('national_id').notEmpty().withMessage('nationalId is required').isLength({ min: 14, max: 14 }).withMessage('nationalId must be at least 14 chars long'),
     body('dateOfBirth').notEmpty().withMessage('dateOfBirth is required'),
     body('gentder').notEmpty().withMessage('gentder is required'),
+    body('milatryStatus').notEmpty().withMessage('milatryStatus is required').isInt().withMessage('milatryStatus must be a number'),
+    body('level').notEmpty().withMessage('level is required').isInt().withMessage('level must be a number'),
+    body('department').notEmpty().withMessage('department is required').isInt().withMessage('department must be a number'),
+    body('faculty').notEmpty().withMessage('faculty is required').isInt().withMessage('Faculty must be a number'),
+    body('program').notEmpty().withMessage('program is required').isInt().withMessage('program must be a number'),
 
     async (req, res) => {
         try {
@@ -49,34 +54,11 @@ checkpages.post('/checkpage1',
 
 
 
-checkpages.post('/checkpage2',
-    body('milatryStatus').notEmpty().withMessage('milatryStatus is required').isInt().withMessage('milatryStatus must be a number'),
-    body('level').notEmpty().withMessage('level is required').isInt().withMessage('level must be a number'),
-    body('department').notEmpty().withMessage('department is required').isInt().withMessage('department must be a number'),
-    body('faculty').notEmpty().withMessage('faculty is required').isInt().withMessage('Faculty must be a number'),
-    body('program').notEmpty().withMessage('program is required').isInt().withMessage('program must be a number'),
-
-    async (req, res) => {
-        try {
-            const errors = validationResult(req);
-            if (!errors.isEmpty()) {
-                return res.status(400).json({ errors: errors.array().map((err) => err.msg) });
-            }
-
-            res.status(200).json({ msg: "ok" });
-
-        } catch (err) {
-            console.log(err);
-            res.status(500).json({ errors: [{ msg: err }], "msg": "Server Error" });
-        }
-    }
-);
-
 var maxFileSize = 2 * 1024 * 1024;
 var sizeinMB = maxFileSize / (1024 * 1024);
 
 
-checkpages.post('/checkpage3',
+checkpages.post('/checkpage2',
     upload,
 
     async (req, res) => {
@@ -88,7 +70,7 @@ checkpages.post('/checkpage3',
 
             
             if (!req.files) {
-                return res.status(400).json({ errors: [{ msg: "Please upload this requare file" }] });
+                return res.status(400).json({ errors: [{ msg: "Please upload this require file" }] });
             }
 
             // if(req.files.image1[0].size > maxFileSize ){
