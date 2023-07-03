@@ -1,0 +1,32 @@
+.subCon{
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+}
+.nav{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.nav button{
+    margin-bottom: 1rem;
+    border: none;
+    font-size: 1.5rem;
+    border-radius: 25px;
+    padding: 1rem 2rem ;
+    color: white;
+    background-color: #AD8700;
+}
+.nav .page-n{
+  position: relative;
+  bottom: -2.5rem;
+
+  background-color:  #003C70;
+  color: #fff;
+  padding: .7rem 6rem;
+  border-radius: 50% 50% 0 0 ;
+}
