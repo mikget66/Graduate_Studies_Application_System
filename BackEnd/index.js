@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import query from './Database/DBConnection.js';
 import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
 import checkpages from './MiddleWare/checkpages.js';
 import newApp from './Authentication/newApplecation.js';
 import student from './Router/studentCURD.js';
@@ -14,9 +14,11 @@ import program from './Router/program.js';
 
 
 
+
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public/imgs'));
 

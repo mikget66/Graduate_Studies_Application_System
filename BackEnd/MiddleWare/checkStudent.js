@@ -7,7 +7,7 @@ const key = "secretkey";
 
 const user = async (req, res, next) => {
     try {
-        let token = req.headers.authorization;
+        let token = req.cookies.token;
         if (!token) {
             return res.status(401).json({ user: false, msg: "Unauthorized" });
         } else {
