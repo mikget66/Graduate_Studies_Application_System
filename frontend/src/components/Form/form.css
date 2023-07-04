@@ -6,6 +6,7 @@
     align-items: center;
     justify-content: space-between;
     background-color: #fff;
+    overflow: hidden;
 }
 .nav{
     display: flex;
@@ -29,4 +30,9 @@
   color: #fff;
   padding: .7rem 6rem;
   border-radius: 50% 50% 0 0 ;
+}
+.body{
+    height: 50rem;
+    width: 80%;
+    padding: 1rem;
 }

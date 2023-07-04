@@ -1,20 +1,98 @@
 import React, { useState } from 'react'
 import './form.css'
+import './steps.css'
+import Step1 from '../steps/Step1'
+import Step2 from '../steps/Step2'
+import Step3 from '../steps/Step3'
+import Step4 from '../steps/Step4'
+import Step5 from '../steps/Step5'
+
+
+
+
 const Form = () => {
-  const [page, setPage] =useState(0)
-  return (  
+
+  const [userData, setUserData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    checkpassword: '',
+    phone: '',
+    national_id: '',
+    dateOfBirth: '',
+    gender: '',
+    military_status: '',
+    level: '',
+    faculty: '',
+    department: '',
+    program: '',
+    length_of_file: '',
+    images: {
+      image1: '',
+      image2: '',
+      image3: '',
+      image4: '',
+      image5: '',
+      image6: '',
+      image7: '',
+      image8: '',
+      image9: '',
+    }
+  })
+
+
+  const [page, setPage] = useState(0)
+  const returnStep = (page) => {
+    switch (page) {
+      case 0:
+        return <Step1 />
+      case 1:
+        return <Step2 UserData={userData} SetUserData={setUserData} />
+      case 2:
+        return <Step3 />
+      case 3:
+        return <Step4 />
+      case 4:
+        return <Step5 />
+      default:
+        break;
+    }
+  }
+
+
+
+  function handlePage(action) {
+    switch (action) {
+      case "increment":
+        if (page < 4) {
+          setPage((currPage) => currPage + 1)
+          console.log(userData)
+        }
+        break;
+      case "decrment":
+        if (page > 0) {
+          setPage((currPage) => currPage - 1)
+        }
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  return (
     <>
       <section className='subCon'>
-      
-          <img src="assets/mini-logo.png" alt="" className='mini-logo'/>
-        
-        <div className="body">
 
+        <img src="assets/mini-logo.png" alt="" className='mini-logo' />
+
+        <div className="body">
+          {returnStep(page)}
         </div>
         <div className="nav">
-          <button className="prev">previous</button>
-        <div className='page-n'> {`${page} from 6`}</div>
-          <button className="next">next</button>
+          <button className="prev" onClick={() => { handlePage("decrment") }}>previous</button>
+          <div className='page-n'> {`${page + 1} from 5`}</div>
+          <button className="next" onClick={() => { handlePage("increment") }} >next</button>
         </div>
       </section>
     </>
