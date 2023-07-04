@@ -1,64 +1,58 @@
 import React from 'react'
 
-const Step3 = ({Faculties ,UserData ,SetUserData ,Departments ,Programs}) => {
-
-
-
+const Step3 = () => {
   return (
     <>
-              <div className="top">
+      <div className="top">
         <h2>
-        ادخل معلوماتك الشخصية
+          ادخل  المرفقات المطلوبة
         </h2>
       </div>
-      <div className="content">
+      <div className="content superContianer">
+
+        <div className="input-container gridChange">
+          <span className='labelChooes'>اختر ملف</span>
+          <label htmlFor="image1" className='inputIN'>اضافة الصورة الشخصية</label>
+          <input type="file" name="image1" id="image1" style={{ display: "none" }} />
+        </div>
+        <div className="input-container gridChange">
+          <span className='labelChooes'>اختر ملف</span>
+          <label htmlFor="image2" className='inputIN'>اضافة البطاقة الشخصية</label>
+          <input type="file" name="image2" id="image2" style={{ display: "none" }} />
+        </div>
+        <div className="input-container gridChange">
+          <span className='labelChooes'>اختر ملف</span>
+          <label htmlFor="image3" className='inputIN'>اضافة شهادة الميلاد</label>
+          <input type="file" name="image3" id="image3" style={{ display: "none" }} />
+        </div>
+        <div className="input-container gridChange">
+          <span className='labelChooes'>اختر ملف</span>
+          <label htmlFor="image4" className='inputIN'>اضافة المؤهل</label>
+          <input type="file" name="image4" id="image4" style={{ display: "none" }} />
+        </div>
+        <div className="input-container gridChange">
+          <span className='labelChooes'>اختر ملف</span>
+          <label htmlFor="image5" className='inputIN'>اضافة بيان الدرجات</label>
+          <input type="file" name="image5" id="image5" style={{ display: "none" }} />
+        </div>
+        <div className="input-container gridChange">
+          <span className='labelChooes'>اختر ملف</span>
+          <label htmlFor="image6" className='inputIN'>اضافة استمارة حسن سير وسلوك</label>
+          <input type="file" name="image6" id="image6" style={{ display: "none" }} />
+        </div>
+        <div className="input-container gridChange">
+          <span className='labelChooes'>اختر ملف</span>
+          <label htmlFor="image7" className='inputIN'>اضافة الصورة الشخصية</label>
+          <input type="file" name="image7" id="image7" style={{ display: "none" }} />
+        </div>
+        <div className="input-container gridChange">
+          <span className='labelChooes'>اختر ملف</span>
+          <label htmlFor="image8" className='inputIN'>اضافة البطاقة الشخصية</label>
+          <input type="file" name="image8" id="image8" style={{ display: "none" }} />
+        </div>
         
-        <div className="input-container">
-            <span></span>
-          <select   className='inputIN' >
-            <option value="" >اختر الموقف من التجنيد</option>
-            <option value="1">ذكر</option>
-            <option value="0">انثى</option>
-          </select>
-        </div>
-        <div className="input-container">
-            <span></span>
-          <select   className='inputIN' >
-            <option value="" >اختر المرحلة الدراسية</option>
-            <option value="0">ديلومه</option>
-            <option value="1">ماجيستير</option>
-            <option value="2">دكتوراه</option>
-          </select>
-        </div>
-        <div className="input-container">
-            <span></span>
-          <select value={UserData.faculty}  className='inputIN' onChange={(e)=>{ SetUserData({...UserData , faculty : e.target.value}) }} >
-            <option value="" >اختر اسم الكلية</option>
-            {Faculties.map((faculty) => (
-              <option key={faculty.faculty_id}  value={faculty.faculty_id}>{faculty.faculty_name}</option>
-            ))}
-          </select>
-        </div>
-        <div className="input-container">
-            <span></span>
-          <select value={UserData.department}  className='inputIN' onChange={(e)=>{ SetUserData({...UserData , department : e.target.value})}} >
-            <option value="" >اختر اسم القسم</option>
-            {Departments.map((department) => (
-              (department.faculty_id == UserData.faculty) ? <option key={department.department_id} value={department.department_id}>{department.department_name}</option> : null
-            ))}
-          </select>
-        </div>
-        <div className="input-container">
-            <span></span>
-            <select value={UserData.program}  className='inputIN' onChange={(e)=>{ SetUserData({...UserData , program : e.target.value})}} >
-            <option value="" >اختر اسم البرنامج</option>
-            {Programs.map((program) => (
-              (program.department_id == UserData.department && program.faculty_id == UserData.faculty) ? <option key={program.program_id} value={program.program_id}>{program.program_name}</option> : null
-            ))}
-          </select>
-          
-        </div>
       </div>
+      <div className='top' style={{marginTop:"2rem"}}><h1>*يمكن اضافة المرفقات بصيغة PDF او صور * </h1> </div>
     </>
   )
 }
