@@ -5,7 +5,6 @@ import Step1 from '../steps/Step1'
 import Step2 from '../steps/Step2'
 import Step3 from '../steps/Step3'
 import Step4 from '../steps/Step4'
-import Step5 from '../steps/Step5'
 
 import axios from 'axios'
 
@@ -90,13 +89,12 @@ const Form = () => {
       case 0:
         return <Step1 />
       case 1:
-        return <Step2 UserData={userData} SetUserData={setUserData} />
+        return <Step2 Faculties={faculties} Departments={departments} Programs={programs} UserData={userData} SetUserData={setUserData} />
       case 2:
-        return <Step3 Faculties={faculties} Departments={departments} Programs={programs} UserData={userData} SetUserData={setUserData} />
+        return <Step3  />
       case 3:
         return <Step4 />
-      case 4:
-        return <Step5 />
+      
       default:
         break;
     }
@@ -107,7 +105,7 @@ const Form = () => {
   function handlePage(action) {
     switch (action) {
       case "increment":
-        if (page < 4) {
+        if (page < 3) {
           setPage((currPage) => currPage + 1)
           console.log(userData)
         }
@@ -134,7 +132,7 @@ const Form = () => {
         </div>
         <div className="nav">
           <button className="prev" onClick={() => { handlePage("decrment") }}>previous</button>
-          <div className='page-n'> {`${page + 1} from 5`}</div>
+          <div className='page-n'> {`${page + 1} from 4`}</div>
           <button className="next" onClick={() => { handlePage("increment") }} >next</button>
         </div>
       </section>
