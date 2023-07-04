@@ -47,9 +47,12 @@ auth.post('/login',
 
             delete user[0].password;
             
-            const user_id = user[0].user_id;
-            const token =jwt.sign({ user_id , national_id:user[0].national_id }, key);
-            res.status(200).cookie("token",`Bearer${token}`, { httpOnly: true , expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 1)}).json({ login: true });
+            const payload = {
+                student_id: user[0].student_id,
+                national_id: user[0].national_id,
+            };
+            const token =jwt.sign(payload, key);
+            res.status(200).cookie("token",`Bearer ${token}`, { httpOnly: true }).json({ login: true });
         } catch (err) {
             console.log(err);
             res.status(500).json({ errors: [{ msg: "Server Error" }] });

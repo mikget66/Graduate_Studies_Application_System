@@ -36,11 +36,12 @@ student.get('/allstudentdetails',
 
 
 
-student.get('/studentdetails/:id',
+student.get('/studentdetails',
+    user,
     async (req, res) => {
         try {
             const sqlShow = "SELECT  faculty.faculty_name , departments_of_faculty.department_name , programs_of_department.program_name , students.* FROM students inner join application on students.student_id = application.student_id inner join faculty on application.faculty_id = faculty.faculty_id inner join departments_of_faculty on application.department_id = departments_of_faculty.department_id inner join programs_of_department on application.program_id = programs_of_department.program_id WHERE students.student_id = ?";
-            const values = [req.params.id];
+            const values = [req.student_id];
 
             const studentdetails = await query(sqlShow, values);
             if (!studentdetails[0]) {
@@ -223,6 +224,14 @@ student.delete('/studentdelete/:id',
         }
     }
 );
+
+
+
+
+
+
+
+
 
 
 export default student;

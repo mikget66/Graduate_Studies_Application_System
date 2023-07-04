@@ -12,11 +12,18 @@ const user = async (req, res, next) => {
             return res.status(401).json({ user: false, msg: "Unauthorized" });
         } else {
             token = token.split(" ")[1];
-            let authUser = jwt.verify(token, key);
-            req.authUserid = authUser.user_id;
+            jwt.verify(token, key, (err, decoded) => {
+                if (err) {
+                    return res.status(401).json({ user: false, msg: err});
+                }
+                req.student_id = decoded.student_id;
+                req.national_id = decoded.national_id;
+                
+                next();
+            }
+            );
         }
 
-        next();
 
 
     } catch (err) {
