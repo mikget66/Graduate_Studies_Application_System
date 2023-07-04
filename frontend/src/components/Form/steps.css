@@ -1,0 +1,56 @@
+.content ol li {
+    font-size: 1.5rem;
+    margin-top: 0.7rem;
+}
+.top h2{
+    color:#AD8700;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+.top{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4rem;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+.content .input-container{
+    direction: rtl;
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    align-items: center;
+    width: 60%;
+    height: 100%;
+}
+.content .input-container .labelChooes{
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #fff;
+    background-color:#003C70;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.content .gridChange{
+    grid-template-columns: 100px 1fr;
+    text-align: center;
+}
+.inputIN{
+    border: none;
+    background-color: #F5F5F5;
+    direction: rtl;
+    outline: none;
+    padding: 0.5rem;
+    font-size: 1.5rem;
+}
+.Icon{
+    font-size: 36px;
+}
