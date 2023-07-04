@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Step3 = () => {
+const Step3 = ({Faculties ,UserData ,SetUserData ,Departments ,Programs}) => {
   return (
     <>
       <div className="top">
@@ -11,9 +11,9 @@ const Step3 = () => {
       <div className="content superContianer">
 
         <div className="input-container gridChange">
-          <span className='labelChooes'>اختر ملف</span>
+          <span className='labelChooes'> اختر ملف</span>
           <label htmlFor="image1" className='inputIN'>اضافة الصورة الشخصية</label>
-          <input type="file" name="image1" id="image1" style={{ display: "none" }} />
+          <input type="file" name="image1" id="image1"  />
         </div>
         <div className="input-container gridChange">
           <span className='labelChooes'>اختر ملف</span>
@@ -52,7 +52,7 @@ const Step3 = () => {
         </div>
         
       </div>
-      <div className='top' style={{marginTop:"2rem"}}><h1>*يمكن اضافة المرفقات بصيغة PDF او صور * </h1> </div>
+      <div className='top' style={{marginTop:"2rem"}}><h1>***  اضافة المرفقات صور فقط *** </h1> </div>
     </>
   )
 }

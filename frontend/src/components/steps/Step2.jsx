@@ -34,10 +34,11 @@ const Step2 = ({Faculties ,UserData ,SetUserData ,Departments ,Programs}) => {
         
         <div className="input-container">
             <span></span>
-          <select   className='inputIN' >
+          <select value={UserData.military_status} onChange={(e)=>{SetUserData({...UserData, military_status: e.target.value})}}  className='inputIN' >
             <option value="" >اختر الموقف من التجنيد</option>
-            <option value="1">ذكر</option>
-            <option value="0">انثى</option>
+            <option value="0">اعفاء</option>
+            <option value="1">تأجيل</option>
+            <option value="2">انهيت التجنيد</option>
           </select>
         </div>
         <div className="input-container">

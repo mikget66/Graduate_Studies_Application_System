@@ -91,7 +91,7 @@ const Form = () => {
       case 1:
         return <Step2 Faculties={faculties} Departments={departments} Programs={programs} UserData={userData} SetUserData={setUserData} />
       case 2:
-        return <Step3  />
+        return <Step3 Faculties={faculties} Departments={departments} Programs={programs} UserData={userData} SetUserData={setUserData}  />
       case 3:
         return <Step4 />
       
@@ -121,6 +121,18 @@ const Form = () => {
     }
   }
 
+  const handleSubmit = async () => {
+    console.log(userData)
+    // try {
+    //   const res = await axios.post('http://localhost:5000/newapp/signup', userData)
+    //   .then((res) => {
+    //     console.log(res)
+    //   })
+    // } catch (error) {
+    //   console.log(error)
+    // }
+  }
+
   return (
     <>
       <section className='subCon'>
@@ -133,7 +145,7 @@ const Form = () => {
         <div className="nav">
           <button className="prev" onClick={() => { handlePage("decrment") }}>previous</button>
           <div className='page-n'> {`${page + 1} from 4`}</div>
-          <button className="next" onClick={() => { handlePage("increment") }} >next</button>
+          {page == 3 ?<button className="next" onClick={handleSubmit} >Submit</button> :<button className="next" onClick={() => { handlePage("increment") }} >Next</button>}
         </div>
       </section>
     </>
