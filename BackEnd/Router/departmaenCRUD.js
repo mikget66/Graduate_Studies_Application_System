@@ -9,11 +9,11 @@ import user from "../MiddleWare/checkStudent.js";
 import e from "cors";
 
 
-const faculty = express();
-faculty.use(express.Router());
-faculty.use(cors());
+const department = express();
+department.use(express.Router());
+department.use(cors());
 
-faculty.get('/getfaculty',
+department.get('/getdepartment',
 
     async (req, res) => {
         try {
@@ -22,8 +22,7 @@ faculty.get('/getfaculty',
                 search = `where faculty.faculty_name LIKE '%${req.query.search}%'`;
             }
 
-            // const studentdetails1 = await query(`SELECT * FROM students inner join application on students.student_id = application.student_id ${search}`);
-            const facultydetails = await query(`SELECT  * FROM faculty ${search}`);
+            const facultydetails = await query(`SELECT  * FROM departments_of_faculty ${search}`);
 
             res.status(200).json(facultydetails);
         } catch (err) {
@@ -33,4 +32,4 @@ faculty.get('/getfaculty',
 }
 );
 
-export default faculty;
+export default department;

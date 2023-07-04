@@ -5,9 +5,10 @@ import dotenv from 'dotenv';
 import checkpages from './MiddleWare/checkpages.js';
 import newApp from './Authentication/newApplecation.js';
 import student from './Router/studentCURD.js';
-import bodyParser from 'body-parser';
-import e from 'express';
-
+import auth from './Authentication/login.js';
+import faculty from './Router/facultyCRUD.js';
+import department from './Router/departmaenCRUD.js';
+import program from './Router/program.js';
 
 
 
@@ -21,8 +22,14 @@ app.use(express.static('public/imgs'));
 
 
 app.use('/checkpages', checkpages);
+
 app.use('/newapp', newApp);
+app.use('', auth);
+
 app.use('/student',student);
+app.use('',faculty);
+app.use('',department);
+app.use('',program);
 
 
 

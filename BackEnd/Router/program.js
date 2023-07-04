@@ -9,23 +9,22 @@ import user from "../MiddleWare/checkStudent.js";
 import e from "cors";
 
 
-const faculty = express();
-faculty.use(express.Router());
-faculty.use(cors());
+const program = express();
+program.use(express.Router());
+program.use(cors());
 
-faculty.get('/getfaculty',
+program.get('/getprogram',
 
     async (req, res) => {
         try {
             let search = "";
             if (req.query.search) {
-                search = `where faculty.faculty_name LIKE '%${req.query.search}%'`;
+                search = `where programs_of_department.program_name LIKE '%${req.query.search}%'`;
             }
 
-            // const studentdetails1 = await query(`SELECT * FROM students inner join application on students.student_id = application.student_id ${search}`);
-            const facultydetails = await query(`SELECT  * FROM faculty ${search}`);
+            const programdetails = await query(`SELECT  * FROM programs_of_department ${search}`);
 
-            res.status(200).json(facultydetails);
+            res.status(200).json(programdetails);
         } catch (err) {
             console.log(err);
             res.status(500).json({ msg: "Server Error" });
@@ -33,4 +32,4 @@ faculty.get('/getfaculty',
 }
 );
 
-export default faculty;
+export default program;

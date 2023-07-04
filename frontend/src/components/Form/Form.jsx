@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './form.css'
 import './steps.css'
 import Step1 from '../steps/Step1'
@@ -7,10 +7,14 @@ import Step3 from '../steps/Step3'
 import Step4 from '../steps/Step4'
 import Step5 from '../steps/Step5'
 
-
+import axios from 'axios'
 
 
 const Form = () => {
+
+  const [faculties, setFaculties] = useState([])
+  const [departments, setDepartments] = useState([])
+  const [programs, setPrograms] = useState([])
 
   const [userData, setUserData] = useState({
     name: '',
@@ -40,6 +44,45 @@ const Form = () => {
     }
   })
 
+  useEffect(() => {
+    try {
+     axios.get('http://localhost:5000/getfaculty')
+      .then((res) => {
+        setFaculties(res.data)
+      })
+    } catch (error) {
+      console.log(error)
+      
+    }
+
+    try {
+      axios.get('http://localhost:5000/getdepartment')
+        .then((res) => {
+          setDepartments(res.data)
+        }
+        )
+    } catch (error) {
+      console.log(error)
+    }
+
+    try {
+      axios.get('http://localhost:5000/getprogram')
+        .then((res) => {
+          setPrograms(res.data)
+        }
+        )
+    }catch (error) {
+      console.log(error)
+    }
+
+  }
+
+  
+  , [])
+
+
+  
+
 
   const [page, setPage] = useState(0)
   const returnStep = (page) => {
@@ -49,7 +92,7 @@ const Form = () => {
       case 1:
         return <Step2 UserData={userData} SetUserData={setUserData} />
       case 2:
-        return <Step3 />
+        return <Step3 Faculties={faculties} Departments={departments} Programs={programs} UserData={userData} SetUserData={setUserData} />
       case 3:
         return <Step4 />
       case 4:

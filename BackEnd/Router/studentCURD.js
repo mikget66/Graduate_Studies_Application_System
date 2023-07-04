@@ -5,8 +5,7 @@ import bcrypt from "bcrypt";
 import cors from "cors";
 import upload from '../MiddleWare/Uplodeimgs.js';
 import fs from 'fs';
-import e from "express";
-
+import user from "../MiddleWare/checkStudent.js";
 
 
 const student = express();
@@ -16,6 +15,7 @@ student.use(cors());
 
 
 student.get('/allstudentdetails',
+    user,
     async (req, res) => {
         try {
             let search = "";
