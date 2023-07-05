@@ -26,9 +26,10 @@ checkpages.post('/checkpage1',
 
     async (req, res) => {
         try {
+            
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
-                return res.status(400).json({ errors: errors.array().map((err) => err.msg) });
+                return res.status(400).json({ errors:{msg: errors.array().map((err) => err.msg) }});
             }
 
 
@@ -38,7 +39,7 @@ checkpages.post('/checkpage1',
                     return res.status(400).json({ errors: [{ msg: err }], "msg": "Server Error" });
                 }
                 if (result.length > 0) {
-                    return res.status(400).json({ errors: [{ msg: "Student already exists" }] });
+                    return res.status(400).json({ errors: { msg: "Student already exists" } });
                 }
 
                 res.status(200).json({ msg: "ok" });

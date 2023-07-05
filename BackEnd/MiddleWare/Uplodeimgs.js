@@ -5,6 +5,7 @@ import fs from "fs";
 
 const storage = multer.diskStorage({
     destination:(req, file, cb) => {
+        
         if(fs.existsSync(`./public/imgs/${req.body.national_id}`)){
             cb(null, `./public/imgs/${req.body.national_id}`);
         }else{

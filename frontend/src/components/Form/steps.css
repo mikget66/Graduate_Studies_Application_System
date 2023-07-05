@@ -41,7 +41,7 @@
     border-radius: 10px;
 }
 .gridChange{
-    grid-template-columns: 100px 1fr;
+    grid-template-columns: 00px 1fr;
     text-align: center;
 }
 .inputIN{

@@ -16,6 +16,7 @@ const Form = () => {
   const [departments, setDepartments] = useState([])
   const [programs, setPrograms] = useState([])
   const [flag, setFlag] = useState(true)
+  const [error, setError] = useState([])
   const [userData, setUserData] = useState({
     name: '',
     email: '',
@@ -112,23 +113,39 @@ const Form = () => {
           if (page === 1) {
             const { name, email } = userData
             if (true) {
-             (UserData)=>{
-              const rse =  async axio
-             }
+              try {
+                 axios.post('http://localhost:5000/checkpages/checkpage1', userData)
+                  .then((res) => {
+                    console.log(res)
+                    setFlag(true);
+                    setPage(2)
+                    
+                  }).catch(async (error) => {
+                    console.log(error.response.data.errors.msg)
+                    setFlag(true);
+                    setPage(1)
+                    
+                  }
+                  )
+              }
+              catch (error) {
+                console.log(error)
+                setFlag(false);
+              }
+              
 
-
-              setFlag(true)
-              setPage((currPage) => currPage + 1)
             } else {
               setFlag(false)
             }
-          } else {
-            if (flag) {
+          }
+            if (flag && page !== 1) {
               setPage((currPage) => currPage + 1)
               console.log(userData)
             }
 
-          }
+          
+
+          
 
 
         }
@@ -148,16 +165,46 @@ const Form = () => {
     }
   }
 
-  const handleSubmit = async () => {
-    console.log(userData)
-    // try {
-    //   const res = await axios.post('http://localhost:5000/newapp/signup', userData)
-    //   .then((res) => {
-    //     console.log(res)
-    //   })
-    // } catch (error) {
-    //   console.log(error)
-    // }
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    const formData = new FormData()
+    formData.append('name', userData.name)
+    formData.append('email', userData.email)
+    formData.append('password', userData.password)
+    formData.append('checkpassword', userData.checkpassword)
+    formData.append('phone', userData.phone)
+    formData.append('national_id', userData.national_id)
+    formData.append('dateOfBirth', userData.dateOfBirth)
+    formData.append('gender', userData.gender)
+    formData.append('military_status', userData.military_status)
+    formData.append('level', userData.level)
+    formData.append('faculty', userData.faculty)
+    formData.append('department', userData.department)
+    formData.append('program', userData.program)
+    formData.append('length_of_file', userData.length_of_file)
+    formData.append('image1', userData.image1)
+    formData.append('image2', userData.image2)
+    formData.append('image3', userData.image3)
+    formData.append('image4', userData.image4)
+    formData.append('image5', userData.image5)
+    formData.append('image6', userData.image6)
+    formData.append('image7', userData.image7)
+    formData.append('image8', userData.image8)
+    formData.append('image9', userData.image9)
+    try {
+      axios.post('http://localhost:5000/newapp/signup',formData )
+        .then((res) => {
+          console.log(res)
+          window.location.href = '/'
+
+        }).catch((error) => {
+          console.log(error.response.data)
+        }
+        )
+    } catch (error) {
+      console.log(error)
+    }
+
   }
 
   return (

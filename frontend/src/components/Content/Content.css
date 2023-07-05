@@ -13,7 +13,7 @@
   }
   .Content .options{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     width: 50%;
@@ -22,9 +22,16 @@
     border: none;
     font-size: 1.5rem;
     border-radius: 25px;
+    margin: 1rem 0;
     padding: 1rem 2rem ;
     color: white;
   }
   .mini-logo{
     height: 25%;
+  }
+
+  @media only screen and (max-width: 1125px) {
+    .Content{
+      width: 100%;
+    }
   }

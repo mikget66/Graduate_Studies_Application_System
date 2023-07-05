@@ -47,10 +47,11 @@ newApp.post('/signup',
 
             /*==================================  check if upload all the required files  ==================================*/
 
-            if (req.body.length_of_file != Object.keys(req.files).length) {
-                hanleDelUplodes(req);
-                return res.status(400).json({ errors: [{ msg: "Please upload all the required files" }] });
-            }
+            // if (req.body.length_of_file != Object.keys(req.files).length) {
+            //     hanleDelUplodes(req);
+            //     return res.status(400).json({ errors: [{ msg: "Please upload all the required files" }] });
+            // }
+            console.log(Object.keys(req.files).length);
 
             /*==================================  check if upload all the required files  ==================================*/
 
