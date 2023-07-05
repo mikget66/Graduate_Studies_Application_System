@@ -1,4 +1,6 @@
 import React from 'react'
+
+import { useTranslation } from 'react-i18next';
 import { BiSolidUser } from 'react-icons/bi'
 import { GrMail } from 'react-icons/gr'
 import { FaPhone } from 'react-icons/fa'
@@ -6,11 +8,13 @@ import { BsFillPersonVcardFill } from 'react-icons/bs'
 import { BsFillCalendar2DateFill } from 'react-icons/bs'
 const Step2 = ({ Faculties, UserData, SetUserData, Departments, Programs ,Error }) => {
 
+  const [t, i18n] =useTranslation();
+
   return (
     <>
       <div className="top">
         <h2>
-          ادخل معلوماتك الشخصية
+        {t('step2-title')} 
         </h2>
       </div>
       <div className="superContianer">
@@ -21,9 +25,9 @@ const Step2 = ({ Faculties, UserData, SetUserData, Departments, Programs ,Error 
             value={UserData.gender}
             onChange={(e) => { SetUserData({ ...UserData, gender: e.target.value }) }}
           >
-            <option value="" >النوع</option>
-            <option value="1">ذكر</option>
-            <option value="0">انثى</option>
+            <option value="" >{t('gender')} </option>
+            <option value="1">{t('m')} </option>
+            <option value="0">{t('f')} </option>
           </select>
         </div>
 
@@ -32,7 +36,7 @@ const Step2 = ({ Faculties, UserData, SetUserData, Departments, Programs ,Error 
           <BiSolidUser className='Icon' />
           <input 
             type="text"
-            placeholder='الاسم الرباعي'
+            placeholder={t('name')} 
             className='inputIN'
             value={UserData.name}
             style={{ cursor: "text"}}
@@ -48,7 +52,7 @@ const Step2 = ({ Faculties, UserData, SetUserData, Departments, Programs ,Error 
             value={UserData.level}
             onChange={(e) => { SetUserData({ ...UserData, level: e.target.value }) }}
            >
-            <option value="" >اختر المرحلة الدراسية</option>
+            <option value="" >{t('level')} </option>
             <option value="0">ديلومه</option>
             <option value="1">ماجيستير</option>
             <option value="2">دكتوراه</option>
@@ -58,7 +62,7 @@ const Step2 = ({ Faculties, UserData, SetUserData, Departments, Programs ,Error 
           <GrMail className='Icon' />
           <input 
             type="text" 
-            placeholder='البريد الالكتروني' 
+            placeholder={t('email')} 
             className='inputIN' 
             value={UserData.email}
             style={{ cursor: "text"}}
@@ -68,7 +72,7 @@ const Step2 = ({ Faculties, UserData, SetUserData, Departments, Programs ,Error 
         <div className="input-container">
           <span></span>
           <select value={UserData.faculty} className='inputIN' onChange={(e) => { SetUserData({ ...UserData, faculty: e.target.value }) }} >
-            <option value="" >اختر اسم الكلية</option>
+            <option value="" >{t('collage')} </option>
             {Faculties.map((faculty) => (
               <option key={faculty.faculty_id} value={faculty.faculty_id}>{faculty.faculty_name}</option>
             ))}
@@ -78,7 +82,7 @@ const Step2 = ({ Faculties, UserData, SetUserData, Departments, Programs ,Error 
           <BsFillPersonVcardFill className='Icon' />
           <input 
             type="text" 
-            placeholder='الرقم القومي' 
+            placeholder={t('n-id')} 
             className='inputIN'
             style={{ cursor: "text"}}
             value={UserData.national_id} onChange={(e) => { SetUserData({ ...UserData, national_id: e.target.value }) }}
@@ -89,7 +93,7 @@ const Step2 = ({ Faculties, UserData, SetUserData, Departments, Programs ,Error 
         <div className="input-container">
           <span></span>
           <select value={UserData.department} className='inputIN' onChange={(e) => { SetUserData({ ...UserData, department: e.target.value }) }} >
-            <option value="" >اختر اسم القسم</option>
+            <option value="" >{t('department')} </option>
             {Departments.map((department) => (
               (`${department.faculty_id}` ===`${ UserData.faculty}`) ? <option key={department.department_id} value={department.department_id}>{department.department_name}</option> : null
             ))}
@@ -99,7 +103,7 @@ const Step2 = ({ Faculties, UserData, SetUserData, Departments, Programs ,Error 
           <FaPhone className='Icon' />
           <input 
             type="text" 
-            placeholder='رقم التليفون' 
+            placeholder={t('phone')}  
             className='inputIN'
             style={{ cursor: "text"}}
             value={UserData.phone} onChange={(e) => { SetUserData({ ...UserData, phone: e.target.value }) }}
@@ -114,7 +118,7 @@ const Step2 = ({ Faculties, UserData, SetUserData, Departments, Programs ,Error 
             className='inputIN'
             onChange={(e) => { SetUserData({ ...UserData, program: e.target.value }) }}
           >
-            <option value="" >اختر اسم البرنامج</option>
+            <option value="" >{t('program')} </option>
             {Programs.map((program) => (
               (`${program.department_id}` === `${UserData.department}` && `${program.faculty_id }`=== `${UserData.faculty}`) ? <option key={program.program_id} value={program.program_id}>{program.program_name}</option> : null
             ))}

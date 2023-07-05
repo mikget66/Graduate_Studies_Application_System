@@ -1,22 +1,27 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next';
 import {HiUserAdd} from 'react-icons/hi'
 import { Link } from 'react-router-dom';
 import './Content.css'
 const Content = () => {
+
+
+  const [t, i18n] =useTranslation();
+
   return (
+
     <div className='Content'>
           
           <img src="assets/mini-logo.png" alt="" className='mini-logo'/>
 
-          <p>adipisicing elit. In, fugit et corporis beatae nam consectetur!
-          </p>
+          <p style={{fontSize:"1.5rem"}}>{t('welcome')} </p>
           <div className="icon">
             
           </div>
-          <h3>Lorem, ipsum dolor.</h3>
+          <h3>{t('New applicant servicesgit ')}</h3>
           <div className="options">
-          <Link to='/form'><button style={{background:"#AD8700"}}>طلب جديد <HiUserAdd/></button></Link>
-          <Link><button style={{background:"#003C70"}}>متابعه خاله التقديم <HiUserAdd/></button> </Link>
+          <Link to='/form'><button style={{background:"#AD8700"}}>{t('new')}<HiUserAdd/></button></Link>
+          <Link to='/login'><button style={{background:"#003C70"}}>  {t('con')} <HiUserAdd/></button> </Link>
           </div>
         </div>
   )

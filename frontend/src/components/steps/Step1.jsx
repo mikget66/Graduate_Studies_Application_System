@@ -1,18 +1,22 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next';
 
 const Step1 = () => {
+  const [t, i18n] =useTranslation();
   return (
     <>
         <div className="top">
-            <h2>دليل مستخدم التقديم</h2>
+            <h2> {t('step1-title')} </h2>
         </div>
         <div className="content">
           <ol style={{direction: "rtl"}}>
-            <li>يمكنك التقديم مرة واحدة في الفصل الدراسي</li>
-            <li>يجب عليك ملء الاستمارة   </li>
-            <li>كل الحقول لديها هذه العلامة  مطلوبة</li>
-            <li> يمكنك اختيار برنامج واحد فقط من الأقسام داخل كليتك</li>
-            <li>الحجم الأقصى لمرفقات الإستمارة 20 ميجا</li>
+            <li>{t('gi-1')} </li>
+            <li>{t('gi-2')} </li>
+            <li>{t('gi-3')} </li>
+            <li>{t('gi-4')} </li>
+            <li>{t('gi-5')} </li>
+            <li>{t('gi-6')} </li>
+            
           </ol>
         </div>
     </>

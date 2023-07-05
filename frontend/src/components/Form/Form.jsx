@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next';
 import './form.css'
 import './steps.css'
 import Step1 from '../steps/Step1'
@@ -10,6 +11,8 @@ import axios from 'axios'
 
 
 const Form = () => {
+
+  const [t, i18n] =useTranslation();
 
   const [check, setCheck]= useState([])
   const [faculties, setFaculties] = useState([])
@@ -227,10 +230,11 @@ const Form = () => {
         <div className="body">
           {returnStep(page)}
         </div>
+        <button onClick={()=>i18n.changeLanguage('ar')}>Arabic</button>
         <div className="nav">
-          <button className="prev" onClick={() => { handlePage("decrment") }}>previous</button>
+          <button className="prev" onClick={() => { handlePage("decrment") }}>{t('prev')}</button>
           <div className='page-n'> {`${page + 1} from 4`}</div>
-          {+page === 3 ? <button className="next" onClick={handleSubmit} >Submit</button> : <button className="next" onClick={() => { handlePage("increment") }} >Next</button>}
+          {+page === 3 ? <button className="next" onClick={handleSubmit} >{t('submit')} </button> : <button className="next" onClick={() => { handlePage("increment") }} >{t('next')}</button>}
         </div>
       </section>
     </>
