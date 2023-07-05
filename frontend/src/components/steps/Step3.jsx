@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { useTranslation } from 'react-i18next';
 
 const Step3 = ({UserData ,SetUserData ,Images ,SetImages}) => {
 
@@ -7,30 +8,33 @@ const Step3 = ({UserData ,SetUserData ,Images ,SetImages}) => {
   })
 
   console.log(UserData)
+
+  const [t, i18n] =useTranslation();
   return (
     <>
       <div className="top">
         <h2>
-          ادخل  المرفقات المطلوبة
+        {t('step3-title')} 
         </h2>
       </div>
       <div className="content superContianer">
 
         <div className="input-img-container gridChange">
-          <span className='labelChooes'> اختر ملف</span>
+          <span className='labelChooes'>{t('img-1')} </span>
           <label htmlFor="image1" className='inputIN'>
             {
-              Images.image1?`${Images.image1.name}`:" اضافة الصورة الشخصية "
+              Images.image1?`${Images.image1.name}`: `${t('choose-file')} `
             }
           </label>
           <input  type="file" name="image1" id="image1" onChange={(e)=>{SetImages({...Images, image1: e.target.files[0]})}} style={{ display: "none" }}  required/>
         </div>
-        {/* length_of_file: +UserData.length_of_file + 1 */}
+
+
         <div className="input-img-container gridChange ">
-          <span className='labelChooes'>اختر ملف</span>
+          <span className='labelChooes'>{t('img-2')} </span>
           <label htmlFor="image2" className='inputIN'>
             {
-              Images.image2?`${Images.image2.name}`:" اضافة البطاقة الشخصية "
+              Images.image2?`${Images.image2.name}`:  `${t('choose-file')} `
             }
           </label>
          
@@ -40,10 +44,10 @@ const Step3 = ({UserData ,SetUserData ,Images ,SetImages}) => {
         </div>
 
         <div className="input-img-container gridChange">
-          <span className='labelChooes'>اختر ملف</span>
+          <span className='labelChooes'> {t('img-3')} </span>
           <label htmlFor="image3" className='inputIN'>
             {
-              Images.image3?`${Images.image3.name}`:" اضافة شهادة الميلاد "
+              Images.image3?`${Images.image3.name}`:  `${t('choose-file')} `
             }
           </label>
           
@@ -53,10 +57,10 @@ const Step3 = ({UserData ,SetUserData ,Images ,SetImages}) => {
         </div>
 
         <div className="input-img-container gridChange">
-          <span className='labelChooes'>اختر ملف</span>
+          <span className='labelChooes'>{t('img-4')} </span>
           <label htmlFor="image4" className='inputIN'>
             {
-              Images.image4?`${Images.image4.name}`:" اضافة المؤهل  "
+              Images.image4?`${Images.image4.name}`: `${t('choose-file')} `
             }
           </label>
           <input type="file" name="image4" id="image4" style={{ display: "none" }} 
@@ -65,10 +69,10 @@ const Step3 = ({UserData ,SetUserData ,Images ,SetImages}) => {
         </div>
 
         <div className="input-img-container gridChange">
-          <span className='labelChooes'>اختر ملف</span>
+          <span className='labelChooes'>{t('img-5')} </span>
           <label htmlFor="image5" className='inputIN'>
             {
-              Images.image5?`${Images.image5.name}`:" اضافة بيان الدرجات "
+              Images.image5?`${Images.image5.name}`: `${t('choose-file')} `
             }
           </label>
           <input type="file" name="image5" id="image5" style={{ display: "none" }} 
@@ -77,10 +81,10 @@ const Step3 = ({UserData ,SetUserData ,Images ,SetImages}) => {
         </div>
 
         <div className="input-img-container gridChange">
-          <span className='labelChooes'>اختر ملف</span>
+          <span className='labelChooes'> {t('img-6')} </span>
           <label htmlFor="image6" className='inputIN'>
             {
-              Images.image6?`${Images.image6.name}`:" اضافة استمارة حسن سير وسلوك"
+              Images.image6?`${Images.image6.name}`: `${t('choose-file')} `
             }
           </label>
         
@@ -90,10 +94,10 @@ const Step3 = ({UserData ,SetUserData ,Images ,SetImages}) => {
         </div>
 
         <div className="input-img-container gridChange">
-          <span className='labelChooes'>اختر ملف</span>
+          <span className='labelChooes'>{t('img-7')} </span>
           <label htmlFor="image7" className='inputIN'>
             {
-              Images.image7?`${Images.image7.name}`:" اضافة موافقة جهة العمل "
+              Images.image7?`${Images.image7.name}`: `${t('choose-file')} `
             }
           </label>
           <input type="file" name="image7" id="image7" style={{ display: "none" }} 
@@ -103,10 +107,10 @@ const Step3 = ({UserData ,SetUserData ,Images ,SetImages}) => {
         {
           +UserData.gender === 1 ?(
             <div className="input-img-container gridChange">
-            <span className='labelChooes'>اختر ملف</span>
+            <span className='labelChooes'>{t('img-8')} </span>
             <label htmlFor="image8" className='inputIN'>
             {
-              Images.image8?`${Images.image8.name}`:" اضافة الموقف من التجنيد "
+              Images.image8?`${Images.image8.name}`: `${t('choose-file')} `
             }
           </label>
             <input type="file" name="image8" id="image8" style={{ display: "none" }} 
@@ -119,10 +123,10 @@ const Step3 = ({UserData ,SetUserData ,Images ,SetImages}) => {
 
         {+UserData.level === 2 ?(
             <div className="input-img-container gridChange">
-            <span className='labelChooes'>اختر ملف</span>
+            <span className='labelChooes'>{t('img-9')} </span>
             <label htmlFor="image9" className='inputIN'>
             {
-              Images.image9?`${Images.image9.name}`:" اضافة صوره الماجستير  "
+              Images.image9?`${Images.image9.name}`: `${t('choose-file')} `
             }
           </label>
             <input type="file" name="image9" id="image9" style={{ display: "none" }} 
@@ -134,7 +138,7 @@ const Step3 = ({UserData ,SetUserData ,Images ,SetImages}) => {
         
         
       </div>
-      <div className='top' style={{marginTop:"2rem"}}><h1>***  اضافة المرفقات صور فقط *** </h1> </div>
+      <div className='top' style={{marginTop:"2rem"}}><h1>*** {t('add-media')} *** </h1> </div>
     </>
   )
 }

@@ -4,9 +4,9 @@ import {
 
 import App from './App.jsx'
 import Form from './components/Form/Form.jsx'
+import Login from './components/Login/Login .jsx'
 import Content from "./components/Content/Content.jsx";
-import Step1 from "./components/steps/Step1.jsx";
-import Step2 from "./components/steps/Step2.jsx";
+
 
 
 const Router = createBrowserRouter([
@@ -21,15 +21,12 @@ const Router = createBrowserRouter([
       {
         path: "/form",
         element: <Form />,
-        children: [
-          {
-            path: "",
-            element: <Step1 />
-          }, {
-            path: "/form/step2",
-            element: <Step2 />
-          },
-        ]
+        
+      },
+      {
+        path: "/login",
+        element: <Login />,
+        
       },
     ]
   },

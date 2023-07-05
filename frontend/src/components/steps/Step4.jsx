@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next';
 
 const Step4 = ({UserData ,SetUserData ,Images ,SetImages ,Error }) => {
 
@@ -12,14 +13,13 @@ const Step4 = ({UserData ,SetUserData ,Images ,SetImages ,Error }) => {
      UserData.length_of_file = 7 ;
   }
   console.log(UserData)
-
+  const [t, i18n] =useTranslation();
 
   return (
     <>
       <div className="top">
         <h2>
-        ادخل  كلمة مرور لمتابعة حالة طلبك
-
+          {t('step4-title')} 
         </h2>
       </div>
       <div className="content">
@@ -27,7 +27,7 @@ const Step4 = ({UserData ,SetUserData ,Images ,SetImages ,Error }) => {
           <span></span>
           <input
             type="password"
-            placeholder='كلمة المرور'
+            placeholder={t('password')} 
             className='inputIN' 
             value={UserData.password}
             onChange={(e) => { SetUserData({ ...UserData, password: e.target.value }) }}
@@ -37,7 +37,7 @@ const Step4 = ({UserData ,SetUserData ,Images ,SetImages ,Error }) => {
           <span></span>
           <input 
             type="password" 
-            placeholder='تاكيد كلمة المرور' 
+            placeholder={t('r-password')} 
             className='inputIN'
             value={UserData.checkpassword} 
             onChange={(e) => { SetUserData({ ...UserData, checkpassword: e.target.value }) }}
