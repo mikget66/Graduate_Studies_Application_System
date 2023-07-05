@@ -13,3 +13,12 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+@media only screen and (max-width: 1125px) {
+  .uni-logo{
+    display: none;
+  }
+  .subCon{
+    width: 100%;
+  }
+}

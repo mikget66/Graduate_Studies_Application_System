@@ -11,10 +11,11 @@ import axios from 'axios'
 
 const Form = () => {
 
+  const [check, setCheck]= useState([])
   const [faculties, setFaculties] = useState([])
   const [departments, setDepartments] = useState([])
   const [programs, setPrograms] = useState([])
-
+  const [flag, setFlag] = useState(true)
   const [userData, setUserData] = useState({
     name: '',
     email: '',
@@ -29,29 +30,29 @@ const Form = () => {
     faculty: '',
     department: '',
     program: '',
-    length_of_file: '',
-    images: {
-      image1: '',
-      image2: '',
-      image3: '',
-      image4: '',
-      image5: '',
-      image6: '',
-      image7: '',
-      image8: '',
-      image9: '',
-    }
+    length_of_file: '0',
+    image1: '',
+    image2: '',
+    image3: '',
+    image4: '',
+    image5: '',
+    image6: '',
+    image7: '',
+    image8: '',
+    image9: '',
+
   })
 
   useEffect(() => {
     try {
-     axios.get('http://localhost:5000/getfaculty')
-      .then((res) => {
-        setFaculties(res.data)
-      })
+      axios.get('http://localhost:5000/getfaculty')
+        .then((res) => {
+          setFaculties(res.data)
+
+        })
     } catch (error) {
       console.log(error)
-      
+
     }
 
     try {
@@ -70,17 +71,17 @@ const Form = () => {
           setPrograms(res.data)
         }
         )
-    }catch (error) {
+    } catch (error) {
       console.log(error)
     }
 
   }
 
-  
-  , [])
+
+    , [])
 
 
-  
+
 
 
   const [page, setPage] = useState(0)
@@ -91,10 +92,10 @@ const Form = () => {
       case 1:
         return <Step2 Faculties={faculties} Departments={departments} Programs={programs} UserData={userData} SetUserData={setUserData} />
       case 2:
-        return <Step3 Faculties={faculties} Departments={departments} Programs={programs} UserData={userData} SetUserData={setUserData}  />
+        return <Step3 UserData={userData} SetUserData={setUserData} />
       case 3:
-        return <Step4 />
-      
+        return <Step4 UserData={userData} SetUserData={setUserData} />
+
       default:
         break;
     }
@@ -103,16 +104,42 @@ const Form = () => {
 
 
   function handlePage(action) {
+
     switch (action) {
       case "increment":
+
         if (page < 3) {
-          setPage((currPage) => currPage + 1)
-          console.log(userData)
+          if (page === 1) {
+            const { name, email } = userData
+            if (true) {
+             (UserData)=>{
+              const rse =  async axio
+             }
+
+
+              setFlag(true)
+              setPage((currPage) => currPage + 1)
+            } else {
+              setFlag(false)
+            }
+          } else {
+            if (flag) {
+              setPage((currPage) => currPage + 1)
+              console.log(userData)
+            }
+
+          }
+
+
         }
         break;
       case "decrment":
         if (page > 0) {
           setPage((currPage) => currPage - 1)
+        } else {
+          setPage(0)
+          window.location.href = '/'
+
         }
         break;
 
@@ -145,7 +172,7 @@ const Form = () => {
         <div className="nav">
           <button className="prev" onClick={() => { handlePage("decrment") }}>previous</button>
           <div className='page-n'> {`${page + 1} from 4`}</div>
-          {page == 3 ?<button className="next" onClick={handleSubmit} >Submit</button> :<button className="next" onClick={() => { handlePage("increment") }} >Next</button>}
+          {+page === 3 ? <button className="next" onClick={handleSubmit} >Submit</button> : <button className="next" onClick={() => { handlePage("increment") }} >Next</button>}
         </div>
       </section>
     </>

@@ -38,3 +38,9 @@
     padding: 1rem;
     
 }
+
+@media only screen and (max-width: 1125px) {
+    .subCon{
+        width: 100%;     
+    }
+  }
