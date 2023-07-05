@@ -13,6 +13,7 @@ import axios from 'axios'
 const Form = () => {
 
   const [t, i18n] =useTranslation();
+  const [toggle, setToggle] = useState(true);
 
   const [check, setCheck]= useState([])
   const [faculties, setFaculties] = useState([])
@@ -110,6 +111,10 @@ const Form = () => {
   }
 
 
+  const handleClick = () => {
+    i18n.changeLanguage(toggle ? 'ar' : 'en')
+    setToggle(!toggle);
+  };
 
   function handlePage(action) {
 
@@ -221,6 +226,7 @@ const Form = () => {
 
   }
 
+
   return (
     <>
       <section className='subCon'>
@@ -230,7 +236,7 @@ const Form = () => {
         <div className="body">
           {returnStep(page)}
         </div>
-        <button onClick={()=>i18n.changeLanguage('ar')}>Arabic</button>
+        <button onClick={handleClick} className='lan-btn'>{toggle ? ("عربي") : ("Englesh")}</button>
         <div className="nav">
           <button className="prev" onClick={() => { handlePage("decrment") }}>{t('prev')}</button>
           <div className='page-n'> {`${page + 1} from 4`}</div>

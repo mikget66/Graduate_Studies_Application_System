@@ -14,14 +14,14 @@ const Content = () => {
           
           <img src="assets/mini-logo.png" alt="" className='mini-logo'/>
 
-          <p style={{fontSize:"1.5rem"}}>{t('welcome')} </p>
+          <p style={{fontSize:"2rem" , margin :"2rem" ,textAlign: "center"}}>{t('welcome')} </p>
           <div className="icon">
             
           </div>
-          <h3>{t('New applicant servicesgit ')}</h3>
+          <h1 style={{margin :"2rem"}}>{t('New applicant services ')}</h1>
           <div className="options">
           <Link to='/form'><button style={{background:"#AD8700"}}>{t('new')}<HiUserAdd/></button></Link>
-          <Link to='/login'><button style={{background:"#003C70"}}>  {t('con')} <HiUserAdd/></button> </Link>
+          <Link to='/login'><button style={{background:"#003C70" }}>  {t('con')} <HiUserAdd/></button> </Link>
           </div>
         </div>
   )

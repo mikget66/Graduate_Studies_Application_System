@@ -17,13 +17,26 @@
 .nav button{
     margin-bottom: 1rem;
     border: none;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     border-radius: 25px;
     padding: 1rem 2rem ;
     color: white;
+    width: 20%;
     background-color: #AD8700;
 }
-.nav .page-n{
+.nav button:hover{
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 0 20px #AD8700;
+    cursor: pointer;
+}
+/* .nav .prev{
+    background-color: #003C70;
+}
+*/
+.subCon .lan-btn:hover{
+    box-shadow: 0 0 20px #003C70;
+} 
+/* .nav .page-n{
   position: relative;
   bottom: -2.5rem;
 
@@ -31,6 +44,32 @@
   color: #fff;
   padding: .7rem 6rem;
   border-radius: 50% 50% 0 0 ;
+} */
+.nav .page-n{
+    position: relative;
+    bottom: 0.5rem;
+    background-color: #003C70;
+    color: #fff;
+    padding: 1.5rem 1.3rem;
+    font-size: 1.3rem;
+    border-radius: 50%;
+    width: 8rem;
+    height: 5rem;
+    text-align: center;
+}
+.subCon .lan-btn{
+    position: relative;
+    bottom: 1.5rem;
+    background-color: #003C70;
+    color: #fff;
+    /* padding: 1.3rem 1.3rem; */
+    font-size: 1.3rem;
+    border: none;
+    border-radius: 50%;
+    width: 7rem;
+    height: 6rem;
+    text-align: center;
+    cursor: pointer;
 }
 .body{
     height: 50rem;

@@ -66,7 +66,7 @@ const Login = () => {
                         </div>
                         <div className="actions">
                         <button onClick={handleLogin}>تسجيل الدخول</button>
-                        <a href='#'>متقدم جديد</a>
+                        <a href='/' style={{ color : "#003C70" , marginTop: "1rem"}}>!! ..متقدم جديد</a>
                     </div>
                     </div>
                     

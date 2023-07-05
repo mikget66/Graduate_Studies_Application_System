@@ -1,6 +1,6 @@
 .content ol li {
-    font-size: 1.5rem;
-    margin-top: 0.7rem;
+    font-size: 1.8rem;
+    margin-top: 1rem;
 }
 .top h2{
     color:#AD8700;
@@ -19,6 +19,7 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    margin-top: 3rem;
 }
 .input-container{
     direction: rtl;

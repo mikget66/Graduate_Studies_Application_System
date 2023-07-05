@@ -2,6 +2,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-transform: capitalize;
+
 }
 
 html , body{
@@ -10,6 +12,7 @@ html , body{
   overflow-x: hidden;
   scroll-behavior: smooth;
   font-size: 90%;
+  text-transform: capitalize;
 }
 
 ::-webkit-scrollbar{
