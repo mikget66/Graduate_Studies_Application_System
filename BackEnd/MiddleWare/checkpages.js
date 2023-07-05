@@ -47,7 +47,7 @@ checkpages.post('/checkpage1',
             );
         } catch (err) {
             console.log(err);
-            res.status(500).json({ errors: [{ msg: err }], "msg": "Server Error" });
+            res.status(500).json({ errors: {"msg": "Server Error" }});
         }
     }
 );

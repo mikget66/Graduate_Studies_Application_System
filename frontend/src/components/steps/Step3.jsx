@@ -123,7 +123,7 @@ const Step3 = ({UserData ,SetUserData }) => {
                onChange={(e)=>{SetUserData({...UserData, image9: e.target.files[0], length_of_file: +UserData.length_of_file + 1})}}
             />
           </div>
-        ):null
+        ): null
         }
         
         

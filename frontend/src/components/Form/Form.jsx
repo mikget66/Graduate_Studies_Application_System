@@ -195,7 +195,7 @@ const Form = () => {
       axios.post('http://localhost:5000/newapp/signup',formData )
         .then((res) => {
           console.log(res)
-          window.location.href = '/'
+          console.log(userData.length_of_file)
 
         }).catch((error) => {
           console.log(error.response.data)

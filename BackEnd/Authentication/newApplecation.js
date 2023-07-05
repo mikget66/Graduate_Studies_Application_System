@@ -39,19 +39,21 @@ newApp.post('/signup',
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
                 hanleDelUplodes(req);
-                return res.status(400).json({ errors: errors.array().map((err) => err.msg), msg: "Please fill all the required fields" });
+                return res.status(400).json({ errors:{msg: errors.array().map((err) => err.msg) }});
             }
             /*==================================  check if the data is valid  ==================================*/
 
 
 
             /*==================================  check if upload all the required files  ==================================*/
-
-            // if (req.body.length_of_file != Object.keys(req.files).length) {
-            //     hanleDelUplodes(req);
-            //     return res.status(400).json({ errors: [{ msg: "Please upload all the required files" }] });
-            // }
             console.log(Object.keys(req.files).length);
+            console.log(req.body.length_of_file);
+            if (req.body.length_of_file != Object.keys(req.files).length || Object.keys(req.files).length == 0) {
+                hanleDelUplodes(req);
+                return res.status(400).json({ errors: { msg: "Please upload all the required files" } });
+            }
+            console.log(Object.keys(req.files).length);
+            console.log(req.body.length_of_file);
 
             /*==================================  check if upload all the required files  ==================================*/
 
@@ -62,7 +64,7 @@ newApp.post('/signup',
             
             if (req.body.password !== req.body.checkpassword) {
                 hanleDelUplodes(req);
-                return res.status(400).json({ errors: [{ msg: "Password does not match" }] });
+                return res.status(400).json({ errors: { msg: "Password does not match" } });
             }
             
             
@@ -87,7 +89,7 @@ newApp.post('/signup',
                 let file = req.files[`image${i}`][0].size || 0;
                 if (file > maxFileSize) {
                     hanleDelUplodes(req);
-                    return res.status(400).json({ errors: [{ msg: `Please upload a image number ${i} less than ${sizeinMB} MB ` }] });
+                    return res.status(400).json({ errors: { msg: `Please upload a image number ${i} less than ${sizeinMB} MB ` } });
                 }
             }
             /*==================================  check if the file is image or not and check size ==================================*/
@@ -136,7 +138,7 @@ newApp.post('/signup',
                 delete studentData.password;
                 if (err) {
                     hanleDelUplodes(req);
-                    return res.status(400).json({ errors: [{ msg: err }] });
+                    return res.status(400).json({ errors: { msg: err } });
                 } else {
                     student_id = result.insertId;
                     const applicationData = {
@@ -151,7 +153,7 @@ newApp.post('/signup',
                     query(sqlInsert2, applicationData, (err, result) => {
                         if (err) {
                             hanleDelUplodes(req);
-                            return res.status(400).json({ errors: [{ msg: err }] });
+                            return res.status(400).json({ errors: { msg: err } });
                         } else {
                             return res.status(200).json({ msg: "Student added successfully", studentData });
                         }
@@ -169,7 +171,7 @@ newApp.post('/signup',
 
         } catch (err) {
             console.log(err);
-            res.status(500).json({ errors: [{ msg: err }], "msg": "Server Error" });
+            res.status(500).json({ errors: { msg: err }, "msg": "Server Error" });
         }
 
     });
