@@ -24,7 +24,6 @@ newApp.post('/signup',
     body('national_id').isInt().withMessage('nationalId is required').isLength({ min: 14, max: 14 }).withMessage('nationalId must be at least 14 chars long'),
     body('dateOfBirth').notEmpty().withMessage('dateOfBirth is required'),
     body('gender').notEmpty().withMessage('gentder is required'),
-    body('military_status').notEmpty().withMessage('military_status is required'),
     body("level").notEmpty().withMessage('Educational_level is required'),
     body("faculty").notEmpty().withMessage('faculty_id is required'),
     body("department").notEmpty().withMessage('department_id is required'),
@@ -50,7 +49,7 @@ newApp.post('/signup',
             console.log(req.body.length_of_file);
             if (req.body.length_of_file != Object.keys(req.files).length || Object.keys(req.files).length == 0) {
                 hanleDelUplodes(req);
-                return res.status(400).json({ errors: { msg: "Please upload all the required files" } });
+                return res.status(400).json({ errors: { msg: ["Please upload all the required files"] } });
             }
             console.log(Object.keys(req.files).length);
             console.log(req.body.length_of_file);
@@ -64,7 +63,7 @@ newApp.post('/signup',
             
             if (req.body.password !== req.body.checkpassword) {
                 hanleDelUplodes(req);
-                return res.status(400).json({ errors: { msg: "Password does not match" } });
+                return res.status(400).json({ errors: { msg: ["Password does not match"] } });
             }
             
             
@@ -89,7 +88,27 @@ newApp.post('/signup',
                 let file = req.files[`image${i}`][0].size || 0;
                 if (file > maxFileSize) {
                     hanleDelUplodes(req);
-                    return res.status(400).json({ errors: { msg: `Please upload a image number ${i} less than ${sizeinMB} MB ` } });
+                    let str ;
+                    if(i == 1){
+                        str = "Person ";
+                    }else if(i == 2){
+                        str = "National ID ";
+                    }else if(i == 3){
+                        str = "Birth Certificate ";
+                    }else if(i == 4){
+                        str = "Academic Qualification ";
+                    }else if(i == 5){
+                        str = "Grade_Statement ";
+                    }else if(i == 6){
+                        str = "Good Conduct Form";
+                    }else if(i == 7){
+                        str = "Approval From Employer";
+                    }else if(i == 8){
+                        str = "Position On Military";
+                    }else if(i == 9){
+                        str = "Masters Photo";
+                    }
+                    return res.status(400).json({ errors: { msg: [`Please upload  ${str} Image less than ${sizeinMB} MB `] } });
                 }
             }
             /*==================================  check if the file is image or not and check size ==================================*/

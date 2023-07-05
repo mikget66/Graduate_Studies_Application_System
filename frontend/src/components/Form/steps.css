@@ -28,7 +28,7 @@
     width: 100%;
     height: 100%;
 }
-.input-container .labelChooes{
+.input-img-container .labelChooes{
     font-size: 1.5rem;
     font-weight: 900;
     color: #fff;
@@ -40,9 +40,19 @@
     height: 100%;
     border-radius: 10px;
 }
+.input-img-container{
+    direction: rtl;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
 .gridChange{
-    grid-template-columns: 00px 1fr;
+    grid-template-rows: 1fr 1fr;
     text-align: center;
+    
 }
 .inputIN{
     border: none;
@@ -50,7 +60,7 @@
     direction: rtl;
     outline: none;
     padding: 0.5rem;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     cursor: pointer;
     border-radius: 15px;
 }

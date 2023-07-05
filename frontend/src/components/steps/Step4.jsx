@@ -1,6 +1,19 @@
 import React from 'react'
 
-const Step4 = ({UserData ,SetUserData }) => {
+const Step4 = ({UserData ,SetUserData ,Images ,SetImages ,Error }) => {
+
+  
+
+  if(UserData.gender === "1" && UserData.level === "2"){
+     UserData.length_of_file = 9 ;
+  }else if (UserData.gender === "1" || UserData.level === "2"){
+     UserData.length_of_file = 8 ;
+  }else{
+     UserData.length_of_file = 7 ;
+  }
+  console.log(UserData)
+
+
   return (
     <>
       <div className="top">
@@ -31,6 +44,10 @@ const Step4 = ({UserData ,SetUserData }) => {
           />
         </div>
       </div>
+      { Error ? (
+      <div className='top' style={{marginTop:"2rem" ,color: "red" ,fontWeight: "bolder"}}><h1>  {Error[0] != undefined ? `${Error[0]}` : null}  </h1> </div>) 
+      : null
+      }
     </>
   )
 }

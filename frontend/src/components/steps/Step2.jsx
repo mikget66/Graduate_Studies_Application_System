@@ -4,7 +4,7 @@ import { GrMail } from 'react-icons/gr'
 import { FaPhone } from 'react-icons/fa'
 import { BsFillPersonVcardFill } from 'react-icons/bs'
 import { BsFillCalendar2DateFill } from 'react-icons/bs'
-const Step2 = ({ Faculties, UserData, SetUserData, Departments, Programs }) => {
+const Step2 = ({ Faculties, UserData, SetUserData, Departments, Programs ,Error }) => {
 
   return (
     <>
@@ -35,6 +35,7 @@ const Step2 = ({ Faculties, UserData, SetUserData, Departments, Programs }) => {
             placeholder='الاسم الرباعي'
             className='inputIN'
             value={UserData.name}
+            style={{ cursor: "text"}}
             onChange={(e) => { SetUserData({ ...UserData, name: e.target.value }) }} 
           />
         </div>
@@ -55,7 +56,13 @@ const Step2 = ({ Faculties, UserData, SetUserData, Departments, Programs }) => {
         </div>
         <div className="input-container">
           <GrMail className='Icon' />
-          <input type="text" placeholder='البريد الالكتروني' className='inputIN' value={UserData.email} onChange={(e) => { SetUserData({ ...UserData, email: e.target.value }) }}
+          <input 
+            type="text" 
+            placeholder='البريد الالكتروني' 
+            className='inputIN' 
+            value={UserData.email}
+            style={{ cursor: "text"}}
+             onChange={(e) => { SetUserData({ ...UserData, email: e.target.value }) }}
           />
         </div>
         <div className="input-container">
@@ -69,7 +76,11 @@ const Step2 = ({ Faculties, UserData, SetUserData, Departments, Programs }) => {
         </div>
         <div className="input-container">
           <BsFillPersonVcardFill className='Icon' />
-          <input type="text" placeholder='الرقم القومي' className='inputIN'
+          <input 
+            type="text" 
+            placeholder='الرقم القومي' 
+            className='inputIN'
+            style={{ cursor: "text"}}
             value={UserData.national_id} onChange={(e) => { SetUserData({ ...UserData, national_id: e.target.value }) }}
           />
         </div>
@@ -86,7 +97,11 @@ const Step2 = ({ Faculties, UserData, SetUserData, Departments, Programs }) => {
         </div>
         <div className="input-container">
           <FaPhone className='Icon' />
-          <input type="text" placeholder='رقم التليفون' className='inputIN'
+          <input 
+            type="text" 
+            placeholder='رقم التليفون' 
+            className='inputIN'
+            style={{ cursor: "text"}}
             value={UserData.phone} onChange={(e) => { SetUserData({ ...UserData, phone: e.target.value }) }}
           />
         </div>
@@ -135,6 +150,10 @@ const Step2 = ({ Faculties, UserData, SetUserData, Departments, Programs }) => {
         ) : null
         }
       </div>
+      { Error ? (
+      <div className='top' style={{marginTop:"2rem" ,color: "red" ,fontWeight: "bolder"}}><h1>  {Error[0] != undefined ? `${Error[0]}` : null}  </h1> </div>) 
+      : null
+      }
     </>
   )
 }

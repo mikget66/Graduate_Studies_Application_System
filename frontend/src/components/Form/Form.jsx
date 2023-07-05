@@ -17,6 +17,7 @@ const Form = () => {
   const [programs, setPrograms] = useState([])
   const [flag, setFlag] = useState(true)
   const [error, setError] = useState([])
+  const [error2, setError2] = useState([])
   const [userData, setUserData] = useState({
     name: '',
     email: '',
@@ -31,7 +32,11 @@ const Form = () => {
     faculty: '',
     department: '',
     program: '',
-    length_of_file: '0',
+    length_of_file: '7',
+    
+
+  })
+  const [images, setImages] = useState({
     image1: '',
     image2: '',
     image3: '',
@@ -41,7 +46,6 @@ const Form = () => {
     image7: '',
     image8: '',
     image9: '',
-
   })
 
   useEffect(() => {
@@ -91,11 +95,11 @@ const Form = () => {
       case 0:
         return <Step1 />
       case 1:
-        return <Step2 Faculties={faculties} Departments={departments} Programs={programs} UserData={userData} SetUserData={setUserData} />
+        return <Step2 Error ={error} SetError = {setError} Faculties={faculties} Departments={departments} Programs={programs} UserData={userData} SetUserData={setUserData} />
       case 2:
-        return <Step3 UserData={userData} SetUserData={setUserData} />
+        return <Step3 UserData={userData} SetUserData={setUserData} Images={images} SetImages={setImages} />
       case 3:
-        return <Step4 UserData={userData} SetUserData={setUserData} />
+        return <Step4 Error ={error2} UserData={userData} SetUserData={setUserData} Images={images} SetImages={setImages}/>
 
       default:
         break;
@@ -121,9 +125,10 @@ const Form = () => {
                     setPage(2)
                     
                   }).catch(async (error) => {
-                    console.log(error.response.data.errors.msg)
+                    // console.log(error.response.data.errors.msg)
                     setFlag(true);
                     setPage(1)
+                    setError(error.response.data.errors.msg)
                     
                   }
                   )
@@ -182,23 +187,29 @@ const Form = () => {
     formData.append('department', userData.department)
     formData.append('program', userData.program)
     formData.append('length_of_file', userData.length_of_file)
-    formData.append('image1', userData.image1)
-    formData.append('image2', userData.image2)
-    formData.append('image3', userData.image3)
-    formData.append('image4', userData.image4)
-    formData.append('image5', userData.image5)
-    formData.append('image6', userData.image6)
-    formData.append('image7', userData.image7)
-    formData.append('image8', userData.image8)
-    formData.append('image9', userData.image9)
+    formData.append('image1', images.image1)
+    formData.append('image2', images.image2)
+    formData.append('image3', images.image3)
+    formData.append('image4', images.image4)
+    formData.append('image5', images.image5)
+    formData.append('image6', images.image6)
+    formData.append('image7', images.image7)
+    formData.append('image8', images.image8)
+    formData.append('image9', images.image9)
     try {
       axios.post('http://localhost:5000/newapp/signup',formData )
         .then((res) => {
           console.log(res)
           console.log(userData.length_of_file)
+          let su = "تم ارسال الطلب بنجاح"
+          if(!alert(su)){
+            window.location.href = '/'
+          }
 
         }).catch((error) => {
           console.log(error.response.data)
+          setError2(error.response.data.errors.msg)
+
         }
         )
     } catch (error) {
