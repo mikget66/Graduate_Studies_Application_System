@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import './form.css'
 import './steps.css'
 import Step1 from '../steps/Step1'
@@ -11,6 +12,8 @@ import axios from 'axios'
 
 
 const Form = () => {
+
+  const navigate = useNavigate()
 
   const [t, i18n] =useTranslation();
   const [toggle, setToggle] = useState(true);
@@ -168,7 +171,7 @@ const Form = () => {
           setPage((currPage) => currPage - 1)
         } else {
           setPage(0)
-          window.location.href = '/'
+          navigate('/')
 
         }
         break;
