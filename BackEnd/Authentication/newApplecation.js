@@ -51,7 +51,7 @@ newApp.post('/signup',
                 hanleDelUplodes(req);
                 return res.status(400).json({ errors: { msg: ["Please upload all the required files"] } });
             }
-            console.log(Object.keys(req.files).length);
+            console.log(req.files);
             console.log(req.body.length_of_file);
 
             /*==================================  check if upload all the required files  ==================================*/
@@ -151,35 +151,35 @@ newApp.post('/signup',
             /*==================================  store the student data in object  ==================================*/
 
             /*==================================  insert the student data in database  ==================================*/
-            let student_id;
-            const sqlInsert = "INSERT INTO `students` SET ?";
-            await query(sqlInsert, studentData, (err, result) => {
-                delete studentData.password;
-                if (err) {
-                    hanleDelUplodes(req);
-                    return res.status(400).json({ errors: { msg: err } });
-                } else {
-                    student_id = result.insertId;
-                    const applicationData = {
-                        student_id: student_id,
-                        faculty_id: req.body.faculty,
-                        department_id: req.body.department,
-                        program_id: req.body.program,
-                        status: "2",
-                        submission_date: new Date(),
-                    };
-                    const sqlInsert2 = "INSERT INTO `application` SET ?";
-                    query(sqlInsert2, applicationData, (err, result) => {
-                        if (err) {
-                            hanleDelUplodes(req);
-                            return res.status(400).json({ errors: { msg: err } });
-                        } else {
-                            return res.status(200).json({ msg: "Student added successfully", studentData });
-                        }
-                    });
+            // let student_id;
+            // const sqlInsert = "INSERT INTO `students` SET ?";
+            // await query(sqlInsert, studentData, (err, result) => {
+            //     delete studentData.password;
+            //     if (err) {
+            //         hanleDelUplodes(req);
+            //         return res.status(400).json({ errors: { msg: err } });
+            //     } else {
+            //         student_id = result.insertId;
+            //         const applicationData = {
+            //             student_id: student_id,
+            //             faculty_id: req.body.faculty,
+            //             department_id: req.body.department,
+            //             program_id: req.body.program,
+            //             status: "2",
+            //             submission_date: new Date(),
+            //         };
+            //         const sqlInsert2 = "INSERT INTO `application` SET ?";
+            //         query(sqlInsert2, applicationData, (err, result) => {
+            //             if (err) {
+            //                 hanleDelUplodes(req);
+            //                 return res.status(400).json({ errors: { msg: err } });
+            //             } else {
+            //                 return res.status(200).json({ msg: "Student added successfully", studentData });
+            //             }
+            //         });
 
-                }
-            });
+            //     }
+            // });
 
 
             /*==================================  insert the student data in database  ==================================*/

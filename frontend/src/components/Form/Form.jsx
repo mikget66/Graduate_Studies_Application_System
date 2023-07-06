@@ -99,7 +99,7 @@ const Form = () => {
       case 0:
         return <Step1 />
       case 1:
-        return <Step2 Error ={error} SetError = {setError} Faculties={faculties} Departments={departments} Programs={programs} UserData={userData} SetUserData={setUserData} />
+        return <Step2 Toggle={toggle} Error ={error} SetError = {setError} Faculties={faculties} Departments={departments} Programs={programs} UserData={userData} SetUserData={setUserData} />
       case 2:
         return <Step3 UserData={userData} SetUserData={setUserData} Images={images} SetImages={setImages} />
       case 3:
@@ -236,7 +236,7 @@ const Form = () => {
         <div className="body">
           {returnStep(page)}
         </div>
-        <button onClick={handleClick} className='lan-btn'>{toggle ? ("عربي") : ("Englesh")}</button>
+        <button onClick={handleClick} className='lan-btn'>{localStorage.getItem('i18nextLng') == "en" ? ("عربي") : ("Englesh")}</button>
         <div className="nav">
           <button className="prev" onClick={() => { handlePage("decrment") }}>{t('prev')}</button>
           <div className='page-n'> {`${page + 1} from 4`}</div>

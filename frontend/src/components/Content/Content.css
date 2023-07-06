@@ -34,6 +34,22 @@
   .mini-logo{
     height: 25%;
   }
+  .Content .lan-btn{
+    border: none;
+    font-size: 1.5rem;
+    border-radius: 25px;
+    padding: 1rem 2rem ;
+    color: white;
+    cursor: pointer;
+    background-color: #003C70;
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+}
+
+.Content .lan-btn:hover{
+    box-shadow: 0 0 10px #003C70;
+}
 
   @media only screen and (max-width: 1125px) {
     .Content{

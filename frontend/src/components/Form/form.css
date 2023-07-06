@@ -34,7 +34,7 @@
 }
 */
 .subCon .lan-btn:hover{
-    box-shadow: 0 0 20px #003C70;
+    box-shadow: 0 0 10px #003C70;
 } 
 /* .nav .page-n{
   position: relative;
@@ -58,18 +58,16 @@
     text-align: center;
 }
 .subCon .lan-btn{
-    position: relative;
-    bottom: 1.5rem;
-    background-color: #003C70;
-    color: #fff;
-    /* padding: 1.3rem 1.3rem; */
-    font-size: 1.3rem;
     border: none;
-    border-radius: 50%;
-    width: 7rem;
-    height: 6rem;
-    text-align: center;
+    font-size: 1.5rem;
+    border-radius: 25px;
+    padding: 1rem 2rem ;
+    color: white;
     cursor: pointer;
+    background-color: #003C70;
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
 }
 .body{
     height: 50rem;

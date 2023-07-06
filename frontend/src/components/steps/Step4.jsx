@@ -12,7 +12,6 @@ const Step4 = ({UserData ,SetUserData ,Images ,SetImages ,Error }) => {
   }else{
      UserData.length_of_file = 7 ;
   }
-  console.log(UserData)
   const [t, i18n] =useTranslation();
 
   return (

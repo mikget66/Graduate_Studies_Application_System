@@ -12,16 +12,16 @@ checkpages.use(cors());
 
 
 checkpages.post('/checkpage1',
-    body('name').notEmpty().withMessage('Name is required').isLength({ min: 3 }).withMessage('Name must be at least 3 chars long'),
-    body('email').isEmail().withMessage('Not a valid e-mail address'),
-    body('phone').notEmpty().withMessage('Not a valid phone number'),
-    body('national_id').notEmpty().withMessage('nationalId is required').isLength({ min: 14, max: 14 }).withMessage('nationalId must be at least 14 chars long'),
-    body('dateOfBirth').notEmpty().withMessage('dateOfBirth is required'),
-    body('gender').notEmpty().withMessage('gentder is required'),
-    body('level').notEmpty().withMessage('level is required').isInt().withMessage('level must be a number'),
-    body('faculty').notEmpty().withMessage('faculty is required').isInt().withMessage('Faculty must be a number'),
-    body('department').notEmpty().withMessage('department is required').isInt().withMessage('department must be a number'),
-    body('program').notEmpty().withMessage('program is required').isInt().withMessage('program must be a number'),
+    // body('name').notEmpty().withMessage('Name is required').isLength({ min: 3 }).withMessage('Name must be at least 3 chars long'),
+    // body('email').isEmail().withMessage('e-mail address is required'),
+    // body('phone').notEmpty().withMessage('phone number is required'),
+    // body('national_id').notEmpty().withMessage('nationalId is required'),
+    // body('dateOfBirth').notEmpty().withMessage('dateOfBirth is required'),
+    // body('gender').notEmpty().withMessage('gentder is required'),
+    // body('level').notEmpty().withMessage('level is required').isInt().withMessage('level must be a number'),
+    // body('faculty').notEmpty().withMessage('faculty is required').isInt().withMessage('Faculty must be a number'),
+    // body('department').notEmpty().withMessage('department is required').isInt().withMessage('department must be a number'),
+    // body('program').notEmpty().withMessage('program is required').isInt().withMessage('program must be a number'),
 
     async (req, res) => {
         try {

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import'./login.css'
+import './login.css'
 import { BsFillPersonVcardFill } from 'react-icons/bs'
 import { RiLockPasswordFill } from 'react-icons/ri'
+import { useTranslation } from 'react-i18next';
+
 
 import axios from 'axios'
 
@@ -9,20 +11,28 @@ import axios from 'axios'
 
 const Login = () => {
 
-    const [loginData, setLoginData] =useState({
+    const [loginData, setLoginData] = useState({
         password: '',
         national_id: '',
     })
 
-    const handleLogin =(e)=>{
+    const [t, i18n] = useTranslation();
+    const [toggle, setToggle] = React.useState(true);
+
+    const handleClick = () => {
+        i18n.changeLanguage(toggle ? 'ar' : 'en')
+        setToggle(!toggle);
+    };
+
+    const handleLogin = (e) => {
         e.preventDefault()
         try {
-            axios.post('http://localhost:5000/login',loginData)
-            .then((res) => {
-              alert("A7A")
-              console.log(res)
-            }).catch((error)=>{console.log(error);})
-            
+            axios.post('http://localhost:5000/login', loginData)
+                .then((res) => {
+                    alert("A7A")
+                    console.log(res)
+                }).catch((error) => { console.log(error); })
+
         } catch (error) {
             console.log(error)
         }
@@ -39,38 +49,39 @@ const Login = () => {
                 <div className="body">
                     <div className="top">
                         <h2>
-                            ادخل  كلمة مرور لمتابعة حالة طلبك
-
+                        {t('login')}
                         </h2>
                     </div>
-                    <div className="content"  style={{marginTop:"6rem",gap:"3rem"}}>
-                        <div className="input-container"style={{gap:"2rem",}}>
-                        <BsFillPersonVcardFill className='Icon' style={{fontSize:"3.5rem"}}/>
+                    <div className="content" style={{ marginTop: "6rem", gap: "3rem" }}>
+                        <div className="input-container" style={{ gap: "2rem", }}>
+                            <BsFillPersonVcardFill className='Icon' style={{ fontSize: "3.5rem" }} />
                             <input
                                 type="text"
-                                placeholder=' الرقم القومي '
+                                placeholder={t('n-id')}
                                 className='inputIN'
-                                style={{ cursor: "text", height:"4rem"}}
+                                style={{ cursor: "text", height: "4rem" }}
                                 value={loginData.national_id} onChange={(e) => { setLoginData({ ...loginData, national_id: e.target.value }) }}
                             />
                         </div>
-                        <div className="input-container"style={{gap:"2rem",}}>
-                        <RiLockPasswordFill className='Icon' style={{fontSize:"3.5rem"}}/>
+                        <div className="input-container" style={{ gap: "2rem", }}>
+                            <RiLockPasswordFill className='Icon' style={{ fontSize: "3.5rem" }} />
                             <input
                                 type="password"
-                                placeholder='كلمة المرور'
+                                placeholder={t('password')}
                                 className='inputIN'
-                                style={{ cursor: "text", height:"4rem"}}
+                                style={{ cursor: "text", height: "4rem" }}
                                 value={loginData.password} onChange={(e) => { setLoginData({ ...loginData, password: e.target.value }) }}
                             />
                         </div>
                         <div className="actions">
-                        <button onClick={handleLogin}>تسجيل الدخول</button>
-                        <a href='/' style={{ color : "#003C70" , marginTop: "1rem"}}>!! ..متقدم جديد</a>
+                            <button onClick={handleLogin}> {t('login')}</button>
+                            <a href='/' style={{ color: "#003C70", marginTop: "1rem" }}>{t('new-app-question')}  </a>
+                        </div>
                     </div>
-                    </div>
-                    
+
                 </div>
+                <button onClick={handleClick} className='lan-btn'>{localStorage.getItem('i18nextLng') == "en" ? ("عربي") : ("Englesh")}</button>
+
 
             </section>
         </>
