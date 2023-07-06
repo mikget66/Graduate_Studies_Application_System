@@ -11,10 +11,8 @@ html , body{
   height: 100vh;
   overflow-x: hidden;
   scroll-behavior: smooth;
-  /* font-size: 95%; */
   text-transform: capitalize;
 }
-
 
 ::-webkit-scrollbar{
   width: 0;

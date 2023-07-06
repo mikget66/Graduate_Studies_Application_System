@@ -209,7 +209,7 @@ const Form = () => {
         .then((res) => {
           console.log(res)
           console.log(userData.length_of_file)
-          let su = "تم ارسال الطلب بنجاح"
+          let su = "يرجى العلم بانه يمكنك متابعه الطلب من خلال  تسجيل الدخول على الموقع باستخدام الايميل الذى تم إدخاله في البيانات وكلمة المرور"
           if(!alert(su)){
             window.location.href = '/'
           }

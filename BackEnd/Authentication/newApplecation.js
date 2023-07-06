@@ -20,8 +20,8 @@ newApp.post('/signup',
     body('email').isEmail().withMessage('Not a valid e-mail address'),
     body('password').notEmpty().withMessage('Password is required'),
     body('checkpassword').notEmpty().withMessage('checkpassword is required'),
-    body('phone').isInt().withMessage('phone is required'),
-    body('national_id').isInt().withMessage('nationalId is required').isLength({ min: 14, max: 14 }).withMessage('nationalId must be at least 14 chars long'),
+    body('phone').notEmpty().withMessage('phone is required'),
+    body('national_id').notEmpty().withMessage('nationalId is required'),
     body('dateOfBirth').notEmpty().withMessage('dateOfBirth is required'),
     body('gender').notEmpty().withMessage('gentder is required'),
     body("level").notEmpty().withMessage('Educational_level is required'),
@@ -57,6 +57,21 @@ newApp.post('/signup',
             /*==================================  check if upload all the required files  ==================================*/
 
 
+            /*==================================  check if all the files are image  ==================================*/
+
+            for (let i = 1; i <= 9; i++) {
+                
+                if (!req.files[`image${i}`]) {
+                    continue;
+                }
+                console.log(req.files[`image${i}`][0].mimetype);
+                let file = req.files[`image${i}`][0].mimetype || 0;
+                if (file != "image/jpeg" && file != "image/jpg" && file != "image/png" && file != "image/webp") {
+                    hanleDelUplodes(req);
+                    return res.status(400).json({ errors: { msg: ["Please upload all the required files as image"] } });
+                }
+            }
+            /*==================================  check if all the files are image  ==================================*/
 
             /*==================================  check if password and checkpassword are the same  ==================================*/
             
@@ -151,35 +166,35 @@ newApp.post('/signup',
             /*==================================  store the student data in object  ==================================*/
 
             /*==================================  insert the student data in database  ==================================*/
-            // let student_id;
-            // const sqlInsert = "INSERT INTO `students` SET ?";
-            // await query(sqlInsert, studentData, (err, result) => {
-            //     delete studentData.password;
-            //     if (err) {
-            //         hanleDelUplodes(req);
-            //         return res.status(400).json({ errors: { msg: err } });
-            //     } else {
-            //         student_id = result.insertId;
-            //         const applicationData = {
-            //             student_id: student_id,
-            //             faculty_id: req.body.faculty,
-            //             department_id: req.body.department,
-            //             program_id: req.body.program,
-            //             status: "2",
-            //             submission_date: new Date(),
-            //         };
-            //         const sqlInsert2 = "INSERT INTO `application` SET ?";
-            //         query(sqlInsert2, applicationData, (err, result) => {
-            //             if (err) {
-            //                 hanleDelUplodes(req);
-            //                 return res.status(400).json({ errors: { msg: err } });
-            //             } else {
-            //                 return res.status(200).json({ msg: "Student added successfully", studentData });
-            //             }
-            //         });
+            let student_id;
+            const sqlInsert = "INSERT INTO `students` SET ?";
+            await query(sqlInsert, studentData, (err, result) => {
+                delete studentData.password;
+                if (err) {
+                    hanleDelUplodes(req);
+                    return res.status(400).json({ errors: { msg: err } });
+                } else {
+                    student_id = result.insertId;
+                    const applicationData = {
+                        student_id: student_id,
+                        faculty_id: req.body.faculty,
+                        department_id: req.body.department,
+                        program_id: req.body.program,
+                        status: "2",
+                        submission_date: new Date(),
+                    };
+                    const sqlInsert2 = "INSERT INTO `application` SET ?";
+                    query(sqlInsert2, applicationData, (err, result) => {
+                        if (err) {
+                            hanleDelUplodes(req);
+                            return res.status(400).json({ errors: { msg: err } });
+                        } else {
+                            return res.status(200).json({ msg: "Student added successfully", studentData });
+                        }
+                    });
 
-            //     }
-            // });
+                }
+            });
 
 
             /*==================================  insert the student data in database  ==================================*/

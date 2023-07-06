@@ -1,14 +1,11 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useTranslation } from 'react-i18next';
 
 const Step3 = ({UserData ,SetUserData ,Images ,SetImages}) => {
 
-  Object.values(Images).map((image)=>{
-    image ===  "" ? console.log("no") : UserData.length_of_file = +UserData.length_of_file + 1
-  })
+  
 
-  console.log(UserData)
-
+  
   const [t, i18n] =useTranslation();
   return (
     <>

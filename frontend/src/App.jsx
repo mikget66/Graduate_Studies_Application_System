@@ -8,8 +8,7 @@ function App() {
   return (
     <>
       <div className='home'>
-        <div className="uni-logo">
-        </div>
+        
           <Outlet/>
         </div>
     </>

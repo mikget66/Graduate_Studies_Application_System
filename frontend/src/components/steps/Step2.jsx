@@ -18,6 +18,82 @@ const Step2 = ({ Faculties, UserData, SetUserData, Departments, Programs ,Error 
         </h2>
       </div>
       <div className="superContianer">
+
+
+      <div className="input-container">
+          <BiSolidUser style={UserData.name == "" ? null : {marginTop:'1.5rem'}} className='Icon' />
+          <div className='edit-input' style={localStorage.getItem('i18nextLng') == "ar" ? {direction:"rtl"} : {direction:"ltr"}}>
+          {UserData.name =="" ? null : <h1 style={{color:"#AD8700"}}>{t('name')} </h1>}
+          <input 
+            type="text"
+            placeholder={t('name')} 
+            className='inputIN'
+            value={UserData.name}
+            style={{ cursor: "text"}}
+            onChange={(e) => { SetUserData({ ...UserData, name: e.target.value }) }} 
+          />
+          </div>
+        </div>
+
+        <div className="input-container">
+          <BsFillPersonVcardFill style={UserData.national_id == "" ? null : {marginTop:'1.5rem'}} className='Icon' />
+          <div className='edit-input' style={localStorage.getItem('i18nextLng') == "ar" ? {direction:"rtl"} : {direction:"ltr"}}>
+          {UserData.national_id =="" ? null : <h1 style={{color:"#AD8700"}}>{t('n-id')} </h1>}
+          <input 
+            type="text" 
+            placeholder={t('n-id')} 
+            className='inputIN'
+            style={{ cursor: "text"}}
+            value={UserData.national_id} onChange={(e) => { SetUserData({ ...UserData, national_id: e.target.value }) }}
+          />
+        </div>
+        </div>
+
+        <div className="input-container">
+          <GrMail style={UserData.email == "" ? null : {marginTop:'1.5rem'}} className='Icon' />
+          <div className='edit-input' style={localStorage.getItem('i18nextLng') == "ar" ? {direction:"rtl"} : {direction:"ltr"}}>
+          {UserData.email =="" ? null : <h1 style={{color:"#AD8700"}}>{t('email')} </h1>}
+          <input 
+            type="text" 
+            placeholder={t('email')} 
+            className='inputIN' 
+            value={UserData.email}
+            style={{ cursor: "text"}}
+             onChange={(e) => { SetUserData({ ...UserData, email: e.target.value }) }}
+          />
+          </div>
+        </div>
+
+
+        <div className="input-container">
+          <FaPhone style={UserData.phone == "" ? null : {marginTop:'1.5rem'}} className='Icon' />
+          <div className='edit-input' style={localStorage.getItem('i18nextLng') == "ar" ? {direction:"rtl"} : {direction:"ltr"}}>
+          {UserData.phone =="" ? null : <h1 style={{color:"#AD8700"}}>{t('phone')} </h1>}
+          <input 
+            type="text" 
+            placeholder={t('phone')}  
+            className='inputIN'
+            style={{ cursor: "text"}}
+            value={UserData.phone} onChange={(e) => { SetUserData({ ...UserData, phone: e.target.value }) }}
+          />
+        </div>
+        </div>
+
+        
+        <div className="input-container">
+          <BsFillCalendar2DateFill style={UserData.dateOfBirth == "" ? null : {marginTop:'1.5rem'}} className='Icon' />
+          <div className='edit-input' style={localStorage.getItem('i18nextLng') == "ar" ? {direction:"rtl"} : {direction:"ltr"}}>
+          {UserData.dateOfBirth =="" ? null : <h1 style={{color:"#AD8700"}}>{t('dateOfBirth')} </h1>}
+          <input 
+            type="date"
+            className='inputIN'
+            value={UserData.dateOfBirth}
+            onChange={(e) => { SetUserData({ ...UserData, dateOfBirth: e.target.value }) }}
+
+          />
+          </div>
+        </div>
+        
         <div className="input-container">
           <span></span>
           <select
@@ -32,18 +108,15 @@ const Step2 = ({ Faculties, UserData, SetUserData, Departments, Programs ,Error 
         </div>
 
 
-        <div className="input-container">
-          <BiSolidUser className='Icon' />
-          <input 
-            type="text"
-            placeholder={t('name')} 
-            className='inputIN'
-            value={UserData.name}
-            style={{ cursor: "text"}}
-            onChange={(e) => { SetUserData({ ...UserData, name: e.target.value }) }} 
-          />
-        </div>
+        
 
+
+        
+        
+
+
+        
+        
 
         <div className="input-container">
           <span></span>
@@ -53,22 +126,12 @@ const Step2 = ({ Faculties, UserData, SetUserData, Departments, Programs ,Error 
             onChange={(e) => { SetUserData({ ...UserData, level: e.target.value }) }}
            >
             <option value="" >{t('level')} </option>
-            <option value="0">ديلومه</option>
-            <option value="1">ماجيستير</option>
-            <option value="2">دكتوراه</option>
+            <option value="0">{t('diploma')}</option>
+            <option value="1">{t('Master')}</option>
+            <option value="2">{t('PhD')}</option>
           </select>
         </div>
-        <div className="input-container">
-          <GrMail className='Icon' />
-          <input 
-            type="text" 
-            placeholder={t('email')} 
-            className='inputIN' 
-            value={UserData.email}
-            style={{ cursor: "text"}}
-             onChange={(e) => { SetUserData({ ...UserData, email: e.target.value }) }}
-          />
-        </div>
+
         <div className="input-container">
           <span></span>
           <select value={UserData.faculty} className='inputIN' onChange={(e) => { SetUserData({ ...UserData, faculty: e.target.value }) }} >
@@ -78,16 +141,7 @@ const Step2 = ({ Faculties, UserData, SetUserData, Departments, Programs ,Error 
             ))}
           </select>
         </div>
-        <div className="input-container">
-          <BsFillPersonVcardFill className='Icon' />
-          <input 
-            type="text" 
-            placeholder={t('n-id')} 
-            className='inputIN'
-            style={{ cursor: "text"}}
-            value={UserData.national_id} onChange={(e) => { SetUserData({ ...UserData, national_id: e.target.value }) }}
-          />
-        </div>
+        
 
 
         <div className="input-container">
@@ -99,16 +153,7 @@ const Step2 = ({ Faculties, UserData, SetUserData, Departments, Programs ,Error 
             ))}
           </select>
         </div>
-        <div className="input-container">
-          <FaPhone className='Icon' />
-          <input 
-            type="text" 
-            placeholder={t('phone')}  
-            className='inputIN'
-            style={{ cursor: "text"}}
-            value={UserData.phone} onChange={(e) => { SetUserData({ ...UserData, phone: e.target.value }) }}
-          />
-        </div>
+        
 
 
         <div className="input-container">
@@ -126,15 +171,7 @@ const Step2 = ({ Faculties, UserData, SetUserData, Departments, Programs ,Error 
         </div>
 
 
-        <div className="input-container">
-          <BsFillCalendar2DateFill className='Icon' />
-          <input 
-            type="date"
-            className='inputIN'
-            value={UserData.dateOfBirth}
-            onChange={(e) => { SetUserData({ ...UserData, dateOfBirth: e.target.value }) }}
-          />
-        </div>
+        
 
 
         {+UserData.gender === 1 ? (
@@ -145,10 +182,10 @@ const Step2 = ({ Faculties, UserData, SetUserData, Departments, Programs ,Error 
               onChange={(e) => { SetUserData({ ...UserData, military_status: e.target.value }) }}
               className='inputIN'
             >
-              <option value="" >اختر الموقف من التجنيد</option>
-              <option value="0">اعفاء</option>
-              <option value="1">تأجيل</option>
-              <option value="2">انهيت التجنيد</option>
+              <option value="" >{t('melatary')} </option>
+              <option value="0">{t('exemption')}</option>
+              <option value="1">{t('postponed')}</option>
+              <option value="2">{t('completed')}</option>
             </select>
           </div>
         ) : null

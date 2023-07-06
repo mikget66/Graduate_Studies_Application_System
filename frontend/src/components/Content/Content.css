@@ -1,5 +1,5 @@
 .Content{
-    width: 50%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -16,16 +16,17 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    width: 50%;
+    width: 100%;
     gap: 2rem;
   }
   .Content .options button{
     border: none;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     border-radius: 25px;
     padding: 1rem 2rem ;
     color: white;
     cursor: pointer;
+    width: 100%;
   }
   .Content .options button:hover{
     transition: all 0.2s ease-in-out;
@@ -51,8 +52,9 @@
     box-shadow: 0 0 10px #003C70;
 }
 
-  @media only screen and (max-width: 1125px) {
+  @media only screen and (max-width: 1140px) {
     .Content{
       width: 100%;
     }
   }
+

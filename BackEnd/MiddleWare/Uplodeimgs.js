@@ -24,18 +24,18 @@ const maxSize = 1 * 1024 * 1024;
 const upload = multer({
     storage: storage,
 
-    fileFilter: (req, file, cb) => {
-        const fileTypes = /jpeg|jpg|png|webp/;
-        const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
-        const mimetype = fileTypes.test(file.mimetype);
+    // fileFilter: (req, file, cb) => {
+    //     const fileTypes = /jpeg|jpg|png|webp/;
+    //     const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
+    //     const mimetype = fileTypes.test(file.mimetype);
 
-        if (mimetype && extname) {
-            return cb(null, true);
-        } else {
-            return cb('Only PNG, JPG, JPEG, WEBP files are allowed!');
-        }
+    //     // if (mimetype && extname) {
+    //     //     return cb(null, true);
+    //     // }else{
+    //     //     cb("Error: Images Only!");
+    //     // }
 
-    },
+    // },
    
 
     
