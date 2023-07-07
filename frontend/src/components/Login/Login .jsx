@@ -5,10 +5,8 @@ import { RiLockPasswordFill } from 'react-icons/ri'
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-
 import axios from 'axios'
-
-
+axios.defaults.withCredentials = true
 
 const Login = () => {
     const navigate = useNavigate()
@@ -29,9 +27,8 @@ const Login = () => {
     const handleLogin = (e) => {
         e.preventDefault()
         try {
-            axios.post('http://localhost:5000/login', loginData)
+            axios.post('http://localhost:5000/login',{ withCredentials: true }, loginData)
                 .then((res) => {
-                    alert("A7A")
                     console.log(res)
                     navigate('/profile')
                 }).catch((error) => { console.log(error); })
@@ -44,6 +41,7 @@ const Login = () => {
 
     return (
         <>
+        <div className="home">
         <div className="uni-logo">
         </div>
         
@@ -90,6 +88,7 @@ const Login = () => {
 
 
             </section>
+            </div>
         </>
     )
 }

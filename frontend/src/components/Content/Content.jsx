@@ -18,6 +18,7 @@ const Content = () => {
 
   return (
     <>
+    <div className="home">
     <div className="uni-logo">
       <h4 style={{position:"absolute" , bottom:"2rem", left : "1.5rem"}}>{t('copy-right')}</h4>
         </div>
@@ -37,6 +38,7 @@ const Content = () => {
           </div>
           <button onClick={handleClick} className='lan-btn'>{localStorage.getItem('i18nextLng') == "en"  ? ("عربي") : ("Englesh")}</button>
 
+        </div>
         </div>
     </>
         

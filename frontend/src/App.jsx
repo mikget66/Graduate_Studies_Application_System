@@ -7,9 +7,7 @@ function App() {
 
   return (
     <>
-      <div className='home'>
           <Outlet/>
-        </div>
     </>
   );
 }
