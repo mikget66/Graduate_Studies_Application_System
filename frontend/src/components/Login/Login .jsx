@@ -44,6 +44,7 @@ const Login = () => {
 
     return (
         <>
+        <div className="home">
         <div className="uni-logo">
         </div>
         
@@ -90,6 +91,7 @@ const Login = () => {
 
 
             </section>
+            </div>
         </>
     )
 }
