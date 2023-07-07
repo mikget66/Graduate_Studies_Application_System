@@ -1,7 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
+import session from 'express-session';
 import checkpages from './MiddleWare/checkpages.js';
 import newApp from './Authentication/newApplecation.js';
 import student from './Router/studentCURD.js';
@@ -17,9 +19,26 @@ import program from './Router/program.js';
 
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: ['http://localhost:3000'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
+})); // enable cors to the server
+
+app.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        secure: false,
+    }
+}));
+
+
+
 app.use(express.json());
 app.use(cookieParser());
+app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public/imgs'));
 

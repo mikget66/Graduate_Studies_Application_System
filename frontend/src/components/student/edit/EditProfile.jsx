@@ -1,8 +1,33 @@
 import React from 'react'
 import { BiArrowBack, BiSolidPrinter } from 'react-icons/bi'
 import './editprofie.css'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { use } from 'i18next';
 
 const EditProfile = () => {
+  const [t, i18n] = useTranslation();
+
+
+  const navigate = useNavigate()
+  const [user, setUser] = React.useState({})
+  axios.defaults.withCredentials = true
+  useEffect(() => {
+    axios.get('http://localhost:5000/student/studentdetails', { withCredentials: true })
+      .then((res) => {
+        console.log(res.data)
+        setUser(res.data)
+      }).catch((error) => {
+        console.log(error.response.data.user)
+        if (error.response.data.user === false) {
+          navigate('/login')
+        }
+      })
+  }, [])
+
+
   return (
     <>
       <section className="cotainer-data">
@@ -21,109 +46,82 @@ const EditProfile = () => {
             </tr>
 
             <tr>
-              <td>Code</td>
-              <td>66</td>
+              <td>{t('name')}</td>
+              <td>
+                <input
+                  className="input-cell"
+                  type="text"
+                  value={user.student_name}
+                  onChange={(e) => setUser({ ...user, student_name: e.target.value })}
+                />
+              </td>
             </tr>
             <tr>
-              <td>English Name</td>
-              <td>Mohamed Anwer Ismail</td>
+              <td>{t('email')}</td>
+              <td>
+                {user.email}
+              </td>
             </tr>
             <tr>
-              <td>Arabic Name</td>
-              <td>محمد انور اسماعيل محمد</td>
+              <td>{t('phone')}</td>
+              <td>
+                {user.phonenumber}
+              </td>
             </tr>
             <tr>
-              <td>National ID</td>
-              <td>30208220105747</td>
-            </tr>
-
-            <tr>
-              <td>Deoartment</td>
-              <td>N/A</td>
+              <td>{t('n-id')}</td>
+              <td>
+                {user.national_id}
+              </td>
             </tr>
             <tr>
-              <td>تاريخ الميلاد</td>
-              <td>22/8/2002</td>
+              <td>{t('dateOfBirth')}</td>
+              <td>
+                {(user.birthdate)}
+              </td>
             </tr>
             <tr>
-              <td>Major</td>
-              <td>Not Approved yet</td>
+              <td>{t('gender')}</td>
+              <td>
+                {user.gender == 1 ? `${t('m')}` : `${t('f')}`}
+              </td>
+            </tr>
+            
+            <tr>
+              <td>{t('collage')}</td>
+              <td>
+                {user.faculty_name}
+              </td>
             </tr>
             <tr>
-              <td>Program</td>
-              <td>Not Approved yet</td>
+              <td>{t('department')}</td>
+              <td>
+                {user.department_name}
+              </td>
             </tr>
             <tr>
-              <td>Level</td>
-              <td>Deploma</td>
+              <td>{t('program')}</td>
+              <td>
+                {user.program_name}
+              </td>
             </tr>
             <tr>
-              <td>تاريخ الميلاد</td>
-              <td>22/8/2002</td>
+              <td>{t('level')}</td>
+              <td>
+                {user.level == 0 ? `${t('diploma')}` : user.level == 1 ? `${t('Master')}` : `${t('PhD')}`}
+              </td>
             </tr>
             <tr>
-              <td>تاريخ الميلاد</td>
-              <td>22/8/2002</td>
+              <td>{t('melatary')}</td>
+              <td>
+                {user.military_status == 0 ? `${t('exemption')}` : user.military_status == 1 ? `${t('postponed')}` : `${t('completed')}`}
+              </td>
             </tr>
             <tr>
-              <td>E-mail</td>
-              <td>moaz29837@gmail.com</td>
-            </tr>
-            <tr>
-              <td>Mobile</td>
-              <td>01157479753</td>
-            </tr>
-            <tr>
-              <td>Home Number</td>
-              <td>01157479753</td>
-            </tr>
-            <tr>
-              <td>Nationality</td>
-              <td>Egyption</td>
-            </tr>
-            <tr>
-              <td>Governorate</td>
-              <td>Giza</td>
-            </tr>
-            <tr>
-              <td>Address</td>
-              <td>6 October city</td>
-            </tr>
-            <tr>
-              <td>Gender</td>
-              <td>Male</td>
-            </tr>
-            <tr>
-              <td>Malitary status</td>
-              <td>Completed</td>
-            </tr>
-            <tr>
-              <td>Application Date</td>
-              <td>2023-01-02</td>
-            </tr>
-            <tr>
-              <td>Jop Title</td>
-              <td>لأ اعمل</td>
-            </tr>
-            <tr>
-              <td>Work Place</td>
-              <td>لا اعمل</td>
-            </tr>
-            <tr>
-              <td>work Address</td>
-              <td>لا اعمل</td>
-            </tr>
-            <tr>
-              <td>Work Mobile</td>
-              <td>0000</td>
-            </tr>
-            <tr>
-              <td>Vice president Approval Date</td>
-              <td>Not Approved yet</td>
-            </tr>
-            <tr>
-              <td>Date Of Registration</td>
-              <td></td>
+              <td>{t('DateOfSubmission')}</td>
+              <td>
+                {(user.submission_date)}
+              </td>
             </tr>
           </table>
         </div>
@@ -137,8 +135,17 @@ const EditProfile = () => {
             <th>Buttons</th>
           </tr>
 
+          
           <tr>
-            <td>Codexxxxxxxxxxxxxxxxxxxxxxxxxxx</td>
+            <td>{t('img-2')}</td>
+            <td className='att-row'>
+              <a href={`http://localhost:5000/${user.national_id}/${user.photo_national_id}`} style={{ background: "#003C70" }} class="atch-btn">Open</a>
+              <a  download={`http://localhost:5000/${user.national_id}/${user.photo_national_id}`} style={{ background: "#AD8700" }} class="atch-btn">Download</a>
+              <button style={{ background: "#003C70" }} class="atch-btn">edit</button>
+            </td>
+          </tr>
+          <tr>
+            <td>{t('img-3')}</td>
             <td className='att-row'>
               <button style={{ background: "#003C70" }} class="atch-btn">Open</button>
               <button style={{ background: "#AD8700" }} class="atch-btn">Download</button>
@@ -146,27 +153,51 @@ const EditProfile = () => {
             </td>
           </tr>
           <tr>
-            <td>Code</td>
-            <td  className='att-row'>
+            <td>{t('img-4')}</td>
+            <td className='att-row'>
               <button style={{ background: "#003C70" }} class="atch-btn">Open</button>
               <button style={{ background: "#AD8700" }} class="atch-btn">Download</button>
-              <button style={{ background: "#003C70" }} class="atch-btn">Open</button>
+              <button style={{ background: "#003C70" }} class="atch-btn">edit</button>
             </td>
           </tr>
           <tr>
-            <td>Code</td>
-            <td  className='att-row'>
+            <td>{t('img-5')}</td>
+            <td className='att-row'>
               <button style={{ background: "#003C70" }} class="atch-btn">Open</button>
               <button style={{ background: "#AD8700" }} class="atch-btn">Download</button>
-              <button style={{ background: "#003C70" }} class="atch-btn">Open</button>
+              <button style={{ background: "#003C70" }} class="atch-btn">edit</button>
             </td>
           </tr>
           <tr>
-            <td>Code</td>
-            <td  className='att-row'>
+            <td>{t('img-6')}</td>
+            <td className='att-row'>
               <button style={{ background: "#003C70" }} class="atch-btn">Open</button>
               <button style={{ background: "#AD8700" }} class="atch-btn">Download</button>
+              <button style={{ background: "#003C70" }} class="atch-btn">edit</button>
+            </td>
+          </tr>
+          <tr>
+            <td>{t('img-7')}</td>
+            <td className='att-row'>
               <button style={{ background: "#003C70" }} class="atch-btn">Open</button>
+              <button style={{ background: "#AD8700" }} class="atch-btn">Download</button>
+              <button style={{ background: "#003C70" }} class="atch-btn">edit</button>
+            </td>
+          </tr>
+          <tr>
+            <td>{t('img-8')}</td>
+            <td className='att-row'>
+              <button style={{ background: "#003C70" }} class="atch-btn">Open</button>
+              <button style={{ background: "#AD8700" }} class="atch-btn">Download</button>
+              <button style={{ background: "#003C70" }} class="atch-btn">edit</button>
+            </td>
+          </tr>
+          <tr>
+            <td>{t('img-9')}</td>
+            <td className='att-row'>
+              <button style={{ background: "#003C70" }} class="atch-btn">Open</button>
+              <button style={{ background: "#AD8700" }} class="atch-btn">Download</button>
+              <button style={{ background: "#003C70" }} class="atch-btn">edit</button>
             </td>
           </tr>
         </table>

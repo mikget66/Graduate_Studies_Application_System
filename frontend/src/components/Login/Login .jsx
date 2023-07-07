@@ -6,7 +6,6 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios'
-axios.defaults.withCredentials = true
 
 const Login = () => {
     const navigate = useNavigate()
@@ -23,11 +22,12 @@ const Login = () => {
         i18n.changeLanguage(toggle ? 'ar' : 'en')
         setToggle(!toggle);
     };
+    axios.defaults.withCredentials = true
 
     const handleLogin = (e) => {
         e.preventDefault()
         try {
-            axios.post('http://localhost:5000/login',{ withCredentials: true }, loginData)
+            axios.post('http://localhost:5000/login', loginData ,{ withCredentials: true })
                 .then((res) => {
                     console.log(res)
                     navigate('/profile')

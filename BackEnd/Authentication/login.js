@@ -4,11 +4,14 @@ import { body, validationResult } from "express-validator";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import cors from "cors";
+import user from '../MiddleWare/checkStudent.js';
 
 
 const auth = express();
 auth.use(express.Router());
-auth.use(cors({ origin: true, credentials: true }));
+
+
+
 
 
 const key = "secretkey";
@@ -52,11 +55,19 @@ auth.post('/login',
                 national_id: user[0].national_id,
             };
             const token =jwt.sign(payload, key);
-            res.status(200).cookie("token",`Bearer ${token}`, { httpOnly: true }).json({ login: true });
+            req.session.token ="Bearer "+ token;
+            res.status(200).json({ login: true, token: token });
+            // res.status(200).cookie("token",`Bearer ${token}`, { httpOnly: true }).json({ login: true });
         } catch (err) {
             console.log(err);
             res.status(500).json({ errors: [{ msg: "Server Error" }] });
         }
+    });
+
+auth.get('/islogin', 
+    user,
+    (req, res) => {
+        
     });
 
 export default auth;

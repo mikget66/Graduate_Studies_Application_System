@@ -10,7 +10,6 @@ import user from "../MiddleWare/checkStudent.js";
 
 const student = express();
 student.use(express.Router());
-student.use(cors());
 
 
 
