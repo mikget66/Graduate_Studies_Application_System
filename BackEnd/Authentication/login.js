@@ -8,7 +8,7 @@ import cors from "cors";
 
 const auth = express();
 auth.use(express.Router());
-auth.use(cors());
+auth.use(cors({ origin: true, credentials: true }));
 
 
 const key = "secretkey";

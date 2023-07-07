@@ -61,7 +61,7 @@ student.put('/studentupdate/:id',
     body('name').notEmpty().withMessage('Name is required').isLength({ min: 3 }).withMessage('Name must be at least 3 chars long'),
     body('email').isEmail().withMessage('Not a valid e-mail address'),
     body('phone').isInt().withMessage('phone is required'),
-    body('national_id').isInt().withMessage('nationalId is required').isLength({ min: 14, max: 14 }).withMessage('nationalId must be at least 14 chars long'),
+    body('national_id').notEmpty().withMessage('nationalId is required'),
     body('dateOfBirth').notEmpty().withMessage('dateOfBirth is required'),
     body('gender').notEmpty().withMessage('gentder is required'),
     body('military_status').notEmpty().withMessage('military_status is required'),
@@ -80,18 +80,7 @@ student.put('/studentupdate/:id',
                 return res.status(400).json({ errors: errors.array() });
             }
 
-            const sqlcheck1 = "SELECT * FROM application WHERE student_id = ?";
-            const value1 = [req.params.id];
-
-            const student_status = await query(sqlcheck1, value1);
-
-            if (student_status[0].status != "3") {
-                hanleDelUplodes(req);
-                return res.status(400).json({ msg: "Not Allow to Update !" });
-            }          
             
-
-
             const sqlcheck = "SELECT * FROM students WHERE student_id = ?";
             const value = [req.params.id];
 
@@ -107,6 +96,22 @@ student.put('/studentupdate/:id',
                 hanleDelfile(req);
                 return res.status(400).json({ errors: [{ msg: "national_id Is Not Allow to Chage !" }] });
             }
+
+
+            const sqlcheck1 = "SELECT * FROM application WHERE student_id = ?";
+            const value1 = [req.params.id];
+
+            const student_status = await query(sqlcheck1, value1);
+            console.log(student_status[0].status);
+
+            // if (student_status[0].status != "3") {
+            //     hanleDelUplodes(req);
+            //     return res.status(400).json({ msg: "Not Allow to Update !" });
+            // }          
+            
+
+
+            
 
             
 
@@ -134,11 +139,12 @@ student.put('/studentupdate/:id',
 
             for (let i = 1; i <= 9; i++) {
                 if (!req.files[`image${i}`]) {
-                    array_of_filename_photo.push(0);
+                    array_of_filename_photo.splice(i,0,studentdetails[0][`image${i}`]);
                 } else {
-                    array_of_filename_photo.push(req.files[`image${i}`][0].filename);
+                    array_of_filename_photo.splice(i,0,req.files[`image${i}`][0].filename);
                 }
             }
+            console.log(array_of_filename_photo);
 
             const studentData = {
                 student_name: req.body.name,
@@ -194,6 +200,7 @@ student.put('/studentupdate/:id',
             });
 
 
+
                     
 
 
@@ -244,9 +251,22 @@ function hanleDelUplodes(req) {
         }
     }
 }
+
+// function hanleDelUplodesAfterUpdate(data) {
+//     let file = studentdetails[0];
+//     if (file) {
+//         for (let i = 1; i <= 9; i++) {
+//             if (`file.image${i}`) {
+//                 fs.unlinkSync(`./public/imgs/${req.body.national_id}/${file[`image${i}`][0].filename}`);
+//             }
+//         }
+//     }
+// }
+
+
 function hanleDelfile(req) {
     let file = req.body.national_id;
     if (file) {
-        fs.rmdirSync(`./public/imgs/${file}`);
+        fs.rmSync(`./public/imgs/${file}`, { recursive: true, force: true });
     }
 }
