@@ -1,0 +1,41 @@
+.image-con {
+    display: grid;
+    width: 100%;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+.imagee {
+    width: 70%;
+    border-radius: 10px;
+    margin: 3rem auto 0;
+    
+}
+.image-con button{
+    width: 30%;
+    margin: auto;
+    padding: 5px 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 10px;
+    color: white;
+    transition: .7s ease;
+    border: 2px solid transparent;
+}
+.image-con .acc{
+    background-color: rgb(35, 175, 110);
+
+}
+.image-con .acc:hover{
+    color: rgb(35, 175, 110);
+    background-color: #fff;
+    border: 2px solid rgb(35, 175, 110);
+}
+.image-con .ref{
+    background-color: rgb(175, 35, 35);
+}
+.image-con .ref:hover{
+    color: rgb(175, 35, 35);
+    background-color: #fff;
+    border: 2px solid rgb(175, 35, 35);
+}

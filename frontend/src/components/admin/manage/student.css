@@ -1,0 +1,11 @@
+.logo img {
+    width: 150px;
+    margin: 40px 60px; 
+    position: sticky;
+}
+.g-container{
+    height: calc(100vh - 100px);
+    width: 100%;
+    background-color: #fff;
+    
+}
