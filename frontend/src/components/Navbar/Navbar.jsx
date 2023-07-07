@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <nav >
         <button className="btn"> 
-          <a href="#">تسجيل الخروج</a>
+          <Link to='/profile/contact' style={{color:"white", textDecoration:"none"}}> تسجيل الخروج</Link>
         </button>
 
       <ul>

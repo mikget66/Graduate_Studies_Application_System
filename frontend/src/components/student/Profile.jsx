@@ -8,11 +8,12 @@ const Profile = () => {
     return (
         <>
             <Navbar />
-            
-            <div className="logo">
-                <img src={Logo} alt="" />
+            <div className="g-container">
+                <div className="logo">
+                    <img src={Logo} alt="" />
+                </div>
+                <Outlet />
             </div>
-            <Outlet />
         </>
     )
 }

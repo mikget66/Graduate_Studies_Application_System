@@ -8,8 +8,8 @@ import Login from './components/Login/Login .jsx'
 import Content from "./components/Content/Content.jsx";
 import Profile from "./components/student/Profile.jsx";
 import Contact from "./components/student/contact/Contact.jsx";
-import ProfileStatus from "./components/student/ProfileStatus.jsx";
-import EditProfile from "./components/student/EditProfile.jsx";
+import ProfileStatus from "./components/student/profliestatus/ProfileStatus.jsx";
+import EditProfile from "./components/student/edit/EditProfile.jsx";
 
 
 
