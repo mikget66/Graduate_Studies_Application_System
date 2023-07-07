@@ -1,0 +1,33 @@
+.G-container {
+    width: 870px;
+    height: 480px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    border-radius: 10px;
+}
+
+section .image img {
+    width: 400px;
+}
+
+.two {
+    
+    width: 420px;
+    height: 450px;
+    background: #003C70;
+    border-radius: 10%
+        /*box-shadow: 0 0 10px rgb(0, 0, 0,0.5);*/
+}
+
+.two h1 {
+    text-align: center;
+    color: white;
+    margin-top: 70px;
+}
+
+.two .contact {
+    margin-right: 60px;
+    padding: 7px;
+    color: white;
+    direction: rtl;
+    font-size: 20px;
+}
