@@ -11,6 +11,7 @@ html , body{
   height: 100vh;
   overflow-x: hidden;
   scroll-behavior: smooth;
+  font-size: 90%;
   text-transform: capitalize;
 }
 

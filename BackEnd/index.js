@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import checkpages from './MiddleWare/checkpages.js';
 import newApp from './Authentication/newApplecation.js';
 import student from './Router/studentCURD.js';
+import manager from './Router/managerCRUD.js';
 import auth from './Authentication/login.js';
 import faculty from './Router/facultyCRUD.js';
 import department from './Router/departmaenCRUD.js';
@@ -29,6 +30,7 @@ app.use('/newapp', newApp);
 app.use('', auth);
 
 app.use('/student',student);
+app.use('/manager',manager);
 app.use('',faculty);
 app.use('',department);
 app.use('',program);

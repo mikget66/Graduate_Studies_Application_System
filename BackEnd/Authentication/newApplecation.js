@@ -51,8 +51,8 @@ newApp.post('/signup',
                 hanleDelUplodes(req);
                 return res.status(400).json({ errors: { msg: ["Please upload all the required files"] } });
             }
-            console.log(req.files);
-            console.log(req.body.length_of_file);
+            // console.log(req.files);
+            // console.log(req.body.length_of_file);
 
             /*==================================  check if upload all the required files  ==================================*/
 
@@ -64,9 +64,9 @@ newApp.post('/signup',
                 if (!req.files[`image${i}`]) {
                     continue;
                 }
-                console.log(req.files[`image${i}`][0].mimetype);
+                // console.log(req.files[`image${i}`][0].mimetype);
                 let file = req.files[`image${i}`][0].mimetype || 0;
-                if (file != "image/jpeg" && file != "image/jpg" && file != "image/png" && file != "image/webp") {
+                if (file != "image/jpeg" && file != "image/jpg" && file != "image/png" && file != "image/webp" && file != "application/pdf"){
                     hanleDelUplodes(req);
                     return res.status(400).json({ errors: { msg: ["Please upload all the required files as image"] } });
                 }

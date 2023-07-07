@@ -20,7 +20,7 @@ student.get('/allstudentdetails',
         try {
             let search = "";
             if (req.query.search) {
-                search = `where student.student-name LIKE '%${req.query.search}%'`;
+                search = `where application.status LIKE '%${req.query.search}%'`;
             }
 
             // const studentdetails1 = await query(`SELECT * FROM students inner join application on students.student_id = application.student_id ${search}`);
@@ -35,12 +35,11 @@ student.get('/allstudentdetails',
     });
 
 
-
 student.get('/studentdetails',
     user,
     async (req, res) => {
         try {
-            const sqlShow = "SELECT  faculty.faculty_name , departments_of_faculty.department_name , programs_of_department.program_name , students.* FROM students inner join application on students.student_id = application.student_id inner join faculty on application.faculty_id = faculty.faculty_id inner join departments_of_faculty on application.department_id = departments_of_faculty.department_id inner join programs_of_department on application.program_id = programs_of_department.program_id WHERE students.student_id = ?";
+            const sqlShow = "SELECT application.status, application.submission_date, students.*, faculty.faculty_name, departments_of_faculty.department_name, programs_of_department.program_name FROM application INNER JOIN students ON application.student_id = students.student_id INNER JOIN faculty ON application.faculty_id = faculty.faculty_id INNER JOIN departments_of_faculty ON application.department_id = departments_of_faculty.department_id INNER JOIN programs_of_department ON application.program_id = programs_of_department.program_id WHERE application.student_id = ?";
             const values = [req.student_id];
 
             const studentdetails = await query(sqlShow, values);
@@ -55,7 +54,6 @@ student.get('/studentdetails',
         }
 
     });
-
 
 
 student.put('/studentupdate/:id',
@@ -204,7 +202,6 @@ student.put('/studentupdate/:id',
             res.status(500).json({ msg: "Server Error" });
         }
     });
-
 
 
 student.delete('/studentdelete/:id',

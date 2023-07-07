@@ -19,7 +19,7 @@ const Content = () => {
   return (
     <>
     <div className="uni-logo">
-      <h4 style={{position:"absolute" , bottom:"2rem", left : "1.5rem"}}>© 2022 Helwan Postgraduate System. Developed by</h4>
+      <h4 style={{position:"absolute" , bottom:"2rem", left : "1.5rem"}}>{t('copy-right')}</h4>
         </div>
 
     <div className='Content'>
@@ -30,12 +30,12 @@ const Content = () => {
           <div className="icon">
             
           </div>
-          <h1 style={{margin :"2rem" ,color: "#003C70"}}>{t('New applicant services ')}</h1>
+          {/* <h1 style={{margin :"2rem" ,color: "#003C70"}}>{t('New applicant services ')}</h1> */}
           <div className="options">
           <Link to='/form' style={{width:"50%"}}><button style={{background:"#AD8700"}}>{t('new')}<HiUserAdd/></button></Link>
           <Link to='/login' style={{width:"50%"}}><button style={{background:"#003C70" }}>  {t('con')} <HiUserAdd/></button> </Link>
           </div>
-          <button onClick={handleClick} className='lan-btn'>{toggle ? ("عربي") : ("Englesh")}</button>
+          <button onClick={handleClick} className='lan-btn'>{localStorage.getItem('i18nextLng') == "en"  ? ("عربي") : ("Englesh")}</button>
 
         </div>
     </>
