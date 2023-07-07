@@ -22,6 +22,7 @@ checkpages.post('/checkpage1',
     body('faculty').notEmpty().withMessage('faculty is required').isInt().withMessage('Faculty must be a number'),
     body('department').notEmpty().withMessage('department is required').isInt().withMessage('department must be a number'),
     body('program').notEmpty().withMessage('program is required').isInt().withMessage('program must be a number'),
+    body('employment').notEmpty().withMessage('employment is required'),
 
     async (req, res) => {
         try {

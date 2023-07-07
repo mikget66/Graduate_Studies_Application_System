@@ -111,6 +111,20 @@ const Step2 = ({ Faculties, UserData, SetUserData, Departments, Programs, Error 
 
         <div className="input-container">
           <span></span>
+          <select
+            className='inputIN'
+            value={UserData.employment}
+            onChange={(e) => { SetUserData({ ...UserData, employment: e.target.value }) }}
+          >
+            <option value="" >{t('employment')} </option>
+            <option value="1">{t('have')} </option>
+            <option value="0">{t('dont-have')} </option>
+          </select>
+        </div>
+
+
+        <div className="input-container">
+          <span></span>
           <select value={UserData.faculty} className='inputIN' onChange={(e) => { SetUserData({ ...UserData, faculty: e.target.value }) }} >
             <option value="" >{t('collage')} </option>
             {Faculties.map((faculty) => (

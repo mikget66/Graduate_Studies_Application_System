@@ -1,4 +1,4 @@
-import React from 'react'
+import {useEffect} from 'react'
 import { useTranslation } from 'react-i18next';
 
 const Step3 = ({UserData ,SetUserData ,Images ,SetImages}) => {
@@ -7,6 +7,15 @@ const Step3 = ({UserData ,SetUserData ,Images ,SetImages}) => {
 
   
   const [t, i18n] =useTranslation();
+  let counter = 0;
+
+  useEffect(() => {
+    SetUserData(prevUserData => ({
+      ...prevUserData,
+      length_of_file: counter
+    }));
+  }, [counter, SetUserData]);
+
   return (
     <>
       <div className="top">
@@ -24,6 +33,9 @@ const Step3 = ({UserData ,SetUserData ,Images ,SetImages}) => {
             }
           </label>
           <input  type="file" name="image1" id="image1" onChange={(e)=>{SetImages({...Images, image1: e.target.files[0]})}} style={{ display: "none" }}  required/>
+          <div style={{display:"none"}}>
+              {counter = counter + 1} 
+            </div>
         </div>
 
 
@@ -38,6 +50,9 @@ const Step3 = ({UserData ,SetUserData ,Images ,SetImages}) => {
           <input type="file" name="image2" id="image2" style={{ display: "none" }}
              onChange={(e)=>{SetImages({...Images, image2: e.target.files[0] })}}
           />
+          <div style={{display:"none"}}>
+              {counter = counter + 1} 
+            </div>
         </div>
 
         <div className="input-img-container gridChange">
@@ -51,6 +66,9 @@ const Step3 = ({UserData ,SetUserData ,Images ,SetImages}) => {
           <input type="file" name="image3" id="image3" style={{ display: "none" }} 
              onChange={(e)=>{SetImages({...Images, image3: e.target.files[0] })}}
           />
+          <div style={{display:"none"}}>
+              {counter = counter + 1} 
+            </div>
         </div>
 
         <div className="input-img-container gridChange">
@@ -63,6 +81,9 @@ const Step3 = ({UserData ,SetUserData ,Images ,SetImages}) => {
           <input type="file" name="image4" id="image4" style={{ display: "none" }} 
              onChange={(e)=>{SetImages({...Images, image4: e.target.files[0] })}}
           />
+          <div style={{display:"none"}}>
+              {counter = counter + 1} 
+            </div>
         </div>
 
         <div className="input-img-container gridChange">
@@ -75,6 +96,9 @@ const Step3 = ({UserData ,SetUserData ,Images ,SetImages}) => {
           <input type="file" name="image5" id="image5" style={{ display: "none" }} 
              onChange={(e)=>{SetImages({...Images, image5: e.target.files[0] })}}
           />
+          <div style={{display:"none"}}>
+              {counter = counter + 1} 
+            </div>
         </div>
 
         <div className="input-img-container gridChange">
@@ -88,19 +112,28 @@ const Step3 = ({UserData ,SetUserData ,Images ,SetImages}) => {
           <input type="file" name="image6" id="image6" style={{ display: "none" }} 
              onChange={(e)=>{SetImages({...Images, image6: e.target.files[0]})}}
           />
+          <div style={{display:"none"}}>
+              {counter = counter + 1} 
+            </div>
         </div>
 
-        <div className="input-img-container gridChange">
-          <span className='labelChooes'>{t('img-7')} </span>
-          <label htmlFor="image7" className='inputIN'>
+        {+UserData.employment === 1 ?(
+            <div className="input-img-container gridChange">
+            <span className='labelChooes'>{t('img-7')} </span>
+            <label htmlFor="image7" className='inputIN'>
             {
               Images.image7?`${Images.image7.name}`: `${t('choose-file')} `
             }
           </label>
-          <input type="file" name="image7" id="image7" style={{ display: "none" }} 
-             onChange={(e)=>{SetImages({...Images, image7: e.target.files[0]})}}
-          />
-        </div>
+            <input type="file" name="image7" id="image7" style={{ display: "none" }} 
+               onChange={(e)=>{SetImages({...Images, image7: e.target.files[0] })}}
+            />
+            <div style={{display:"none"}}>
+              {counter = counter + 1} 
+            </div>
+          </div>
+        ): null
+        }
         {
           +UserData.gender === 1 ?(
             <div className="input-img-container gridChange">
@@ -113,12 +146,16 @@ const Step3 = ({UserData ,SetUserData ,Images ,SetImages}) => {
             <input type="file" name="image8" id="image8" style={{ display: "none" }} 
                onChange={(e)=>{SetImages({...Images, image8: e.target.files[0] })}}
             />
+            <div style={{display:"none"}}>
+              {counter = counter + 1} 
+            </div>
           </div>
           ):null
         }
         
 
         {+UserData.level === 2 ?(
+            
             <div className="input-img-container gridChange">
             <span className='labelChooes'>{t('img-9')} </span>
             <label htmlFor="image9" className='inputIN'>
@@ -129,14 +166,19 @@ const Step3 = ({UserData ,SetUserData ,Images ,SetImages}) => {
             <input type="file" name="image9" id="image9" style={{ display: "none" }} 
                onChange={(e)=>{SetImages({...Images, image9: e.target.files[0] })}}
             />
+            <div style={{display:"none"}}>
+              {counter = counter + 1} 
+            </div>
+            
           </div>
         ): null
         }
-        
-        
+                
       </div>
       <div className='top' style={{marginTop:"2rem"}}><h1>*** {t('add-media')} *** </h1> </div>
+
     </>
+
   )
 }
 

@@ -16,7 +16,7 @@ const key = "secretkey";
 
 
 auth.post('/login',
-    body('national_id').isInt().withMessage('nationalId is required').isLength({ min: 14, max: 14 }).withMessage('nationalId must be at least 14 chars long'),
+    body('national_id').notEmpty().withMessage('nationalId is required'),
     body("password").isLength({ min: 3 }).withMessage("password must be at least 3 chars long!"),
     async (req, res) => {
         try {
