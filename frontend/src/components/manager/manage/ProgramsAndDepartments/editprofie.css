@@ -1,0 +1,9 @@
+.add-department{
+    display: flex;
+    direction: rtl;
+    gap: 1.5rem ;
+}
+.add-department input{
+    font-size: 2rem;
+    text-align: center;
+}
