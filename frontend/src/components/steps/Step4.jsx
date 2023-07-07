@@ -4,14 +4,6 @@ import { useTranslation } from 'react-i18next';
 const Step4 = ({UserData ,SetUserData ,Images ,SetImages ,Error }) => {
 
   
-
-  if(UserData.gender === "1" && UserData.level === "2"){
-     UserData.length_of_file = 9 ;
-  }else if (UserData.gender === "1" || UserData.level === "2"){
-     UserData.length_of_file = 8 ;
-  }else{
-     UserData.length_of_file = 7 ;
-  }
   const [t, i18n] =useTranslation();
 
   return (

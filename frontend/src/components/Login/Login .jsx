@@ -3,6 +3,7 @@ import './login.css'
 import { BsFillPersonVcardFill } from 'react-icons/bs'
 import { RiLockPasswordFill } from 'react-icons/ri'
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 
 import axios from 'axios'
@@ -10,6 +11,7 @@ import axios from 'axios'
 
 
 const Login = () => {
+    const navigate = useNavigate()
 
     const [loginData, setLoginData] = useState({
         password: '',
@@ -31,6 +33,7 @@ const Login = () => {
                 .then((res) => {
                     alert("A7A")
                     console.log(res)
+                    navigate('/profile')
                 }).catch((error) => { console.log(error); })
 
         } catch (error) {

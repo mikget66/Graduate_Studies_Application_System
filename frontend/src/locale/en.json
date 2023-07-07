@@ -50,6 +50,9 @@
     "img-8":"Add the position of recruitment",
     "img-9":"Add a master's photo",
     "login":"login",
-    "copy-right":"All rights reserved to Scientific Computing Center 2023"
+    "copy-right":"All rights reserved to Scientific Computing Center 2023",
+    "employment":"Do you have a job",
+    "have":"I have a job",
+    "dont-have":"without job"
 
 }

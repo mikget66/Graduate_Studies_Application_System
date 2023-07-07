@@ -17,8 +17,6 @@ const Form = () => {
 
   const [t, i18n] =useTranslation();
   const [toggle, setToggle] = useState(true);
-
-  const [check, setCheck]= useState([])
   const [faculties, setFaculties] = useState([])
   const [departments, setDepartments] = useState([])
   const [programs, setPrograms] = useState([])
@@ -39,8 +37,8 @@ const Form = () => {
     faculty: '',
     department: '',
     program: '',
-    length_of_file: '7',
-    
+    length_of_file: '6',
+    employment:''
 
   })
   const [images, setImages] = useState({
@@ -102,7 +100,7 @@ const Form = () => {
       case 0:
         return <Step1 />
       case 1:
-        return <Step2 Toggle={toggle} Error ={error} SetError = {setError} Faculties={faculties} Departments={departments} Programs={programs} UserData={userData} SetUserData={setUserData} />
+        return <Step2 Toggle={toggle} Error ={error} SetError = {setError} Faculties={faculties} Departments={departments} Programs={programs} UserData={userData} SetUserData={setUserData}/>
       case 2:
         return <Step3 UserData={userData} SetUserData={setUserData} Images={images} SetImages={setImages} />
       case 3:

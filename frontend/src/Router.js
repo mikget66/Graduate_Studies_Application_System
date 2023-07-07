@@ -6,6 +6,7 @@ import App from './App.jsx'
 import Form from './components/Form/Form.jsx'
 import Login from './components/Login/Login .jsx'
 import Content from "./components/Content/Content.jsx";
+import Profile from "./components/student/Profile.jsx";
 
 
 
@@ -26,6 +27,11 @@ const Router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+        
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
         
       },
     ]
