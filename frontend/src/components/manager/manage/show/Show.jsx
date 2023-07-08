@@ -1,31 +1,45 @@
 import React from 'react'
-import { BiArrowBack, BiSolidPrinter } from 'react-icons/bi'
+import { BiSolidPrinter } from 'react-icons/bi'
 import './show.css'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useParams } from 'react-router-dom';
+import { saveAs } from 'file-saver';
+
 
 
 const Show = () => {
-  const [t, i18n] = useTranslation();
-
+  const { t } = useTranslation();
+  const {id} = useParams();
 
   const navigate = useNavigate()
   const [user, setUser] = React.useState({})
   axios.defaults.withCredentials = true
   useEffect(() => {
-    axios.get('http://localhost:5000/student/studentdetails', { withCredentials: true })
+    axios.get('http://localhost:5000/student/studentdetails/'+id, { withCredentials: true })
       .then((res) => {
         console.log(res.data)
         setUser(res.data)
       }).catch((error) => {
         console.log(error.response.data.user)
         if (error.response.data.user === false) {
-          navigate('/login')
+          // navigate('/login')
         }
       })
   }, [])
+  const openImage = (url) => {
+    const filename = url.split('/').pop();
+    const aTag = document.createElement('a');
+    aTag.href = url;
+    aTag.target = '_blank';
+    aTag.click();
+    aTag.remove();
+  }
+  const downloadImage = (url) => {
+    saveAs(url, 'image.jpg')
+  }
 
 
   return (
@@ -130,68 +144,148 @@ const Show = () => {
         <table class="profile-table">
 
           <tr>
-            <th>المرفقات</th>
-            <th>خيارات</th>
+            <th>Attachement</th>
+            <th>Buttons</th>
           </tr>
 
-          
+
           <tr>
-            <td>{t('img-2')}</td>
+            <td>{t('img-profile-2')}</td>
             <td className='att-row'>
-              <a href={`http://localhost:5000/${user.national_id}/${user.photo_national_id}`} style={{ background: "#003C70" }} class="atch-btn">فتح</a>
-              <a  تحميل={`http://localhost:5000/${user.national_id}/${user.photo_national_id}`} style={{ background: "#AD8700" }} class="atch-btn">تحميل</a>
+              <button
+                onClick={() => { openImage(`http://localhost:5000/${user.national_id}/${user.photo_national_id}`) }}
+                style={{ background: "#003C70" }} class="atch-btn">Open
+              </button>
+              <button
+                onClick={() => { downloadImage(`http://localhost:5000/${user.national_id}/${user.photo_national_id}`) }}
+                style={{ background: "#AD8700" }} class="atch-btn">Download
+              </button>
+              
             </td>
           </tr>
+
+
           <tr>
-            <td>{t('img-3')}</td>
+            <td>{t('img-profile-3')}</td>
             <td className='att-row'>
-              <button style={{ background: "#003C70" }} class="atch-btn">فتح</button>
-              <button style={{ background: "#AD8700" }} class="atch-btn">تحميل</button>
-            </td>
+              <button
+                onClick={() => { openImage(`http://localhost:5000/${user.national_id}/${user.birth_certificate}`) }}
+                style={{ background: "#003C70" }} class="atch-btn">Open
+              </button>
+              <button
+                onClick={() => { downloadImage(`http://localhost:5000/${user.national_id}/${user.birth_certificate}`) }}
+                style={{ background: "#AD8700" }} class="atch-btn">Download
+              </button>
+              
+              
+              </td>
           </tr>
+
+
           <tr>
-            <td>{t('img-4')}</td>
+            <td>{t('img-profile-4')}</td>
             <td className='att-row'>
-              <button style={{ background: "#003C70" }} class="atch-btn">فتح</button>
-              <button style={{ background: "#AD8700" }} class="atch-btn">تحميل</button>
-            </td>
+              <button
+                onClick={() => { openImage(`http://localhost:5000/${user.national_id}/${user.academic_qualification}`) }}
+                style={{ background: "#003C70" }} class="atch-btn">Open
+              </button>
+              <button
+                onClick={() => { downloadImage(`http://localhost:5000/${user.national_id}/${user.academic_qualification}`) }}
+                style={{ background: "#AD8700" }} class="atch-btn">Download
+              </button>
+              
+              
+              </td>
           </tr>
+
+
           <tr>
-            <td>{t('img-5')}</td>
+            <td>{t('img-profile-5')}</td>
             <td className='att-row'>
-              <button style={{ background: "#003C70" }} class="atch-btn">فتح</button>
-              <button style={{ background: "#AD8700" }} class="atch-btn">تحميل</button>
-            </td>
+              <button
+                onClick={() => { openImage(`http://localhost:5000/${user.national_id}/${user.grade_statement}`) }}
+                style={{ background: "#003C70" }} class="atch-btn">Open
+              </button>
+              <button
+                onClick={() => { downloadImage(`http://localhost:5000/${user.national_id}/${user.grade_statement}`) }}
+                style={{ background: "#AD8700" }} class="atch-btn">Download
+              </button>
+              
+              
+              </td>
           </tr>
+
+
           <tr>
-            <td>{t('img-6')}</td>
+            <td>{t('img-profile-6')}</td>
             <td className='att-row'>
-              <button style={{ background: "#003C70" }} class="atch-btn">فتح</button>
-              <button style={{ background: "#AD8700" }} class="atch-btn">تحميل</button>
-            </td>
+              <button
+                onClick={() => { openImage(`http://localhost:5000/${user.national_id}/${user.good_conduct_form}`) }}
+                style={{ background: "#003C70" }} class="atch-btn">Open
+              </button>
+              <button
+                onClick={() => { downloadImage(`http://localhost:5000/${user.national_id}/${user.good_conduct_form}`) }}
+                style={{ background: "#AD8700" }} class="atch-btn">Download
+              </button>
+              
+              
+              </td>
           </tr>
+
+
           <tr>
-            <td>{t('img-7')}</td>
+            <td>{t('img-profile-7')}</td>
             <td className='att-row'>
-              <button style={{ background: "#003C70" }} class="atch-btn">فتح</button>
-              <button style={{ background: "#AD8700" }} class="atch-btn">تحميل</button>
-            </td>
+              <button
+                onClick={() => { openImage(`http://localhost:5000/${user.national_id}/${user.approval_from_employer}`) }}
+                style={{ background: "#003C70" }} class="atch-btn">Open
+              </button>
+              <button
+                onClick={() => { downloadImage(`http://localhost:5000/${user.national_id}/${user.approval_from_employer}`) }}
+                style={{ background: "#AD8700" }} class="atch-btn">Download
+              </button>
+              
+              
+              </td>
           </tr>
+
+
           <tr>
-            <td>{t('img-8')}</td>
+            <td>{t('img-profile-8')}</td>
             <td className='att-row'>
-              <button style={{ background: "#003C70" }} class="atch-btn">فتح</button>
-              <button style={{ background: "#AD8700" }} class="atch-btn">تحميل</button>
-            </td>
+              <button
+                onClick={() => { openImage(`http://localhost:5000/${user.national_id}/${user.position_on_military}`) }}
+                style={{ background: "#003C70" }} class="atch-btn">Open
+              </button>
+              <button
+                onClick={() => { downloadImage(`http://localhost:5000/${user.national_id}/${user.position_on_military}`) }}
+                style={{ background: "#AD8700" }} class="atch-btn">Download
+              </button>
+              
+              
+              </td>
           </tr>
+
+
           <tr>
-            <td>{t('img-9')}</td>
+            <td>{t('img-profile-9')}</td>
             <td className='att-row'>
-              <button style={{ background: "#003C70" }} class="atch-btn">فتح</button>
-              <button style={{ background: "#AD8700" }} class="atch-btn">تحميل</button>
-            </td>
+              <button
+                onClick={() => { openImage(`http://localhost:5000/${user.national_id}/${user.masters_photo}`) }}
+                style={{ background: "#003C70" }} class="atch-btn">Open
+              </button>
+              <button
+                onClick={() => { downloadImage(`http://localhost:5000/${user.national_id}/${user.masters_photo}`) }}
+                style={{ background: "#AD8700" }} class="atch-btn">Download
+              </button>
+              
+              
+              </td>
           </tr>
+
+
         </table>
+
       </section>
     </>
   )

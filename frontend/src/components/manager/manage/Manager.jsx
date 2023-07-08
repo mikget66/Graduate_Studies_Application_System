@@ -3,8 +3,18 @@ import './student.css'
 import Nav from './Nav/Nav'
 import { Outlet } from 'react-router-dom'
 import Logo from '../../../images/mini-logo.png'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+
 
 const Manager = () => {
+
+    
+
+
+
+
     return (
         <>
             <Nav/>
@@ -12,7 +22,7 @@ const Manager = () => {
                 <div className="logo">
                     <img src={Logo} alt="" />
                 </div>
-                <Outlet />
+                <Outlet/>
             </div>
         </>
     )

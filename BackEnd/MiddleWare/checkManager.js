@@ -5,21 +5,22 @@ import jwt from 'jsonwebtoken';
 const key = "secretkey";
 
 
-const user = async (req, res, next) => {
+const checkmanager = async (req, res, next) => {
     try {
         let token = req.session.token
         if (!token) {
-            return res.status(401).json({ user: true, msg: "Unauthorized" });
+            return res.status(401).json({ manager: false, msg: "Unauthorized" });
         } else {
             token = token.split(" ")[1];
             jwt.verify(token, key, (err, decoded) => {
                 if (err) {
-                    return res.status(401).json({ user: true, msg: err});
+                    return res.status(401).json({ manager: false, msg: err });
                 }
-                req.student_id = decoded.student_id;
-                req.national_id = decoded.national_id;
-                req.student_name = decoded.student_name;
                 
+                req.faculty_id = decoded.faculty_id;
+                req.manager_id = decoded.manager_id;
+                req.manager_email = decoded.manager_email;
+                console.log(req.manager_id + " " + req.manager_email + " " + req.faculty_id);
                 next();
             }
             );
@@ -33,4 +34,4 @@ const user = async (req, res, next) => {
     }
 }
 
-export default user;
+export default checkmanager;

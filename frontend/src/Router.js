@@ -80,7 +80,7 @@ const Router = createBrowserRouter([
             element:<ProgramAndDepartment/>
           },
           {
-            path:"/manager/show",
+            path:"/manager/show/:id",
             element:<Show/>
           },
         ]

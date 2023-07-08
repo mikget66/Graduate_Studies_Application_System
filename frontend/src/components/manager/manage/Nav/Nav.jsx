@@ -7,21 +7,21 @@ import { useEffect } from 'react';
 
 const Nav = () => {
 
-  const navigate = useNavigate()
-  const [user, setUser] = React.useState({})
-  axios.defaults.withCredentials = true
-  useEffect(() => {
-    axios.get('http://localhost:5000/student/studentdetails', { withCredentials: true })
-      .then((res) => {
-        console.log(res.data)
-        setUser(res.data)
-      }).catch((error) => {
-        console.log(error.response.data.user)
-        if (error.response.data.user === false) {
-          navigate('/login')
-        }
-      })
-  }, [])
+  // const navigate = useNavigate()
+  // const [user, setUser] = React.useState({})
+  // axios.defaults.withCredentials = true
+  // useEffect(() => {
+  //   axios.get('http://localhost:5000/student/studentdetails', { withCredentials: true })
+  //     .then((res) => {
+  //       console.log(res.data)
+  //       setUser(res.data)
+  //     }).catch((error) => {
+  //       console.log(error.response.data.user)
+  //       if (error.response.data.user === false) {
+  //         // navigate('/login')
+  //       }
+  //     })
+  // }, [])
   return (
     <nav >
       <button className="btn">

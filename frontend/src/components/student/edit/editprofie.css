@@ -106,3 +106,22 @@ tr:nth-child(odd) .input-cell:focus{
     background: #dddddd;
     border: 1px solid #000;
 }
+
+.cotainer-data .confirm-btn{
+    margin: 5rem 0;
+    width: 90%;
+    color: white;
+    padding: 1rem;
+    background: rgb(0, 60, 112);
+    font-size: 2rem;
+    border: transparent;
+    text-transform: uppercase;
+    background: #003C70;
+    border-radius: 10px;
+}
+
+.cotainer-data .confirm-btn:hover{
+    cursor: pointer;
+    background-color: #002a4d;
+    box-shadow: 5px 10px 10px #888888;
+}

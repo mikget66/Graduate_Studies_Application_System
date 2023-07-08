@@ -7,24 +7,90 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const ProgramAndDepartment = () => {
-  const [t, i18n] = useTranslation();
-
 
   const navigate = useNavigate()
-  const [user, setUser] = React.useState({})
+  const [department, setDepartment] = React.useState([])
+  const [adddDepartment, setAdddDepartment] = React.useState({
+    department_name: ''
+  })
+
+  const [program, setProgram] = React.useState([])
+  const [addProgram, setAddProgram] = React.useState({
+    program_name: '',
+    level: '',
+    department_id: ''
+  })
   axios.defaults.withCredentials = true
   useEffect(() => {
-    axios.get('http://localhost:5000/student/studentdetails', { withCredentials: true })
+    axios.get('http://localhost:5000/manager/alldepartment', { withCredentials: true })
       .then((res) => {
         console.log(res.data)
-        setUser(res.data)
+        setDepartment(res.data)
       }).catch((error) => {
-        console.log(error.response.data.user)
-        if (error.response.data.user === false) {
-          navigate('/login')
+        console.log(error.response.data.manager)
+        if (error.response.data.manager === false) {
+          navigate('/managerLogin')
         }
+
       })
+
+    axios.get('http://localhost:5000/manager/allprogram', { withCredentials: true })
+      .then((res) => {
+        console.log(res.data)
+        setProgram(res.data)
+      }
+      ).catch((error) => {
+        console.log(error.response.data.manager)
+        if (error.response.data.manager === false) {
+          navigate('/managerLogin')
+        }
+      }
+      )
   }, [])
+
+  const addDepartment = () => {
+    if (document.querySelector('.add-department input').value !== '') {
+      let con = window.confirm('هل انت متاكد من اضافه القسم')
+      if (con) {
+        console.log(adddDepartment)
+        axios.post('http://localhost:5000/manager/adddepartment', adddDepartment, { withCredentials: true })
+          .then((res) => {
+            console.log(res.data)
+            window.location.reload()
+          }).catch((error) => {
+            console.log(error.response.data.manager)
+            if (error.response.data.manager === false) {
+              navigate('/managerLogin')
+            }
+
+          })
+      }
+    } else {
+      alert('ادخل اسم القسم')
+    }
+  }
+
+  const addpro = () => {
+    if (document.querySelector('.add-p input').value !== '' && document.querySelector('.add-p select').value !== '' && document.querySelector('.add-p select:nth-child(2)').value !== '') {
+      let con = window.confirm('هل انت متاكد من اضافه البرنامج')
+      if (con) {
+        console.log(addProgram)
+        axios.post('http://localhost:5000/manager/addprogram', addProgram, { withCredentials: true })
+          .then((res) => {
+            console.log(res.data)
+            alert('تم اضافه البرنامج')
+            window.location.reload()
+          }).catch((error) => {
+            console.log(error.response.data.manager)
+            if (error.response.data.manager === false) {
+              navigate('/managerLogin')
+            }
+          })
+      }
+    } else {
+      alert('ادخل بيانات  البرنامج')
+    }
+  }
 
 
   return (
@@ -37,13 +103,18 @@ const ProgramAndDepartment = () => {
             <h2>
               الاقسام
             </h2>
-            <div className="add-department">
-              <input type="text" placeholder='اسم القسم'/>
-              <button className="add"> <MdAdd />  اضافه القسم</button>
-            </div>
-            
+
+
           </div>
-          <div className="student-container">
+          <div className="student-container nm">
+            <div className="add-department">
+              <input id='add-department'
+                onChange={(e) => { setAdddDepartment({ ...adddDepartment, department_name: e.target.value }) }}
+                type="text" placeholder='اسم القسم' />
+              <button
+                onClick={addDepartment}
+                className="add"> <MdAdd />  اضافه القسم</button>
+            </div>
 
             <table className="data-table">
               <tr>
@@ -51,10 +122,16 @@ const ProgramAndDepartment = () => {
                 <th>اسم القسم</th>
               </tr>
 
-              <tr>
-                <td>name</td>
-                <td>sdd</td>
-              </tr>
+              {department.map((item, index) => {
+
+                return (
+                  <tr>
+                    <td>{index + 1}</td>
+                    <td>{item.department_name}</td>
+                  </tr>
+                )
+              }
+              )}
 
 
             </table>
@@ -64,54 +141,77 @@ const ProgramAndDepartment = () => {
 
       </div>
       <div className="program-data">
-      <section className='cotainer-stu'>
+        <section className='cotainer-stu'>
 
 
-<div className="navv">
-  <h2>
-    البرامج
-  </h2>
-  <div className="add-department">
-              <input type="text" placeholder='اسم البرنامج'/>
-              <select>
-                <option > المرحله </option>
-                <option> دبلومه </option>
-                <option> ماجستير </option>
-                <option> دكتوراه </option>
-                <option> دكتوراه و ماجستير </option>
-                <option> دبلومه و ماجستير و دكتوراه </option>
+          <div className="navv">
+            <h2>
+              البرامج
+            </h2>
+            
+          </div>
+          <div className="student-container nm">
+          <div className="add-department add-p">
+              <h3 style={{fontSize:"1.5rem"}}>اضافه برنامج</h3>
+              <input
+                id='add-p'
+                onChange={(e) => { setAddProgram({ ...addProgram, program_name: e.target.value }) }}
+                type="text"
+                placeholder='اسم البرنامج' />
+              <select onChange={(e) => { setAddProgram({ ...addProgram, level: e.target.value }) }}>
+                <option value=""> المرحله </option>
+                <option value="0"> دبلومه </option>
+                <option value="1"> ماجستير </option>
+                <option value="2"> دكتوراه </option>
+                <option value="3"> دكتوراه و ماجستير </option>
+                <option value="4"> دبلومه و ماجستير </option>
+                <option value="5"> دبلومه و ماجستير و دكتوراه </option>
               </select>
-              <select>
-                <option > القسم </option>
-                
+              <select onChange={(e) => { setAddProgram({ ...addProgram, department_id: e.target.value }) }}>
+                <option value="0" > القسم </option>
+                {department.map((item) => {
+                  return (
+                    <option value={item.department_id}>{item.department_name}</option>
+                  )
+                })}
+
+
               </select>
-              <button className="add"> <MdAdd />  اضافه البرنامج</button>
+              {program.department_id != '' && program.level != '' && program.program_name !== '' ? 
+              <button
+                onClick={addpro}
+                className="add"> <MdAdd />  اضافه البرنامج</button>
+                : null}
             </div>
-</div>
-<div className="student-container">
+            
+            <table className="data-table">
+              <tr>
+                <th>رقم البرنامج </th>
+                <th>اسم البرنامج</th>
+                <th>اسم القسم</th>
+                <th> المرحله</th>
+              </tr>
 
-  <table className="data-table">
-    <tr>
-      <th>رقم البرنامج </th>
-      <th>اسم البرنامج</th>
-      <th>اسم القسم</th>
-      <th> المرحله</th>
-    </tr>
+              {program.map((item, index) => {
 
-    <tr>
-      <td>name</td>
-      <td>sdd</td>
-      <td>sdd</td>
-      <td>sdd</td>
-    </tr>
+                return (
+                  <tr>
+                    <td>{index + 1}</td>
+                    <td>{item.program_name}</td>
+                    <td>{item.department_name}</td>
+                    {item.level === 0 ? <td>دبلومه</td> : item.level === 1 ? <td>ماجستير</td> : item.level === 2 ? <td>دكتوراه</td> : item.level === 3 ? <td>دكتوراه و ماجستير</td> : item.level === 4 ? <td>دبلومه و ماجستير</td> : item.level === 5 ? <td>دبلومه و ماجستير و دكتوراه</td> : <td> </td>}
+                  </tr>
+                )
+              }
+              )}
 
 
-  </table>
-</div>
-</section>
+            </table>
+          </div>
+        </section>
       </div>
     </>
   )
 }
 
-export default ProgramAndDepartment
+export default ProgramAndDepartment;

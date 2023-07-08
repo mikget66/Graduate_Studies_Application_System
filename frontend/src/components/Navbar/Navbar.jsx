@@ -4,28 +4,33 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import { t } from 'i18next';
 
-const Navbar = () => {
+
+const Navbar = (User) => {
+  const [user, setUser] = React.useState({})
 
   const navigate = useNavigate()
-  const [user, setUser] = React.useState({})
-  axios.defaults.withCredentials = true
-  useEffect(() => {
-    axios.get('http://localhost:5000/student/studentdetails', { withCredentials: true })
+  
+  const logout = () => {
+    try{
+    axios.defaults.withCredentials = true
+    axios.get('http://localhost:5000/logout', { withCredentials: true })
       .then((res) => {
-        console.log(res.data)
-        setUser(res.data)
+        navigate('/login')
       }).catch((error) => {
-        console.log(error.response.data.user)
-        if (error.response.data.user === false) {
-          navigate('/login')
-        }
+        console.log(error)
       })
-  }, [])
+    }catch(error){
+      console.log(error)
+    }
+  }
+
   return (
     <nav >
-      <button className="btn">
-        <Link to='/profile/contact' style={{ color: "white", textDecoration: "none" }}> تسجيل الخروج</Link>
+      <button 
+      onClick={logout}
+      className="btn"> تسجيل الخروج
       </button>
 
       <ul>
@@ -33,8 +38,8 @@ const Navbar = () => {
           <Link to='/profile/contact' >تواصل معنا</Link>
         </li>
         <li>
-        {user.status !== 3 ? (
-          <span style={{ color: "gray" ,fontWeight : "600" ,fontSize:"17px"}}>تعديل البيانات</span>
+        {User.status == 3 ? (
+          <span style={{ color: "gray" ,fontWeight : "600" ,fontSize:"17px",cursor: "not-allowed" }}>تعديل البيانات</span>
         ) : (
           <Link to='/profile/edit'> تعديل البيانات  </Link>
         )}

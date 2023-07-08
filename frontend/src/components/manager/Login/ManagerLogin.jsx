@@ -12,7 +12,7 @@ const ManagerLogin = () => {
 
     const [loginData, setLoginData] = useState({
         password: '',
-        national_id: '',
+        manager_email: '',
     })
 
     
@@ -20,17 +20,21 @@ const ManagerLogin = () => {
 
     const handleLogin = (e) => {
         e.preventDefault()
-        // try {
-        //     axios.post('http://localhost:5000/login', loginData, { withCredentials: true })
-        //         .then((res) => {
-        //             console.log(res)
-        //             navigate('/profile')
-        //         }).catch((error) => { console.log(error); })
+        try {
+            axios.post('http://localhost:5000/managerlog/login', loginData, { withCredentials: true })
+                .then((res) => {
+                    console.log(res)
+                    navigate('/manager')
+                }).catch((error) => { 
+                    console.log(error); 
+                    alert('يجب ان تكون مديرا لتسجيل الدخول')
+                    navigate('/manager/login')
+                })
 
-        // } catch (error) {
-        //     console.log(error)
-        // }
-        navigate('/manager')
+        } catch (error) {
+            console.log(error)
+        }
+       
     }
 
 
@@ -59,7 +63,7 @@ const ManagerLogin = () => {
                                     placeholder='اسم المستخدم'
                                     className='inputIN'
                                     style={{ cursor: "text", height: "4rem" }}
-                                    value={loginData.national_id} onChange={(e) => { setLoginData({ ...loginData, national_id: e.target.value }) }}
+                                    value={loginData.manager_email} onChange={(e) => { setLoginData({ ...loginData, manager_email: e.target.value }) }}
                                 />
                             </div>
                             <div className="input-container" style={{ gap: "2rem", }}>

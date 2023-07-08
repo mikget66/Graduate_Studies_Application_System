@@ -7,8 +7,8 @@ import cors from "cors";
 import user from '../MiddleWare/checkStudent.js';
 
 
-const auth = express();
-auth.use(express.Router());
+const authmanager = express();
+authmanager.use(express.Router());
 
 
 
@@ -18,8 +18,8 @@ const key = "secretkey";
 
 
 
-auth.post('/login',
-    body('national_id').notEmpty().withMessage('nationalId is required'),
+authmanager.post('/login',
+    body('manager_email').notEmpty().withMessage('Email is required'),
     body("password").isLength({ min: 3 }).withMessage("password must be at least 3 chars long!"),
     async (req, res) => {
         try {
@@ -32,32 +32,33 @@ auth.post('/login',
 
 
 
-            const user = await query("SELECT * FROM students WHERE national_id = ?", [req.body.national_id]);
+            const manager = await query("SELECT * FROM manager WHERE manager_email = ?", [req.body.manager_email]);
             if (user.length === 0) {
-                error.push({ msg: "Student Does Not Exist" });
+                error.push({ msg: "manager Does Not Exist" });
                 return res.status(400).json({ login: false, errors: error });
             }
 
 
+            console.log(manager[0]);
 
-            const checkpassword = await bcrypt.compare(req.body.password, user[0].password);
+            // const checkpassword = await bcrypt.compare(req.body.password, user[0].password);
 
 
-            if (!checkpassword) {
-                error.push({ msg: "Password is incorrect" });
-                return res.status(400).json({ login: false, errors: error });
-            }
+            // if (!checkpassword) {
+            //     error.push({ msg: "Password is incorrect" });
+            //     return res.status(400).json({ login: false, errors: error });
+            // }
 
-            delete user[0].password;
+            delete manager[0].password;
             
             const payload = {
-                student_id: user[0].student_id,
-                national_id: user[0].national_id,
-                student_name: user[0].student_name,
+                manager_id: manager[0].manager_id,
+                manager_email: manager[0].manager_email,
+                faculty_id: manager[0].faculty_id,
             };
             const token =jwt.sign(payload, key);
             req.session.token ="Bearer "+ token;
-            res.status(200).json({ login: true, token: token });
+            res.status(200).json({ login: true });
             // res.status(200).cookie("token",`Bearer ${token}`, { httpOnly: true }).json({ login: true });
         } catch (err) {
             console.log(err);
@@ -65,7 +66,7 @@ auth.post('/login',
         }
     });
 
-auth.get('/logout',
+authmanager.get('/logout',
     user,
     async (req, res) => {
         try {
@@ -78,4 +79,4 @@ auth.get('/logout',
     });
 
 
-export default auth;
+export default authmanager;

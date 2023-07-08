@@ -9,10 +9,10 @@ import newApp from './Authentication/newApplecation.js';
 import student from './Router/studentCURD.js';
 import manager from './Router/managerCRUD.js';
 import auth from './Authentication/login.js';
+import authmanager from './Authentication/loginManager.js';
 import faculty from './Router/facultyCRUD.js';
 import department from './Router/departmaenCRUD.js';
 import program from './Router/program.js';
-
 
 
 
@@ -22,8 +22,10 @@ const app = express();
 app.use(cors({
     origin: ['http://localhost:3000'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true
-})); // enable cors to the server
+    credentials: true,
+    maxAge: 1 * 24 * 60 * 60 * 1000,
+    optionsSuccessStatus: 200
+}));
 
 app.use(session({
     secret: 'secret',
@@ -47,6 +49,7 @@ app.use('/checkpages', checkpages);
 
 app.use('/newapp', newApp);
 app.use('', auth);
+app.use('/managerlog', authmanager);
 
 app.use('/student',student);
 app.use('/manager',manager);
