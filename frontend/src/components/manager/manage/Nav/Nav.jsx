@@ -2,10 +2,21 @@ import React from 'react'
 import './navbar.css'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'
 
 const Nav = () => {
+
+  const navigate = useNavigate();
+
+  const logout = () => {
+    axios.get('http://localhost:5000/logout', { withCredentials: true })
+      .then((res) => {
+        console.log(res.data)
+        navigate('/managerLogin')
+      }).catch((error) => {
+        console.log(error.response)
+      })
+  }
 
   // const navigate = useNavigate()
   // const [user, setUser] = React.useState({})
@@ -24,8 +35,10 @@ const Nav = () => {
   // }, [])
   return (
     <nav >
-      <button className="btn">
-        <Link to='/profile/contact' style={{ color: "white", textDecoration: "none" }}> تسجيل الخروج</Link>
+      <button 
+       onClick={logout}
+      className="btn">
+        <Link  style={{ color: "white", textDecoration: "none" }}> تسجيل الخروج</Link>
       </button>
 
       <ul>

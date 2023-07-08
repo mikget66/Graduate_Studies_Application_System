@@ -7,12 +7,15 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { saveAs } from 'file-saver';
-
+import html2canvas from 'html2canvas';
+import jspdf from 'jspdf'
 
 
 const Show = () => {
   const { t } = useTranslation();
   const {id} = useParams();
+  const pdfRef = React.useRef()
+
 
   const navigate = useNavigate()
   const [user, setUser] = React.useState({})
@@ -41,6 +44,22 @@ const Show = () => {
     saveAs(url, 'image.jpg')
   }
 
+  const downloadPDF = () => {
+    const inpput = pdfRef.current;
+    html2canvas(inpput).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jspdf('l', 'px', 'a4', true);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = pdf.internal.pageSize.getHeight();
+      const imgwidth = canvas.width;
+      const imgheight = canvas.height;
+      const ratio = imgwidth / imgheight >= pdfWidth / pdfHeight ? pdfWidth / imgwidth : pdfHeight / imgheight;
+      const imgx = (pdfWidth - imgwidth * ratio) / 2;
+      const imgy = (pdfHeight - imgheight * ratio) / 2;
+      pdf.addImage(imgData, 'PNG', imgx, imgy, imgwidth * ratio, imgheight * ratio);
+      pdf.save('download.pdf');
+    })
+  }
 
   return (
     <>
@@ -49,9 +68,9 @@ const Show = () => {
           <h2>
             بيانات الطالب
           </h2>
-          <button><BiSolidPrinter />طباعه</button>
+          <button onClick={downloadPDF}><BiSolidPrinter />طباعه</button>
         </div>
-        <div className="data-container">
+        <div className="data-container" ref={pdfRef}>
           <div className='image-con'>
             <img src="/assets/uni-logo.png" alt="" className="imagee" />
             <button className='acc'>قبول</button>
@@ -133,8 +152,8 @@ const Show = () => {
             <tr>
               <td>تاريخ الطلب</td>
               <td>
-                {(user.submission_date)}
-              </td>
+              {(user.submission_date?.split('T')[0]) || ''}
+                            </td>
             </tr>
           </table>
         </div>
