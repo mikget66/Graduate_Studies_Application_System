@@ -58,7 +58,7 @@ manager.post('/adddepartment',
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
-                return res.status(400).json({ errors:{msg: errors.array().map((err) => err.msg) }});
+                return res.status(400).json({ errors: { msg: errors.array().map((err) => err.msg) } });
             }
 
             const sqlcheck = "SELECT * FROM departments_of_faculty WHERE department_name = ? AND faculty_id = ?";
@@ -115,10 +115,10 @@ manager.put('/updatedepartment/:id',
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
-                return res.status(400).json({ errors:{msg: errors.array().map((err) => err.msg) }});
+                return res.status(400).json({ errors: { msg: errors.array().map((err) => err.msg) } });
             }
 
-            
+
 
             const sqlcheck1 = "SELECT * FROM departments_of_faculty WHERE department_id = ?";
             const value1 = [req.params.id];
@@ -147,7 +147,7 @@ manager.put('/updatedepartment/:id',
 
         }
 
-    });    
+    });
 
 
 manager.delete('/deletedepartment/:id',
@@ -183,7 +183,7 @@ manager.post('/addprogram',
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
-                return res.status(400).json({ errors:{msg: errors.array().map((err) => err.msg) }});
+                return res.status(400).json({ errors: { msg: errors.array().map((err) => err.msg) } });
             }
 
 
@@ -224,7 +224,7 @@ manager.get('/allprogram',
             if (req.query.search) {
                 search = `where faculty.faculty_id LIKE '%${req.query.search}%'`;
             }
-            
+
             const managerdetails = await query(`SELECT  faculty.faculty_name , departments_of_faculty.department_name , programs_of_department.* FROM programs_of_department inner join departments_of_faculty on programs_of_department.department_id = departments_of_faculty.department_id inner join faculty on departments_of_faculty.faculty_id = faculty.faculty_id where faculty.faculty_id = ${req.faculty_id}`);
             res.status(200).json(managerdetails);
         } catch (err) {
@@ -233,7 +233,7 @@ manager.get('/allprogram',
         }
     });
 
-    
+
 manager.put('/updateprogram/:id',
     body('program_name').notEmpty().withMessage('program_name is required'),
     body('department_id').notEmpty().withMessage('department_id is required'),
@@ -243,7 +243,7 @@ manager.put('/updateprogram/:id',
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
-                return res.status(400).json({ errors:{msg: errors.array().map((err) => err.msg) }});
+                return res.status(400).json({ errors: { msg: errors.array().map((err) => err.msg) } });
             }
 
             const sqlcheck1 = "SELECT * FROM programs_of_department WHERE program_id = ?";
@@ -301,47 +301,39 @@ manager.delete('/deleteprogram/:id',
             res.status(500).json({ errors: [{ msg: `Error: ${err} ` }] });
         }
 
-});
+    });
 
 
 manager.put('/updatestatus/:id',
+    checkmanager,
     body('status').notEmpty().withMessage('status is required'),
-    body('student_id').notEmpty().withMessage('student_id is required'),
-    body('faculty_id').notEmpty().withMessage('faculty_id is required'),
-    body('department_id').notEmpty().withMessage('department_id is required'),
-    body('program_id').notEmpty().withMessage('program_id is required'),
     async (req, res) => {
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
-                return res.status(400).json({ errors:{msg: errors.array().map((err) => err.msg) }});
+                return res.status(400).json({ errors: { msg: errors.array().map((err) => err.msg) } });
             }
 
-            const sqlcheck1 = "SELECT * FROM application WHERE application_id = ?";
+
+            const sqlcheck1 = "SELECT * FROM application WHERE student_id = ?";
             const value1 = [req.params.id];
             const application1 = await query(sqlcheck1, value1);
             if (!application1[0]) {
-                return res.status(404).json({ errors: [{ msg: "application not found !" }] });
+                return res.status(404).json({ errors: [{ msg: "Student not found !" }] });
             }
 
-            const applicationData = {
-                student_id: req.body.student_id,
-                faculty_id: req.body.faculty_id,
-                department_id: req.body.department_id,
-                program_id: req.body.program_id,
-                status: req.body.status,
-            };
 
-            const sqlUpdate = "UPDATE application SET ?  WHERE application_id = ?";
-            const values = [applicationData, req.params.id];
+            const sqlUpdate = "UPDATE application SET status = ?  WHERE student_id = ?";
+            const values = [req.body.status, req.params.id];
             await query(sqlUpdate, values, (err, result) => {
                 if (err) {
                     return res.status(400).json({ errors: [{ msg: `Error: ${err} ` }] });
-                } else {
-                    res.status(200).json({ msg: "application Updated Successfully" });
                 }
-
+                else {
+                    res.status(200).json({ msg: "status Updated Successfully" });
+                }
             });
+
 
         } catch (err) {
 

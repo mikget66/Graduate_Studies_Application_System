@@ -77,5 +77,9 @@ auth.get('/logout',
         }
     });
 
+auth.post('/checklogin',
+    async (req, res) => {
+        res.status(200).json(true);
+    });
 
 export default auth;

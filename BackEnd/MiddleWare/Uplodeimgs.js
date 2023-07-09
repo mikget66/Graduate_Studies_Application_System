@@ -4,17 +4,17 @@ import fs from "fs";
 
 
 const storage = multer.diskStorage({
-    destination:(req, file, cb) => {
-        
-        if(fs.existsSync(`./public/imgs/${req.national_id}`)){
-            cb(null, `./public/imgs/${req.national_id}`);
-        }else{
-            fs.mkdirSync(`./public/imgs/${req.national_id}`);
-            cb(null, `./public/imgs/${req.national_id}`);
+    destination: (req, file, cb) => {
+
+        if (fs.existsSync(`./public/imgs/${req.body.national_id}`)) {
+            cb(null, `./public/imgs/${req.body.national_id || req.national_id}`);
+        } else {
+            fs.mkdirSync(`./public/imgs/${req.body.national_id}`);
+            cb(null, `./public/imgs/${req.body.national_id || req.national_id}`);
         }
     },
-    filename (req, file, cb) {
-       return cb(null, `${req.student_name}_${file.originalname}_${Date.now()}${path.extname(file.originalname)}`);
+    filename(req, file, cb) {
+        return cb(null, `${req.body.name || req.student_name}_${file.originalname}_${Date.now()}${path.extname(file.originalname)}`);
     }
 });
 
@@ -36,19 +36,19 @@ const upload = multer({
     //     // }
 
     // },
-   
 
-    
+
+
 }).fields([
-    {"name" : "image1" ,maxCount : 1 }, //person image
-    {"name" : "image2" ,maxCount : 1 }, //photo_national_id
-    {"name" : "image3" ,maxCount : 1 }, //birth_certificate
-    {"name" : "image4" ,maxCount : 1 }, //academic_qualification
-    {"name" : "image5" ,maxCount : 1 }, //grade_statement
-    {"name" : "image6" ,maxCount : 1 }, //good_conduct_form
-    {"name" : "image7" ,maxCount : 1 }, //approval_from_employer
-    {"name" : "image8" ,maxCount : 1 }, //position_on_military
-    {"name" : "image9" ,maxCount : 1 }, //masters_photo
+    { "name": "image1", maxCount: 1 }, //person image
+    { "name": "image2", maxCount: 1 }, //photo_national_id
+    { "name": "image3", maxCount: 1 }, //birth_certificate
+    { "name": "image4", maxCount: 1 }, //academic_qualification
+    { "name": "image5", maxCount: 1 }, //grade_statement
+    { "name": "image6", maxCount: 1 }, //good_conduct_form
+    { "name": "image7", maxCount: 1 }, //approval_from_employer
+    { "name": "image8", maxCount: 1 }, //position_on_military
+    { "name": "image9", maxCount: 1 }, //masters_photo
 ]);
 
 export default upload;

@@ -1,12 +1,13 @@
-import {useEffect} from 'react'
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next';
+import { Upload } from 'antd';
 
-const Step3 = ({UserData ,SetUserData ,Images ,SetImages}) => {
+const Step3 = ({ UserData, SetUserData, Images, SetImages }) => {
 
-  
 
-  
-  const [t, i18n] =useTranslation();
+
+
+  const [t, i18n] = useTranslation();
   let counter = 0;
 
   useEffect(() => {
@@ -16,30 +17,265 @@ const Step3 = ({UserData ,SetUserData ,Images ,SetImages}) => {
     }));
   }, [counter, SetUserData]);
 
+
+
   return (
     <>
       <div className="top">
         <h2>
-        {t('step3-title')} 
+          {t('step3-title')}
         </h2>
       </div>
       <div className="content superContianer">
 
+
         <div className="input-img-container gridChange">
           <span className='labelChooes'>{t('img-1')} </span>
-          <label htmlFor="image1" className='inputIN'>
+          <div>
+            <Upload.Dragger
+              listType='picture'
+              action={"https://localhost:5000/checklogin"}
+              maxCount={1}
+              showUploadList={{ showRemoveIcon: true }}
+              accept='.jpg,.png,.jpeg , .webp , .pdf'
+              beforeUpload={(file) => {
+                console.log(file)
+                return false;
+              }
+              }
+              onChange={(e) => {
+                SetImages({ ...Images, image1: e.fileList[0].originFileObj })
+              }}
+            >
+              Drag file here or
+              <button> {t('choose-file')} </button>
+            </Upload.Dragger>
+          </div>
+          <div style={{ display: "none" }}>
+            {counter = counter + 1}
+          </div>
+        </div>
+        <div className="input-img-container gridChange">
+          <span className='labelChooes'>{t('img-2')} </span>
+          <div>
+            <Upload.Dragger
+              listType='picture'
+              action={"https://localhost:5000/checklogin"}
+              maxCount={1}
+              showUploadList={{ showRemoveIcon: true }}
+              accept='.jpg,.png,.jpeg , .webp , .pdf'
+              beforeUpload={(file) => {
+                console.log(file)
+                return false;
+              }
+              }
+              onChange={(e) => {
+                SetImages({ ...Images, image2: e.fileList[0].originFileObj })
+              }}
+            >
+              Drag file here or
+              <button> {t('choose-file')} </button>
+            </Upload.Dragger>
+          </div>
+          <div style={{ display: "none" }}>
+            {counter = counter + 1}
+          </div>
+        </div>
+        <div className="input-img-container gridChange">
+          <span className='labelChooes'>{t('img-3')} </span>
+          <div>
+            <Upload.Dragger
+              listType='picture'
+              action={"https://localhost:5000/checklogin"}
+              maxCount={1}
+              showUploadList={{ showRemoveIcon: true }}
+              accept='.jpg,.png,.jpeg , .webp , .pdf'
+              beforeUpload={(file) => {
+                console.log(file)
+                return false;
+              }
+              }
+              onChange={(e) => {
+                SetImages({ ...Images, image3: e.fileList[0].originFileObj })
+              }}
+            >
+              Drag file here or
+              <button> {t('choose-file')} </button>
+            </Upload.Dragger>
+          </div>
+          <div style={{ display: "none" }}>
+            {counter = counter + 1}
+          </div>
+        </div>
+        <div className="input-img-container gridChange">
+          <span className='labelChooes'>{t('img-4')} </span>
+          <div>
+            <Upload.Dragger
+              listType='picture'
+              action={"https://localhost:5000/checklogin"}
+              maxCount={1}
+              showUploadList={{ showRemoveIcon: true }}
+              accept='.jpg,.png,.jpeg , .webp , .pdf'
+              beforeUpload={(file) => {
+                console.log(file)
+                return false;
+              }
+              }
+              onChange={(e) => {
+                SetImages({ ...Images, image4: e.fileList[0].originFileObj })
+              }}
+            >
+              Drag file here or
+              <button> {t('choose-file')} </button>
+            </Upload.Dragger>
+          </div>
+          <div style={{ display: "none" }}>
+            {counter = counter + 1}
+          </div>
+        </div>
+        <div className="input-img-container gridChange">
+          <span className='labelChooes'>{t('img-5')} </span>
+          <div>
+            <Upload.Dragger
+              listType='picture'
+              action={"https://localhost:5000/checklogin"}
+              maxCount={1}
+              showUploadList={{ showRemoveIcon: true }}
+              accept='.jpg,.png,.jpeg , .webp , .pdf'
+              beforeUpload={(file) => {
+                console.log(file)
+                return false;
+              }
+              }
+              onChange={(e) => {
+                SetImages({ ...Images, image5: e.fileList[0].originFileObj })
+              }}
+            >
+              Drag file here or
+              <button> {t('choose-file')} </button>
+            </Upload.Dragger>
+          </div>
+          <div style={{ display: "none" }}>
+            {counter = counter + 1}
+          </div>
+        </div>
+        <div className="input-img-container gridChange">
+          <span className='labelChooes'>{t('img-6')} </span>
+          <div>
+            <Upload.Dragger
+              listType='picture'
+              action={"https://localhost:5000/checklogin"}
+              maxCount={1}
+              showUploadList={{ showRemoveIcon: true }}
+              accept='.jpg,.png,.jpeg , .webp , .pdf'
+              beforeUpload={(file) => {
+                console.log(file)
+                return false;
+              }
+              }
+              onChange={(e) => {
+                SetImages({ ...Images, image6: e.fileList[0].originFileObj })
+              }}
+            >
+              Drag file here or
+              <button> {t('choose-file')} </button>
+            </Upload.Dragger>
+          </div>
+          <div style={{ display: "none" }}>
+            {counter = counter + 1}
+          </div>
+        </div>
+        <div className="input-img-container gridChange">
+          <span className='labelChooes'>{t('img-7')} </span>
+          <div>
+            <Upload.Dragger
+              listType='picture'
+              action={"https://localhost:5000/checklogin"}
+              maxCount={1}
+              showUploadList={{ showRemoveIcon: true }}
+              accept='.jpg,.png,.jpeg , .webp , .pdf'
+              beforeUpload={(file) => {
+                console.log(file)
+                return false;
+              }
+              }
+              onChange={(e) => {
+                SetImages({ ...Images, image7: e.fileList[0].originFileObj })
+              }}
+            >
+              Drag file here or
+              <button> {t('choose-file')} </button>
+            </Upload.Dragger>
+          </div>
+          <div style={{ display: "none" }}>
+            {counter = counter + 1}
+          </div>
+        </div>
+        <div className="input-img-container gridChange">
+          <span className='labelChooes'>{t('img-8')} </span>
+          <div>
+            <Upload.Dragger
+              listType='picture'
+              action={"https://localhost:5000/checklogin"}
+              maxCount={1}
+              showUploadList={{ showRemoveIcon: true }}
+              accept='.jpg,.png,.jpeg , .webp , .pdf'
+              beforeUpload={(file) => {
+                console.log(file)
+                return false;
+              }
+              }
+              onChange={(e) => {
+                SetImages({ ...Images, image8: e.fileList[0].originFileObj })
+              }}
+            >
+              Drag file here or
+              <button> {t('choose-file')} </button>
+            </Upload.Dragger>
+          </div>
+          <div style={{ display: "none" }}>
+            {counter = counter + 1}
+          </div>
+        </div>
+        <div className="input-img-container gridChange">
+          <span className='labelChooes'>{t('img-9')} </span>
+          <div>
+            <Upload.Dragger
+              listType='picture'
+              action={"https://localhost:5000/checklogin"}
+              maxCount={1}
+              showUploadList={{ showRemoveIcon: true }}
+              accept='.jpg,.png,.jpeg , .webp , .pdf'
+              beforeUpload={(file) => {
+                console.log(file)
+                return false;
+              }
+              }
+              onChange={(e) => {
+                SetImages({ ...Images, image9: e.fileList[0].originFileObj })
+              }}
+            >
+              Drag file here or
+              <button> {t('choose-file')} </button>
+            </Upload.Dragger>
+          </div>
+          <div style={{ display: "none" }}>
+            {counter = counter + 1}
+          </div>
+        </div>
+        {/* <label htmlFor="image1" className='inputIN'>
             {
               Images.image1?`${Images.image1.name}`: `${t('choose-file')} `
             }
           </label>
-          <input  type="file" name="image1" id="image1" onChange={(e)=>{SetImages({...Images, image1: e.target.files[0]})}} style={{ display: "none" }}  required/>
-          <div style={{display:"none"}}>
-              {counter = counter + 1} 
-            </div>
-        </div>
+          <input  type="file" name="image1" id="image1" onChange={(e)=>{SetImages({...Images, image1: e.target.files[0]})}} style={{ display: "none" }}  required/> */}
+        {/* <div style={{ display: "none" }}>
+            {counter = counter + 1}
+          </div>
+        </div> */}
 
 
-        <div className="input-img-container gridChange ">
+        {/* <div className="input-img-container gridChange ">
           <span className='labelChooes'>{t('img-2')} </span>
           <label htmlFor="image2" className='inputIN'>
             {
@@ -173,9 +409,9 @@ const Step3 = ({UserData ,SetUserData ,Images ,SetImages}) => {
           </div>
         ): null
         }
-                
+                 */}
       </div>
-      <div className='top' style={{marginTop:"2rem"}}><h1>*** {t('add-media')} *** </h1> </div>
+      <div className='top' style={{ marginTop: "2rem" }}><h1>*** {t('add-media')} *** </h1> </div>
 
     </>
 

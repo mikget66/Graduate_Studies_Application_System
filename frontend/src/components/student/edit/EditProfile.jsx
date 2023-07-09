@@ -61,8 +61,8 @@ const EditProfile = () => {
     saveAs(url, 'image.jpg')
   }
 
-  
-  const changeimage = (index1 , index2) => {
+
+  const changeimage = (index1, index2) => {
     const inputTag = document.createElement('input');
     inputTag.type = 'file';
     inputTag.accept = 'image/*';
@@ -86,17 +86,19 @@ const EditProfile = () => {
     formData.append('image8', user.image8)
     formData.append('image9', user.image9)
 
-    
+
     axios.put('http://localhost:5000/student/studentupdate', formData, { withCredentials: true })
       .then((res) => {
         console.log(res.data)
+        alert('data updated')
         navigate('/profile')
+        window.location.reload()
       }).catch((error) => {
         console.log(error.response.data.user)
       })
   }
 
-    
+
 
 
 
@@ -111,7 +113,6 @@ const EditProfile = () => {
           <h2>
             Student Application Report
           </h2>
-          <button><BiSolidPrinter />print</button>
         </div>
         <div className="data-container">
           <img src={`http://localhost:5000/${data.national_id}/${data.img}`} alt="" className="image" />
@@ -124,12 +125,7 @@ const EditProfile = () => {
             <tr>
               <td>{t('name')}</td>
               <td>
-                <input
-                  className="input-cell"
-                  type="text"
-                  value={data.student_name}
-                  onChange={(e) => setUser({ ...user, student_name: e.target.value })}
-                />
+                {data.student_name}
               </td>
             </tr>
             <tr>
@@ -153,7 +149,7 @@ const EditProfile = () => {
             <tr>
               <td>{t('dateOfBirth')}</td>
               <td>
-                {(data.birthdate)}
+                {(data.birthdate?.split('T')[0]) || ''}
               </td>
             </tr>
             <tr>
@@ -196,7 +192,7 @@ const EditProfile = () => {
             <tr>
               <td>{t('DateOfSubmission')}</td>
               <td>
-                {(data.submission_date)}
+                {(data.submission_date?.split('T')[0]) || ''}
               </td>
             </tr>
           </table>
@@ -224,7 +220,7 @@ const EditProfile = () => {
                 style={{ background: "#AD8700" }} class="atch-btn">Download
               </button>
               <button
-                onClick={() =>{changeimage('image2' , 'image22')}}
+                onClick={() => { changeimage('image2', 'image22') }}
                 style={{ background: "#003C70" }} class="atch-btn">Change
               </button>
               <p id='change-1'>{images.image22 != "" ? images.image22 : ""}</p>
@@ -244,11 +240,11 @@ const EditProfile = () => {
                 style={{ background: "#AD8700" }} class="atch-btn">Download
               </button>
               <button
-                onClick={() =>{changeimage('image3' , 'image33')}}
+                onClick={() => { changeimage('image3', 'image33') }}
                 style={{ background: "#003C70" }} class="atch-btn">Change
               </button>
               <p id='change-1'>{images.image33 != "" ? images.image33 : ""}</p>
-              </td>
+            </td>
           </tr>
 
 
@@ -264,11 +260,11 @@ const EditProfile = () => {
                 style={{ background: "#AD8700" }} class="atch-btn">Download
               </button>
               <button
-                onClick={() =>{changeimage('image4' , 'image44')}}
+                onClick={() => { changeimage('image4', 'image44') }}
                 style={{ background: "#003C70" }} class="atch-btn">Change
               </button>
               <p id='change-1'>{images.image44 != "" ? images.image44 : ""}</p>
-              </td>
+            </td>
           </tr>
 
 
@@ -284,11 +280,11 @@ const EditProfile = () => {
                 style={{ background: "#AD8700" }} class="atch-btn">Download
               </button>
               <button
-                onClick={() =>{changeimage('image5' , 'image55')}}
+                onClick={() => { changeimage('image5', 'image55') }}
                 style={{ background: "#003C70" }} class="atch-btn">Change
               </button>
               <p id='change-1'>{images.image55 != "" ? images.image55 : ""}</p>
-              </td>
+            </td>
           </tr>
 
 
@@ -304,11 +300,11 @@ const EditProfile = () => {
                 style={{ background: "#AD8700" }} class="atch-btn">Download
               </button>
               <button
-                onClick={() =>{changeimage('image6' , 'image66')}}
+                onClick={() => { changeimage('image6', 'image66') }}
                 style={{ background: "#003C70" }} class="atch-btn">Change
               </button>
               <p id='change-1'>{images.image66 != "" ? images.image66 : ""}</p>
-              </td>
+            </td>
           </tr>
 
 
@@ -324,11 +320,11 @@ const EditProfile = () => {
                 style={{ background: "#AD8700" }} class="atch-btn">Download
               </button>
               <button
-                onClick={() =>{changeimage('image7' , 'image77')}}
+                onClick={() => { changeimage('image7', 'image77') }}
                 style={{ background: "#003C70" }} class="atch-btn">Change
               </button>
               <p id='change-1'>{images.image77 != "" ? images.image77 : ""}</p>
-              </td>
+            </td>
           </tr>
 
 
@@ -344,11 +340,11 @@ const EditProfile = () => {
                 style={{ background: "#AD8700" }} class="atch-btn">Download
               </button>
               <button
-                onClick={() =>{changeimage('image8' , 'image88')}}
+                onClick={() => { changeimage('image8', 'image88') }}
                 style={{ background: "#003C70" }} class="atch-btn">Change
               </button>
               <p id='change-1'>{images.image88 != "" ? images.image88 : ""}</p>
-              </td>
+            </td>
           </tr>
 
 
@@ -364,11 +360,11 @@ const EditProfile = () => {
                 style={{ background: "#AD8700" }} class="atch-btn">Download
               </button>
               <button
-                onClick={() =>{changeimage("image9" , 'image99')}}
+                onClick={() => { changeimage("image9", 'image99') }}
                 style={{ background: "#003C70" }} class="atch-btn">Change
               </button>
               <p id='change-1'>{images.image99 != "" ? images.image99 : ""}</p>
-              </td>
+            </td>
           </tr>
 
 

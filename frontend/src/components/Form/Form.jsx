@@ -15,7 +15,7 @@ const Form = () => {
 
   const navigate = useNavigate()
 
-  const [t, i18n] =useTranslation();
+  const [t, i18n] = useTranslation();
   const [toggle, setToggle] = useState(true);
   const [faculties, setFaculties] = useState([])
   const [departments, setDepartments] = useState([])
@@ -38,7 +38,7 @@ const Form = () => {
     department: '',
     program: '',
     length_of_file: '6',
-    employment:''
+    employment: ''
 
   })
   const [images, setImages] = useState({
@@ -100,11 +100,11 @@ const Form = () => {
       case 0:
         return <Step1 />
       case 1:
-        return <Step2 Toggle={toggle} Error ={error} SetError = {setError} Faculties={faculties} Departments={departments} Programs={programs} UserData={userData} SetUserData={setUserData}/>
+        return <Step2 Toggle={toggle} Error={error} SetError={setError} Faculties={faculties} Departments={departments} Programs={programs} UserData={userData} SetUserData={setUserData} />
       case 2:
         return <Step3 UserData={userData} SetUserData={setUserData} Images={images} SetImages={setImages} />
       case 3:
-        return <Step4 Error ={error2} UserData={userData} SetUserData={setUserData} Images={images} SetImages={setImages}/>
+        return <Step4 Error={error2} UserData={userData} SetUserData={setUserData} Images={images} SetImages={setImages} />
 
       default:
         break;
@@ -124,21 +124,20 @@ const Form = () => {
 
         if (page < 3) {
           if (page === 1) {
-            const { name, email } = userData
             if (true) {
               try {
-                 axios.post('http://localhost:5000/checkpages/checkpage1', userData)
+                axios.post('http://localhost:5000/checkpages/checkpage1', userData)
                   .then((res) => {
                     console.log(res)
                     setFlag(true);
                     setPage(2)
-                    
+
                   }).catch(async (error) => {
                     // console.log(error.response.data.errors.msg)
                     setFlag(true);
                     setPage(1)
                     setError(error.response.data.errors.msg)
-                    
+
                   }
                   )
               }
@@ -146,20 +145,21 @@ const Form = () => {
                 console.log(error)
                 setFlag(false);
               }
-              
+
 
             } else {
               setFlag(false)
             }
           }
-            if (flag && page !== 1) {
-              setPage((currPage) => currPage + 1)
-              console.log(userData)
-            }
+          if (flag && page !== 1) {
+            setPage((currPage) => currPage + 1)
+            console.log(userData)
+            console.log(images)
+          }
 
-          
 
-          
+
+
 
 
         }
@@ -206,12 +206,12 @@ const Form = () => {
     formData.append('image8', images.image8)
     formData.append('image9', images.image9)
     try {
-      axios.post('http://localhost:5000/newapp/signup',formData )
+      axios.post('http://localhost:5000/newapp/signup', formData)
         .then((res) => {
           console.log(res)
           console.log(userData.length_of_file)
           let su = "يرجى العلم بانه يمكنك متابعه الطلب من خلال  تسجيل الدخول على الموقع باستخدام الايميل الذى تم إدخاله في البيانات وكلمة المرور"
-          if(!alert(su)){
+          if (!alert(su)) {
             window.location.href = '/'
           }
 
@@ -238,12 +238,13 @@ const Form = () => {
           {returnStep(page)}
         </div>
         <button onClick={handleClick} className='lan-btn'>{localStorage.getItem('i18nextLng') == "en" ? ("عربي") : ("Englesh")}</button>
-        <div className="nav">
-          <button className="prev" onClick={() => { handlePage("decrment") }}>{t('prev')}</button>
-          <div className='page-n'> {`${page + 1} from 4`}</div>
-          {+page === 3 ? <button className="next" onClick={handleSubmit} >{t('submit')} </button> : <button className="next" onClick={() => { handlePage("increment") }} >{t('next')}</button>}
-        </div>
+
       </section>
+      <div className="nav">
+        <button className="prev" onClick={() => { handlePage("decrment") }}>{t('prev')}</button>
+        <div className='page-n'> {`${page + 1} from 4`}</div>
+        {+page === 3 ? <button className="next" onClick={handleSubmit} >{t('submit')} </button> : <button className="next" onClick={() => { handlePage("increment") }} >{t('next')}</button>}
+      </div>
     </>
   )
 }

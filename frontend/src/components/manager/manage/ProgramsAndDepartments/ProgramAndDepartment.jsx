@@ -148,11 +148,11 @@ const ProgramAndDepartment = () => {
             <h2>
               البرامج
             </h2>
-            
+
           </div>
           <div className="student-container nm">
-          <div className="add-department add-p">
-              <h3 style={{fontSize:"1.5rem"}}>اضافه برنامج</h3>
+            <div className="add-department add-p">
+              <h3 style={{ fontSize: "1.5rem" }}>اضافه برنامج</h3>
               <input
                 id='add-p'
                 onChange={(e) => { setAddProgram({ ...addProgram, program_name: e.target.value }) }}
@@ -177,13 +177,12 @@ const ProgramAndDepartment = () => {
 
 
               </select>
-              {program.department_id != '' && program.level != '' && program.program_name !== '' ? 
               <button
                 onClick={addpro}
                 className="add"> <MdAdd />  اضافه البرنامج</button>
-                : null}
+
             </div>
-            
+
             <table className="data-table">
               <tr>
                 <th>رقم البرنامج </th>

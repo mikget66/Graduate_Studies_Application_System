@@ -13,7 +13,7 @@ import jspdf from 'jspdf'
 
 const Show = () => {
   const { t } = useTranslation();
-  const {id} = useParams();
+  const { id } = useParams();
   const pdfRef = React.useRef()
 
 
@@ -21,15 +21,14 @@ const Show = () => {
   const [user, setUser] = React.useState({})
   axios.defaults.withCredentials = true
   useEffect(() => {
-    axios.get('http://localhost:5000/student/studentdetails/'+id, { withCredentials: true })
+    axios.get('http://localhost:5000/student/studentdetails/' + id, { withCredentials: true })
       .then((res) => {
         console.log(res.data)
         setUser(res.data)
       }).catch((error) => {
         console.log(error.response.data.user)
-        if (error.response.data.user === false) {
-          // navigate('/login')
-        }
+        navigate('/managerLogin')
+
       })
   }, [])
   const openImage = (url) => {
@@ -61,6 +60,53 @@ const Show = () => {
     })
   }
 
+  const [status, setStatus] = React.useState('')
+  const handelAccept = () => {
+    try {
+      axios.put('http://localhost:5000/manager/updatestatus/' + id, { status: 1 }, { withCredentials: true })
+        .then((res) => {
+          console.log(res.data)
+          window.location.reload()
+        }).catch((error) => {
+          console.log(error.response)
+
+        })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  const handelwait = () => {
+    try {
+      axios.put('http://localhost:5000/manager/updatestatus/' + id, { status: 2 }, { withCredentials: true })
+        .then((res) => {
+          console.log(res.data)
+          window.location.reload()
+        }).catch((error) => {
+          console.log(error.response)
+
+        })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  const handelrej = () => {
+    try {
+      axios.put('http://localhost:5000/manager/updatestatus/' + id, { status: 0 }, { withCredentials: true })
+        .then((res) => {
+          console.log(res.data)
+          window.location.reload()
+        }).catch((error) => {
+          console.log(error.response)
+        })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+
+
+
+
   return (
     <>
       <section className="cotainer-data">
@@ -72,9 +118,16 @@ const Show = () => {
         </div>
         <div className="data-container" ref={pdfRef}>
           <div className='image-con'>
-            <img src="/assets/uni-logo.png" alt="" className="imagee" />
-            <button className='acc'>قبول</button>
-            <button className='ref'>رفض</button>
+            <img src={`http://localhost:5000/${user.national_id}/${user.img}`} alt="img" className='imagee' />
+            {user.status == 0 ? <p style={{ background: "rgb(175, 35, 35)" }}>مرفوض</p>
+              : user.status == 1 ? <p >مقبول</p>
+                : user.status == 2 ?
+                  <>
+                    <button onClick={handelAccept} className='acc'>قبول</button>
+                    <button onClick={handelwait} className='wait-edit'>طلب تعديل البيانات</button>
+                    <button onClick={handelrej} className='ref'>رفض</button>
+                  </>
+                  : <p className='wait'>قيد الانتظار</p>}
           </div>
           <table className="data-table">
             <tr>
@@ -84,8 +137,8 @@ const Show = () => {
 
             <tr>
               <td>الاسم</td>
-              <td> 
-                    {user.student_name}
+              <td>
+                {user.student_name}
               </td>
             </tr>
             <tr>
@@ -115,10 +168,10 @@ const Show = () => {
             <tr>
               <td>النوع</td>
               <td>
-                {user.gender == 1 ? 'ذكر' :'انثى'}
+                {user.gender == 1 ? 'ذكر' : 'انثى'}
               </td>
             </tr>
-            
+
             <tr>
               <td>الكليه</td>
               <td>
@@ -152,8 +205,8 @@ const Show = () => {
             <tr>
               <td>تاريخ الطلب</td>
               <td>
-              {(user.submission_date?.split('T')[0]) || ''}
-                            </td>
+                {(user.submission_date?.split('T')[0]) || ''}
+              </td>
             </tr>
           </table>
         </div>
@@ -179,7 +232,7 @@ const Show = () => {
                 onClick={() => { downloadImage(`http://localhost:5000/${user.national_id}/${user.photo_national_id}`) }}
                 style={{ background: "#AD8700" }} class="atch-btn">Download
               </button>
-              
+
             </td>
           </tr>
 
@@ -195,9 +248,9 @@ const Show = () => {
                 onClick={() => { downloadImage(`http://localhost:5000/${user.national_id}/${user.birth_certificate}`) }}
                 style={{ background: "#AD8700" }} class="atch-btn">Download
               </button>
-              
-              
-              </td>
+
+
+            </td>
           </tr>
 
 
@@ -212,9 +265,9 @@ const Show = () => {
                 onClick={() => { downloadImage(`http://localhost:5000/${user.national_id}/${user.academic_qualification}`) }}
                 style={{ background: "#AD8700" }} class="atch-btn">Download
               </button>
-              
-              
-              </td>
+
+
+            </td>
           </tr>
 
 
@@ -229,9 +282,9 @@ const Show = () => {
                 onClick={() => { downloadImage(`http://localhost:5000/${user.national_id}/${user.grade_statement}`) }}
                 style={{ background: "#AD8700" }} class="atch-btn">Download
               </button>
-              
-              
-              </td>
+
+
+            </td>
           </tr>
 
 
@@ -246,9 +299,9 @@ const Show = () => {
                 onClick={() => { downloadImage(`http://localhost:5000/${user.national_id}/${user.good_conduct_form}`) }}
                 style={{ background: "#AD8700" }} class="atch-btn">Download
               </button>
-              
-              
-              </td>
+
+
+            </td>
           </tr>
 
 
@@ -263,9 +316,9 @@ const Show = () => {
                 onClick={() => { downloadImage(`http://localhost:5000/${user.national_id}/${user.approval_from_employer}`) }}
                 style={{ background: "#AD8700" }} class="atch-btn">Download
               </button>
-              
-              
-              </td>
+
+
+            </td>
           </tr>
 
 
@@ -280,9 +333,9 @@ const Show = () => {
                 onClick={() => { downloadImage(`http://localhost:5000/${user.national_id}/${user.position_on_military}`) }}
                 style={{ background: "#AD8700" }} class="atch-btn">Download
               </button>
-              
-              
-              </td>
+
+
+            </td>
           </tr>
 
 
@@ -297,9 +350,9 @@ const Show = () => {
                 onClick={() => { downloadImage(`http://localhost:5000/${user.national_id}/${user.masters_photo}`) }}
                 style={{ background: "#AD8700" }} class="atch-btn">Download
               </button>
-              
-              
-              </td>
+
+
+            </td>
           </tr>
 
 

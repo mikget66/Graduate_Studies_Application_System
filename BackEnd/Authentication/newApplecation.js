@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken";
 import cors from "cors";
 import upload from '../MiddleWare/Uplodeimgs.js';
 import fs from 'fs';
+import user from '../MiddleWare/checkStudent.js';
 
 const newApp = express();
 newApp.use(express.Router());

@@ -2,18 +2,21 @@
     font-size: 1.8rem;
     margin-top: 1rem;
 }
-.top h2{
-    color:#AD8700;
+
+.top h2 {
+    color: #AD8700;
     font-size: 2.4rem;
     margin-bottom: 20px;
 }
-.top{
+
+.top {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 3rem;
 }
-.content{
+
+.content {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -21,7 +24,8 @@
     gap: 1rem;
     margin-top: 3rem;
 }
-.input-container{
+
+.input-container {
     direction: rtl;
     display: grid;
     grid-template-columns: 40px 1fr;
@@ -29,11 +33,12 @@
     width: 100%;
     height: 100%;
 }
-.input-img-container .labelChooes{
+
+.input-img-container .labelChooes {
     font-size: 1.7rem;
     font-weight: 900;
     color: #fff;
-    background-color:#003C70;
+    background-color: #003C70;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,21 +46,23 @@
     height: 100%;
     border-radius: 10px;
 }
-.input-img-container{
+
+.input-img-container {
     direction: rtl;
     display: flex;
     width: 100%;
-    height: 120%;
     justify-content: center;
     flex-direction: column;
     flex-wrap: nowrap;
 }
-.gridChange{
+
+.gridChange {
     grid-template-rows: 1fr 1fr;
     text-align: center;
-    
+
 }
-.inputIN{
+
+.inputIN {
     border: none;
     background-color: #F5F5F5;
     direction: rtl;
@@ -66,13 +73,19 @@
     border-radius: 15px;
     width: 100%;
 }
-.Icon{
+
+.ant-upload-list-item-thumbnail img {
+    width: 300px;
+}
+
+.Icon {
     font-size: 30px;
     color: rgb(0, 60, 112)
 }
-.superContianer{
+
+.superContianer {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 2rem;
     justify-content: center;
     align-items: center;
@@ -81,18 +94,19 @@
 }
 
 @media only screen and (max-width: 1125px) {
-    .superContianer{
+    .superContianer {
         grid-template-columns: 1fr 1fr;
     }
-  }
+}
 
 @media only screen and (max-width: 768px) {
-    .superContianer{
+    .superContianer {
         grid-template-columns: 1fr;
     }
 
-    html , body{
+    html,
+    body {
         overflow: scroll;
         font-size: 70%;
     }
-  }
+}

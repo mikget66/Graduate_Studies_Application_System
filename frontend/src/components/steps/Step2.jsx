@@ -8,7 +8,7 @@ import { BsFillPersonVcardFill } from 'react-icons/bs'
 import { BsFillCalendar2DateFill } from 'react-icons/bs'
 const Step2 = ({ Faculties, UserData, SetUserData, Departments, Programs, Error }) => {
 
-  const [t, i18n] = useTranslation();
+  const [t] = useTranslation();
 
   const [program_level, setProgram_level] = React.useState(0)
   return (

@@ -1,43 +1,59 @@
-.subCon{
+.subCon {
     width: 100%;
-    height: 100vh;
+    /* height: 100vh; */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
     background-color: #fff;
-    overflow: hidden;
-    
+    margin-bottom: 5rem;
+    /* overflow-y: scroll; */
+
 }
-.nav{
+
+:where(.css-dev-only-do-not-override-14wwjjs).ant-upload-wrapper .ant-upload-list.ant-upload-list-picture .ant-upload-list-item {
+    height: 50%;
+}
+
+:where(.css-dev-only-do-not-override-14wwjjs).ant-upload-wrapper .ant-upload-list.ant-upload-list-picture .ant-upload-list-item .ant-upload-list-item-thumbnail {
+    width: 20%;
+    height: 20%;
+    /* height: min-content; */
+}
+
+.nav {
     display: flex;
     justify-content: space-evenly;
     width: 100%;
-   
+
 
 }
-.nav button{
+
+.nav button {
     margin-bottom: 2rem;
     border: none;
     font-size: 1.7rem;
     border-radius: 25px;
-    padding: 1rem 2rem ;
+    padding: 1rem 2rem;
     color: white;
     width: 20%;
     background-color: #AD8700;
 }
-.nav button:hover{
+
+.nav button:hover {
     transition: all 0.2s ease-in-out;
     box-shadow: 0 0 20px #AD8700;
     cursor: pointer;
 }
+
 /* .nav .prev{
     background-color: #003C70;
 }
 */
-.subCon .lan-btn:hover{
+.subCon .lan-btn:hover {
     box-shadow: 0 0 10px #003C70;
-} 
+}
+
 /* .nav .page-n{
   position: relative;
   bottom: -2.5rem;
@@ -47,7 +63,7 @@
   padding: .7rem 6rem;
   border-radius: 50% 50% 0 0 ;
 } */
-.nav .page-n{
+.nav .page-n {
     position: relative;
     bottom: 0.5rem;
     background-color: #003C70;
@@ -59,11 +75,12 @@
     height: 5rem;
     text-align: center;
 }
-.subCon .lan-btn{
+
+.subCon .lan-btn {
     border: none;
     font-size: 1.5rem;
     border-radius: 25px;
-    padding: 1rem 2rem ;
+    padding: 1rem 2rem;
     color: white;
     cursor: pointer;
     background-color: #003C70;
@@ -71,15 +88,17 @@
     top: 1rem;
     right: 2rem;
 }
-.body{
-    height: 50rem;
+
+.body {
+    /*height: 50rem; */
     width: 90%;
     padding: 1rem;
-    
+    /* margin: 6rem auto;*/
+
 }
 
 @media only screen and (max-width: 1125px) {
-    .subCon{
-        overflow:scroll;     
+    .subCon {
+        overflow: scroll;
     }
-  }
+}
