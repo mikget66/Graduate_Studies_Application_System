@@ -40,7 +40,7 @@ manager.get('/allaaplication',
                 search = `where faculty.faculty_id LIKE '%${req.query.search}%'`;
             }
 
-            const managerdetails = await query(`SELECT  faculty.faculty_name , application.status ,application.submission_date , students.* ,departments_of_faculty.department_name , programs_of_department.program_name FROM application inner join students on application.student_id = students.student_id inner join faculty on application.faculty_id = faculty.faculty_id inner join departments_of_faculty on application.department_id = departments_of_faculty.department_id inner join programs_of_department on application.program_id = programs_of_department.program_id where faculty.faculty_id = ${req.faculty_id}`);
+            const managerdetails = await query(`SELECT  faculty.faculty_name , faculty.faculty_name_ar,application.status ,application.submission_date , students.* ,departments_of_faculty.department_name , departments_of_faculty.department_name_ar , programs_of_department.program_name FROM application inner join students on application.student_id = students.student_id inner join faculty on application.faculty_id = faculty.faculty_id inner join departments_of_faculty on application.department_id = departments_of_faculty.department_id inner join programs_of_department on application.program_id = programs_of_department.program_id where faculty.faculty_id = ${req.faculty_id}`);
             delete managerdetails[0].password;
             res.status(200).json(managerdetails);
         } catch (err) {
@@ -61,7 +61,7 @@ manager.post('/adddepartment',
                 return res.status(400).json({ errors: { msg: errors.array().map((err) => err.msg) } });
             }
 
-            const sqlcheck = "SELECT * FROM departments_of_faculty WHERE department_name = ? AND faculty_id = ?";
+            const sqlcheck = "SELECT * FROM departments_of_faculty WHERE department_name  = ? AND faculty_id = ?";
             const value = [req.body.department_name, req.faculty_id];
             const department = await query(sqlcheck, value);
             if (department[0]) {
@@ -71,6 +71,7 @@ manager.post('/adddepartment',
             const departmentData = {
                 department_name: req.body.department_name,
                 faculty_id: req.faculty_id,
+                department_name_ar : req.department_name_ar ,
             };
 
             const sqlInsert = "INSERT INTO departments_of_faculty SET ?";
@@ -97,7 +98,7 @@ manager.get('/alldepartment',
                 search = `where faculty.faculty_id LIKE '%${req.query.search}%'`;
             }
 
-            const managerdetails = await query(`SELECT  faculty.faculty_name , departments_of_faculty.* FROM departments_of_faculty inner join faculty on departments_of_faculty.faculty_id = faculty.faculty_id where faculty.faculty_id = ${req.faculty_id}`);
+            const managerdetails = await query(`SELECT  faculty.faculty_name ,faculty.faculty_name_ar, departments_of_faculty.* FROM departments_of_faculty inner join faculty on departments_of_faculty.faculty_id = faculty.faculty_id where faculty.faculty_id = ${req.faculty_id}`);
             res.status(200).json(managerdetails);
         } catch (err) {
             console.log(err);
@@ -130,6 +131,7 @@ manager.put('/updatedepartment/:id',
 
             const departmentData = {
                 department_name: req.body.department_name,
+                department_name_ar : req.body.department_name_ar
             };
 
             const sqlUpdate = "UPDATE departments_of_faculty SET ?  WHERE department_id = ?";
@@ -177,6 +179,7 @@ manager.delete('/deletedepartment/:id',
 
 manager.post('/addprogram',
     body('program_name').notEmpty().withMessage('program_name is required'),
+    body('program_name_ar').notEmpty().withMessage('program_name is required'),
     body('department_id').notEmpty().withMessage('department_id is required'),
     body('level').notEmpty().withMessage('level is required'),
     async (req, res) => {
@@ -196,6 +199,7 @@ manager.post('/addprogram',
 
             const programData = {
                 program_name: req.body.program_name,
+                program_name_ar : req.body.program_name_ar ,
                 department_id: req.body.department_id,
                 level: req.body.level,
             };
@@ -225,7 +229,7 @@ manager.get('/allprogram',
                 search = `where faculty.faculty_id LIKE '%${req.query.search}%'`;
             }
 
-            const managerdetails = await query(`SELECT  faculty.faculty_name , departments_of_faculty.department_name , programs_of_department.* FROM programs_of_department inner join departments_of_faculty on programs_of_department.department_id = departments_of_faculty.department_id inner join faculty on departments_of_faculty.faculty_id = faculty.faculty_id where faculty.faculty_id = ${req.faculty_id}`);
+            const managerdetails = await query(`SELECT  faculty.faculty_name ,faculty.faculty_name_ar, departments_of_faculty.department_name ,departments_of_faculty.department_name_ar ,  programs_of_department.* FROM programs_of_department inner join departments_of_faculty on programs_of_department.department_id = departments_of_faculty.department_id inner join faculty on departments_of_faculty.faculty_id = faculty.faculty_id where faculty.faculty_id = ${req.faculty_id}`);
             res.status(200).json(managerdetails);
         } catch (err) {
             console.log(err);

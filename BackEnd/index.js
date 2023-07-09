@@ -13,6 +13,9 @@ import authmanager from './Authentication/loginManager.js';
 import faculty from './Router/facultyCRUD.js';
 import department from './Router/departmaenCRUD.js';
 import program from './Router/program.js';
+import authadmin from './Authentication/loginِAdmin.js';
+
+
 
 
 
@@ -50,6 +53,7 @@ app.use('/checkpages', checkpages);
 app.use('/newapp', newApp);
 app.use('', auth);
 app.use('/managerlog', authmanager);
+app.use('/adminlog', authadmin);
 
 app.use('/student',student);
 app.use('/manager',manager);

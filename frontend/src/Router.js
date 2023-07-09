@@ -15,10 +15,10 @@ import StudentList from "./components/manager/manage/studentList/StudentList.jsx
 import Manager from "./components/manager/manage/Manager.jsx";
 import ProgramAndDepartment from "./components/manager/manage/ProgramsAndDepartments/ProgramAndDepartment.jsx";
 import Show from "./components/manager/manage/show/Show.jsx";
-import AdminLogin from "./components/admin/Login/AdminLogin.jsx";
-import Admin from "./components/admin/manage/Admin.jsx";
-import StudentListadmin from "./components/admin/manage/studentList/StudentListadmin.jsx";
-import ShowA from "./components/admin/manage/show/ShowA.jsx";
+import AdminLogin from "./components/admin/Login/ManagerLogin.jsx";
+import Admin from "./components/admin/manage/Manager.jsx";
+import StudentListadmin from "./components/admin/manage/studentList/StudentList.jsx";
+import ShowA from "./components/admin/manage/show/Show.jsx"
 
 
 

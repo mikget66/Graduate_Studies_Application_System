@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react'
+import './login.css'
 import { BsFillPersonVcardFill } from 'react-icons/bs'
 import { RiLockPasswordFill } from 'react-icons/ri'
 import { useNavigate } from 'react-router-dom';
 
 import axios from 'axios'
 
-const AdminLogin = () => {
+const ManagerLogin = () => {
 
     const navigate = useNavigate()
 
     const [loginData, setLoginData] = useState({
         password: '',
-        national_id: '',
+        manager_email: '',
     })
 
     
@@ -19,17 +20,21 @@ const AdminLogin = () => {
 
     const handleLogin = (e) => {
         e.preventDefault()
-        // try {
-        //     axios.post('http://localhost:5000/login', loginData, { withCredentials: true })
-        //         .then((res) => {
-        //             console.log(res)
-        //             navigate('/profile')
-        //         }).catch((error) => { console.log(error); })
+        try {
+            axios.post('http://localhost:5000/adminlog/login', loginData, { withCredentials: true })
+                .then((res) => {
+                    console.log(res)
+                    navigate('/admin')
+                }).catch((error) => { 
+                    console.log(error); 
+                    alert('يجب ان تكون مديرا لتسجيل الدخول')
+                    navigate('/adminLogin')
+                })
 
-        // } catch (error) {
-        //     console.log(error)
-        // }
-        navigate('/Admin')
+        } catch (error) {
+            console.log(error)
+        }
+       
     }
 
 
@@ -55,10 +60,10 @@ const AdminLogin = () => {
                                 <BsFillPersonVcardFill className='Icon' style={{ fontSize: "3.5rem" }} />
                                 <input
                                     type="text"
-                                    placeholder='اسم المستخدم'
+                                    placeholder='اسم البريد الالكتروني'
                                     className='inputIN'
                                     style={{ cursor: "text", height: "4rem" }}
-                                    value={loginData.national_id} onChange={(e) => { setLoginData({ ...loginData, national_id: e.target.value }) }}
+                                    value={loginData.manager_email} onChange={(e) => { setLoginData({ ...loginData, manager_email: e.target.value }) }}
                                 />
                             </div>
                             <div className="input-container" style={{ gap: "2rem", }}>
@@ -78,10 +83,13 @@ const AdminLogin = () => {
                         </div>
 
                     </div>
+                    
+
+
                 </section>
             </div>
         </>
     )
 }
 
-export default AdminLogin
+export default ManagerLogin

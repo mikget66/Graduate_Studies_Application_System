@@ -36,7 +36,7 @@ const Step3 = ({ UserData, SetUserData, Images, SetImages }) => {
               listType='picture'
               action={"https://localhost:5000/checklogin"}
               maxCount={1}
-              showUploadList={{ showRemoveIcon: true }}
+              showUploadList={{ showRemoveIcon: false }}
               accept='.jpg,.png,.jpeg , .webp , .pdf'
               beforeUpload={(file) => {
                 console.log(file)
@@ -62,7 +62,7 @@ const Step3 = ({ UserData, SetUserData, Images, SetImages }) => {
               listType='picture'
               action={"https://localhost:5000/checklogin"}
               maxCount={1}
-              showUploadList={{ showRemoveIcon: true }}
+              showUploadList={{ showRemoveIcon: false }}
               accept='.jpg,.png,.jpeg , .webp , .pdf'
               beforeUpload={(file) => {
                 console.log(file)
@@ -88,7 +88,7 @@ const Step3 = ({ UserData, SetUserData, Images, SetImages }) => {
               listType='picture'
               action={"https://localhost:5000/checklogin"}
               maxCount={1}
-              showUploadList={{ showRemoveIcon: true }}
+              showUploadList={{ showRemoveIcon: false }}
               accept='.jpg,.png,.jpeg , .webp , .pdf'
               beforeUpload={(file) => {
                 console.log(file)
@@ -114,7 +114,7 @@ const Step3 = ({ UserData, SetUserData, Images, SetImages }) => {
               listType='picture'
               action={"https://localhost:5000/checklogin"}
               maxCount={1}
-              showUploadList={{ showRemoveIcon: true }}
+              showUploadList={{ showRemoveIcon: false }}
               accept='.jpg,.png,.jpeg , .webp , .pdf'
               beforeUpload={(file) => {
                 console.log(file)
@@ -140,7 +140,7 @@ const Step3 = ({ UserData, SetUserData, Images, SetImages }) => {
               listType='picture'
               action={"https://localhost:5000/checklogin"}
               maxCount={1}
-              showUploadList={{ showRemoveIcon: true }}
+              showUploadList={{ showRemoveIcon: false }}
               accept='.jpg,.png,.jpeg , .webp , .pdf'
               beforeUpload={(file) => {
                 console.log(file)
@@ -166,7 +166,7 @@ const Step3 = ({ UserData, SetUserData, Images, SetImages }) => {
               listType='picture'
               action={"https://localhost:5000/checklogin"}
               maxCount={1}
-              showUploadList={{ showRemoveIcon: true }}
+              showUploadList={{ showRemoveIcon: false }}
               accept='.jpg,.png,.jpeg , .webp , .pdf'
               beforeUpload={(file) => {
                 console.log(file)
@@ -192,7 +192,7 @@ const Step3 = ({ UserData, SetUserData, Images, SetImages }) => {
               listType='picture'
               action={"https://localhost:5000/checklogin"}
               maxCount={1}
-              showUploadList={{ showRemoveIcon: true }}
+              showUploadList={{ showRemoveIcon: false }}
               accept='.jpg,.png,.jpeg , .webp , .pdf'
               beforeUpload={(file) => {
                 console.log(file)
@@ -218,7 +218,7 @@ const Step3 = ({ UserData, SetUserData, Images, SetImages }) => {
               listType='picture'
               action={"https://localhost:5000/checklogin"}
               maxCount={1}
-              showUploadList={{ showRemoveIcon: true }}
+              showUploadList={{ showRemoveIcon: false }}
               accept='.jpg,.png,.jpeg , .webp , .pdf'
               beforeUpload={(file) => {
                 console.log(file)
@@ -244,7 +244,7 @@ const Step3 = ({ UserData, SetUserData, Images, SetImages }) => {
               listType='picture'
               action={"https://localhost:5000/checklogin"}
               maxCount={1}
-              showUploadList={{ showRemoveIcon: true }}
+              showUploadList={{ showRemoveIcon: false }}
               accept='.jpg,.png,.jpeg , .webp , .pdf'
               beforeUpload={(file) => {
                 console.log(file)

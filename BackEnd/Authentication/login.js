@@ -19,7 +19,7 @@ const key = "secretkey";
 
 
 auth.post('/login',
-    body('national_id').notEmpty().withMessage('nationalId is required'),
+    body('email').notEmpty().withMessage('email is required'),
     body("password").isLength({ min: 3 }).withMessage("password must be at least 3 chars long!"),
     async (req, res) => {
         try {
@@ -32,7 +32,7 @@ auth.post('/login',
 
 
 
-            const user = await query("SELECT * FROM students WHERE national_id = ?", [req.body.national_id]);
+            const user = await query("SELECT * FROM students WHERE email = ?", [req.body.email]);
             if (user.length === 0) {
                 error.push({ msg: "Student Does Not Exist" });
                 return res.status(400).json({ login: false, errors: error });

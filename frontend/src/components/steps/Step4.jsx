@@ -35,6 +35,7 @@ const Step4 = ({UserData ,SetUserData ,Images ,SetImages ,Error }) => {
           />
         </div>
       </div>
+      <div className='top' style={{marginTop:"2rem" ,color: "#AD8700" ,fontWeight: "bolder" ,fontSize:"1.5em"}}><h1> يرجى العلم بانه يمكنك متابعه الطلب من خلال  تسجيل الدخول على الموقع باستخدام الايميل الذى تم إدخاله في البيانات وكلمة المرور</h1> </div>
       { Error ? (
       <div className='top' style={{marginTop:"2rem" ,color: "red" ,fontWeight: "bolder"}}><h1>  {Error[0] != undefined ? `${Error[0]}` : null}  </h1> </div>) 
       : null

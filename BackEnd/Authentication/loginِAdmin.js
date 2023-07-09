@@ -7,8 +7,8 @@ import cors from "cors";
 import user from '../MiddleWare/checkStudent.js';
 
 
-const authmanager = express();
-authmanager.use(express.Router());
+const authadmin = express();
+authadmin.use(express.Router());
 
 
 
@@ -18,7 +18,7 @@ const key = "secretkey";
 
 
 
-authmanager.post('/login',
+authadmin.post('/login',
     body('manager_email').notEmpty().withMessage('Email is required'),
     body("password").isLength({ min: 3 }).withMessage("password must be at least 3 chars long!"),
     async (req, res) => {
@@ -32,7 +32,7 @@ authmanager.post('/login',
 
 
 
-            const manager = await query("SELECT * FROM manager WHERE manager_email = ? AND type = 0 ", [req.body.manager_email]);
+            const manager = await query("SELECT * FROM manager WHERE manager_email = ? AND type = 1 ", [req.body.manager_email]);
             if (user.length === 0) {
                 error.push({ msg: "manager Does Not Exist" });
                 return res.status(400).json({ login: false, errors: error });
@@ -66,7 +66,7 @@ authmanager.post('/login',
         }
     });
 
-authmanager.get('/logout',
+authadmin.get('/logout',
     user,
     async (req, res) => {
         try {
@@ -79,4 +79,4 @@ authmanager.get('/logout',
     });
 
 
-export default authmanager;
+export default authadmin;

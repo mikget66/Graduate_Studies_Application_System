@@ -36,7 +36,7 @@ const Content = () => {
           <Link to='/form' style={{width:"50%"}}><button style={{background:"#AD8700"}}>{t('new')}<HiUserAdd/></button></Link>
           <Link to='/login' style={{width:"50%"}}><button style={{background:"#003C70" }}>  {t('con')} <HiUserAdd/></button> </Link>
           </div>
-          <button onClick={handleClick} className='lan-btn'>{localStorage.getItem('i18nextLng') == "en"  ? ("عربي") : ("Englesh")}</button>
+          <button onClick={handleClick} className='lan-btn'>{localStorage.getItem('i18nextLng') == "en"  ? ("عربي") : ("English")}</button>
 
         </div>
         </div>

@@ -5,6 +5,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 const ProgramAndDepartment = () => {
 
@@ -13,6 +14,7 @@ const ProgramAndDepartment = () => {
   const [adddDepartment, setAdddDepartment] = React.useState({
     department_name: ''
   })
+  const [error ,setErroe] = React.useState("");
 
   const [program, setProgram] = React.useState([])
   const [addProgram, setAddProgram] = React.useState({
@@ -58,11 +60,7 @@ const ProgramAndDepartment = () => {
             console.log(res.data)
             window.location.reload()
           }).catch((error) => {
-            console.log(error.response.data.manager)
-            if (error.response.data.manager === false) {
-              navigate('/managerLogin')
-            }
-
+            console.log(error.response.data.errors.msg)
           })
       }
     } else {
@@ -71,7 +69,7 @@ const ProgramAndDepartment = () => {
   }
 
   const addpro = () => {
-    if (document.querySelector('.add-p input').value !== '' && document.querySelector('.add-p select').value !== '' && document.querySelector('.add-p select:nth-child(2)').value !== '') {
+    if (document.querySelector('.add-p input').value !== '' && document.querySelector('.add-p select').value !== '') {
       let con = window.confirm('هل انت متاكد من اضافه البرنامج')
       if (con) {
         console.log(addProgram)
@@ -81,10 +79,10 @@ const ProgramAndDepartment = () => {
             alert('تم اضافه البرنامج')
             window.location.reload()
           }).catch((error) => {
-            console.log(error.response.data.manager)
-            if (error.response.data.manager === false) {
-              navigate('/managerLogin')
-            }
+            console.log(error.response.data.errors.msg)
+            setErroe(error.response.data.errors.msg)
+
+            
           })
       }
     } else {
@@ -120,6 +118,7 @@ const ProgramAndDepartment = () => {
               <tr>
                 <th>رقم القسم </th>
                 <th>اسم القسم</th>
+                {/* <th>التعديلات</th> */}
               </tr>
 
               {department.map((item, index) => {
@@ -128,6 +127,10 @@ const ProgramAndDepartment = () => {
                   <tr>
                     <td>{index + 1}</td>
                     <td>{item.department_name}</td>
+                    {/* <td  >
+                      <button className='moreinfo'><Link style={{ textDecoration: "none" }}>   تعديل </Link></button>
+                      <button className='moreinfo'><Link style={{ textDecoration: "none" }}>  حذف  </Link></button>
+                    </td> */}
                   </tr>
                 )
               }
@@ -168,7 +171,7 @@ const ProgramAndDepartment = () => {
                 <option value="5"> دبلومه و ماجستير و دكتوراه </option>
               </select>
               <select onChange={(e) => { setAddProgram({ ...addProgram, department_id: e.target.value }) }}>
-                <option value="0" > القسم </option>
+                <option id='sel2' value="" > القسم </option>
                 {department.map((item) => {
                   return (
                     <option value={item.department_id}>{item.department_name}</option>
@@ -177,6 +180,7 @@ const ProgramAndDepartment = () => {
 
 
               </select>
+              {error? <p > يرجى ادخال اسم القسم</p> : null}
               <button
                 onClick={addpro}
                 className="add"> <MdAdd />  اضافه البرنامج</button>

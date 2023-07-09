@@ -237,7 +237,7 @@ const Form = () => {
         <div className="body">
           {returnStep(page)}
         </div>
-        <button onClick={handleClick} className='lan-btn'>{localStorage.getItem('i18nextLng') == "en" ? ("عربي") : ("Englesh")}</button>
+        <button onClick={handleClick} className='lan-btn'>{localStorage.getItem('i18nextLng') == "en" ? ("عربي") : ("English")}</button>
 
       </section>
       <div className="nav">

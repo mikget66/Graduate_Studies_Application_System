@@ -28,7 +28,7 @@ const ManagerLogin = () => {
                 }).catch((error) => { 
                     console.log(error); 
                     alert('يجب ان تكون مديرا لتسجيل الدخول')
-                    navigate('/manager/login')
+                    navigate('/managerLogin')
                 })
 
         } catch (error) {
@@ -60,7 +60,7 @@ const ManagerLogin = () => {
                                 <BsFillPersonVcardFill className='Icon' style={{ fontSize: "3.5rem" }} />
                                 <input
                                     type="text"
-                                    placeholder='اسم المستخدم'
+                                    placeholder='اسم البريد الالكتروني'
                                     className='inputIN'
                                     style={{ cursor: "text", height: "4rem" }}
                                     value={loginData.manager_email} onChange={(e) => { setLoginData({ ...loginData, manager_email: e.target.value }) }}

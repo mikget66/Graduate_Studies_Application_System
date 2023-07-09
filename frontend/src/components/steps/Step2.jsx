@@ -128,7 +128,7 @@ const Step2 = ({ Faculties, UserData, SetUserData, Departments, Programs, Error 
           <select value={UserData.faculty} className='inputIN' onChange={(e) => { SetUserData({ ...UserData, faculty: e.target.value }) }} >
             <option value="" >{t('collage')} </option>
             {Faculties.map((faculty) => (
-              <option key={faculty.faculty_id} value={faculty.faculty_id}>{faculty.faculty_name}</option>
+              <option key={faculty.faculty_id} value={faculty.faculty_id}>{localStorage.getItem('i18nextLng') == "ar" ? `${faculty.faculty_name_ar}` : `${faculty.faculty_name}`}</option>
             ))}
           </select>
         </div>
@@ -140,7 +140,7 @@ const Step2 = ({ Faculties, UserData, SetUserData, Departments, Programs, Error 
           <select value={UserData.department} className='inputIN' onChange={(e) => { SetUserData({ ...UserData, department: e.target.value }) }} >
             <option value="" >{t('department')} </option>
             {Departments.map((department) => (
-              (`${department.faculty_id}` === `${UserData.faculty}`) ? <option key={department.department_id} value={department.department_id}>{department.department_name}</option> : null
+              (`${department.faculty_id}` === `${UserData.faculty}`) ? <option key={department.department_id} value={department.department_id}>{localStorage.getItem('i18nextLng') == "ar" ? `${department.department_name_ar}` : `${department.department_name}`}</option> : null
             ))}
           </select>
         </div>
@@ -164,7 +164,7 @@ const Step2 = ({ Faculties, UserData, SetUserData, Departments, Programs, Error 
             {Programs.map((program) => {
               if (`${program.department_id}` === `${UserData.department}`) {
                 return (
-                  <option key={program.program_id} value={program.program_id} > {program.program_name} </option>
+                  <option key={program.program_id} value={program.program_id} > {localStorage.getItem('i18nextLng') == "ar" ? `${program.program_name_ar}` : `${program.program_name}`} </option>
                 )
               }
             })

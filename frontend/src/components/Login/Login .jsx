@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './login.css'
-import { BsFillPersonVcardFill } from 'react-icons/bs'
+import { GrMail } from 'react-icons/gr'
 import { RiLockPasswordFill } from 'react-icons/ri'
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -12,7 +12,7 @@ const Login = () => {
 
     const [loginData, setLoginData] = useState({
         password: '',
-        national_id: '',
+        email: '',
     })
 
     const [t, i18n] = useTranslation();
@@ -58,13 +58,13 @@ const Login = () => {
                     </div>
                     <div className="content" style={{ marginTop: "6rem", gap: "3rem" }}>
                         <div className="input-container" style={{ gap: "2rem", }}>
-                            <BsFillPersonVcardFill className='Icon' style={{ fontSize: "3.5rem" }} />
+                            <GrMail className='Icon' style={{ fontSize: "3.5rem" }} />
                             <input
                                 type="text"
-                                placeholder={t('n-id')}
+                                placeholder={t('email')}
                                 className='inputIN'
                                 style={{ cursor: "text", height: "4rem" }}
-                                value={loginData.national_id} onChange={(e) => { setLoginData({ ...loginData, national_id: e.target.value }) }}
+                                value={loginData.email} onChange={(e) => { setLoginData({ ...loginData, email: e.target.value }) }}
                             />
                         </div>
                         <div className="input-container" style={{ gap: "2rem", }}>
@@ -84,7 +84,7 @@ const Login = () => {
                     </div>
 
                 </div>
-                <button onClick={handleClick} className='lan-btn'>{localStorage.getItem('i18nextLng') == "en" ? ("عربي") : ("Englesh")}</button>
+                <button onClick={handleClick} className='lan-btn'>{localStorage.getItem('i18nextLng') == "en" ? ("عربي") : ("English")}</button>
 
 
             </section>

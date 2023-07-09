@@ -11,7 +11,7 @@ import html2canvas from 'html2canvas';
 import jspdf from 'jspdf'
 
 
-const Show = () => {
+const ShowA = () => {
   const { t } = useTranslation();
   const { id } = useParams();
   const pdfRef = React.useRef()
@@ -363,4 +363,4 @@ const Show = () => {
   )
 }
 
-export default Show
+export default ShowA
